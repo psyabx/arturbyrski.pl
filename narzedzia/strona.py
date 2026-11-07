@@ -349,6 +349,9 @@ def wydanie(a: argparse.Namespace) -> None:
     gra = json.loads(plik.read_text(encoding="utf-8"))
     pl = czytaj_notatki(a.notatki_pl) or ["Poprawki i ulepszenia."]
     en = czytaj_notatki(a.notatki_en) or ["Fixes and improvements."]
+    poprzednie = [w for w in gra.get("wydania", []) if w["kod"] != a.kod]
+    if poprzednie and max(poprzednie, key=lambda w: w["kod"])["notatki"]["pl"] == pl:
+        print("::warning::Notatki „co nowego” są takie same jak w poprzedniej wersji. Zaktualizuj sklep/co-nowego/ w repozytorium gry.")
     nowe = {"wersja": a.wersja, "kod": a.kod, "data": a.data or dt.date.today().isoformat(),
             "sciezka": a.sciezka, "notatki": {"pl": pl, "en": en}}
     # Ponowne uruchomienie tego samego wydania nadpisuje wpis zamiast dublować.
