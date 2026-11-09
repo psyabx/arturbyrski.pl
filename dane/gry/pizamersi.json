@@ -23,12 +23,52 @@
     ]
   },
   "zrzuty": [
-    {"plik": "img/gry/pizamersi/1-start.png", "opis": {"pl": "Start wyścigu w krainie snów", "en": "Race start in the dream world"}},
-    {"plik": "img/gry/pizamersi/2-obrotowa-belka.png", "opis": {"pl": "Obrotowa belka", "en": "Spinning beam"}},
-    {"plik": "img/gry/pizamersi/3-ksiezycowe-skoki.png", "opis": {"pl": "Sen zmienia zasady: księżycowe skoki", "en": "Dream rule: moon jumps"}},
-    {"plik": "img/gry/pizamersi/4-olbrzymy.png", "opis": {"pl": "Sen zmienia zasady: wszyscy rosną", "en": "Dream rule: everyone grows giant"}}
+    {
+      "plik": "img/gry/pizamersi/1-start.png",
+      "opis": {
+        "pl": "Start wyścigu w krainie snów",
+        "en": "Race start in the dream world"
+      }
+    },
+    {
+      "plik": "img/gry/pizamersi/2-obrotowa-belka.png",
+      "opis": {
+        "pl": "Obrotowa belka",
+        "en": "Spinning beam"
+      }
+    },
+    {
+      "plik": "img/gry/pizamersi/3-ksiezycowe-skoki.png",
+      "opis": {
+        "pl": "Sen zmienia zasady: księżycowe skoki",
+        "en": "Dream rule: moon jumps"
+      }
+    },
+    {
+      "plik": "img/gry/pizamersi/4-olbrzymy.png",
+      "opis": {
+        "pl": "Sen zmienia zasady: wszyscy rosną",
+        "en": "Dream rule: everyone grows giant"
+      }
+    }
   ],
   "wydania": [
+    {
+      "wersja": "0.2.0",
+      "kod": 113,
+      "data": "2026-11-09",
+      "sciezka": "internal",
+      "notatki": {
+        "pl": [
+          "Pierwsza wersja testowa: jeden sen, wyścig z siedmioma botami.",
+          "Sen zmienia zasady w trakcie biegu: księżycowe skoki, galaretka, olbrzymy, turbo kapcie."
+        ],
+        "en": [
+          "First test build: one dream, a race against seven bots.",
+          "The dream changes the rules mid-race: moon jumps, jelly floor, giants, turbo slippers."
+        ]
+      }
+    },
     {
       "wersja": "0.1.0",
       "kod": 104,

@@ -6,6 +6,42 @@
   "language": "pl",
   "items": [
     {
+      "id": "pizamersi-0.2.0-113",
+      "url": "https://arturbyrski.pl/gry/pizamersi/#v0.2.0-113",
+      "title": "Piżamersi 0.2.0",
+      "content_text": "• Pierwsza wersja testowa: jeden sen, wyścig z siedmioma botami.\n• Sen zmienia zasady w trakcie biegu: księżycowe skoki, galaretka, olbrzymy, turbo kapcie.",
+      "date_published": "2026-11-09T12:00:00+00:00",
+      "image": "https://arturbyrski.pl/img/pizamersi.png",
+      "tags": [
+        "pizamersi",
+        "internal"
+      ],
+      "_wydanie": {
+        "gra": "pizamersi",
+        "wersja": "0.2.0",
+        "kod": 113,
+        "sciezka": "internal",
+        "publiczne": false,
+        "notatki": {
+          "pl": [
+            "Pierwsza wersja testowa: jeden sen, wyścig z siedmioma botami.",
+            "Sen zmienia zasady w trakcie biegu: księżycowe skoki, galaretka, olbrzymy, turbo kapcie."
+          ],
+          "en": [
+            "First test build: one dream, a race against seven bots.",
+            "The dream changes the rules mid-race: moon jumps, jelly floor, giants, turbo slippers."
+          ]
+        },
+        "zrzuty": [
+          "https://arturbyrski.pl/img/gry/pizamersi/1-start.png",
+          "https://arturbyrski.pl/img/gry/pizamersi/2-obrotowa-belka.png",
+          "https://arturbyrski.pl/img/gry/pizamersi/3-ksiezycowe-skoki.png",
+          "https://arturbyrski.pl/img/gry/pizamersi/4-olbrzymy.png"
+        ],
+        "google_play": null
+      }
+    },
+    {
       "id": "pizamersi-0.1.0-104",
       "url": "https://arturbyrski.pl/gry/pizamersi/#v0.1.0-104",
       "title": "Piżamersi 0.1.0",
