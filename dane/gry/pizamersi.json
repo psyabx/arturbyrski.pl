@@ -1,0 +1,49 @@
+{
+  "slug": "pizamersi",
+  "kolejnosc": 1,
+  "nazwa": "Piżamersi",
+  "nazwa_en": "Pajama Racers",
+  "pakiet": "com.psyabx.pizamersi",
+  "okladka": "img/pizamersi.png",
+  "polityka": "polityka-prywatnosci.html",
+  "opis_krotki": {
+    "pl": "Dzieciaki w piżamach ścigają się przez krainę snów, w której zasady zmieniają się w trakcie wyścigu. Gra działa offline.",
+    "en": "Kids in pajamas race through a dream world where the rules change mid-race. Works offline."
+  },
+  "opis": {
+    "pl": [
+      "Całe miasteczko śpi, a jego dzieciaki spotykają się w jednym, wspólnym śnie. Kto pierwszy dobiegnie do budzika, ten wygrywa.",
+      "W połowie biegu sen „zmienia zdanie”: grawitacja słabnie, podłoga zamienia się w galaretkę, wszyscy rosną albo dostają turbo kapcie.",
+      "Gra działa bez internetu, nie zawiera reklam ani losowych skrzynek i nie zbiera żadnych danych."
+    ],
+    "en": [
+      "The whole town is asleep and its kids meet in one shared dream. The first one to reach the alarm clock wins.",
+      "Halfway through the race the dream changes its mind: gravity gets weaker, the floor turns to jelly, everyone grows giant or gets turbo slippers.",
+      "The game works offline, has no ads or loot boxes, and collects no data."
+    ]
+  },
+  "zrzuty": [
+    {"plik": "img/gry/pizamersi/1-start.png", "opis": {"pl": "Start wyścigu w krainie snów", "en": "Race start in the dream world"}},
+    {"plik": "img/gry/pizamersi/2-obrotowa-belka.png", "opis": {"pl": "Obrotowa belka", "en": "Spinning beam"}},
+    {"plik": "img/gry/pizamersi/3-ksiezycowe-skoki.png", "opis": {"pl": "Sen zmienia zasady: księżycowe skoki", "en": "Dream rule: moon jumps"}},
+    {"plik": "img/gry/pizamersi/4-olbrzymy.png", "opis": {"pl": "Sen zmienia zasady: wszyscy rosną", "en": "Dream rule: everyone grows giant"}}
+  ],
+  "wydania": [
+    {
+      "wersja": "0.1.0",
+      "kod": 104,
+      "data": "2026-11-07",
+      "sciezka": "internal",
+      "notatki": {
+        "pl": [
+          "Pierwsza wersja testowa: jeden sen, wyścig z siedmioma botami.",
+          "Sen zmienia zasady w trakcie biegu: księżycowe skoki, galaretka, olbrzymy, turbo kapcie."
+        ],
+        "en": [
+          "First test build: one dream, a race against seven bots.",
+          "The dream changes the rules mid-race: moon jumps, jelly floor, giants, turbo slippers."
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Artur Byrski Link Technologies: wydania gier</title>
+    <link>https://arturbyrski.pl/</link>
+    <description>Nowe wersje naszych gier dla dzieci</description>
+    <language>pl</language>
+    <item>
+      <title>Piżamersi 0.1.0</title>
+      <link>https://arturbyrski.pl/gry/pizamersi/#v0.1.0-104</link>
+      <guid isPermaLink="false">pizamersi-0.1.0-104</guid>
+      <pubDate>Sat, 07 Nov 2026 12:00:00 +0000</pubDate>
+      <category>pizamersi</category>
+      <description>• Pierwsza wersja testowa: jeden sen, wyścig z siedmioma botami.
+• Sen zmienia zasady w trakcie biegu: księżycowe skoki, galaretka, olbrzymy, turbo kapcie.</description>
+    </item>
+  </channel>
+</rss>
