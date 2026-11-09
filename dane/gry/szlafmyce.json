@@ -1,0 +1,139 @@
+{
+  "slug": "szlafmyce",
+  "kolejnosc": 1,
+  "nazwa": "Szlafmyce",
+  "nazwa_en": "Szlafmyce: Pajama Dream Race",
+  "pakiet": "com.psyabx.pizamersi",
+  "okladka": "img/gry/szlafmyce/3-lot.jpg",
+  "polityka": "polityka-prywatnosci.html",
+  "opis_krotki": {
+    "pl": "Wyścigi w piżamach przez zwariowane sny. Także we dwoje na jednym ekranie, bez reklam i bez internetu.",
+    "en": "Pajama races through crazy dreams, also for two players on one screen. No ads, works offline."
+  },
+  "opis": {
+    "pl": [
+      "Kiedy miasteczko zasypia, Szlafmyce ruszają w drogę. Biegną, zjeżdżają, lecą i płyną przez dziewięć zwariowanych snów.",
+      "W połowie wyścigu sen zmienia zdanie: grawitacja słabnie jak na Księżycu, podłoga zamienia się w galaretkę albo wszyscy rosną jak olbrzymy. Upadek kończy się fikołkiem, a nie porażką.",
+      "Najwięcej śmiechu jest we dwoje: rodzeństwo albo rodzic z dzieckiem grają razem na jednym telefonie lub tablecie."
+    ],
+    "en": [
+      "When the little town falls asleep, the Szlafmyce set off. They run, slide, fly and swim through nine crazy dreams.",
+      "Halfway through the race the dream changes its mind: gravity gets weak like on the Moon, the floor turns to jelly or everyone grows into giants. A fall ends in a somersault, not a defeat.",
+      "It is most fun for two: siblings or a parent with a child play together on one phone or tablet."
+    ]
+  },
+  "zrzuty": [
+    {
+      "plik": "img/gry/szlafmyce/1-razem.jpg",
+      "opis": {
+        "pl": "Gra we dwoje na jednym ekranie",
+        "en": "Two players on one screen"
+      }
+    },
+    {
+      "plik": "img/gry/szlafmyce/2-zjazd.jpg",
+      "opis": {
+        "pl": "Zjazd na poduszce po puchowej kołdrze",
+        "en": "Pillow sledding down a duvet"
+      }
+    },
+    {
+      "plik": "img/gry/szlafmyce/3-lot.jpg",
+      "opis": {
+        "pl": "Lot na balonikach nad chmurami",
+        "en": "Balloon flight above the clouds"
+      }
+    },
+    {
+      "plik": "img/gry/szlafmyce/4-woda.jpg",
+      "opis": {
+        "pl": "Podwodny wyścig",
+        "en": "Underwater race"
+      }
+    }
+  ],
+  "wydania": [
+    {
+      "wersja": "0.2.0",
+      "kod": 113,
+      "data": "2026-11-09",
+      "sciezka": "internal",
+      "notatki": {
+        "pl": [
+          "Pierwsza wersja testowa: jeden sen, wyścig z siedmioma botami.",
+          "Sen zmienia zasady w trakcie biegu: księżycowe skoki, galaretka, olbrzymy, turbo kapcie."
+        ],
+        "en": [
+          "First test build: one dream, a race against seven bots.",
+          "The dream changes the rules mid-race: moon jumps, jelly floor, giants, turbo slippers."
+        ]
+      }
+    },
+    {
+      "wersja": "0.1.0",
+      "kod": 104,
+      "data": "2026-11-07",
+      "sciezka": "internal",
+      "notatki": {
+        "pl": [
+          "Pierwsza wersja testowa: jeden sen, wyścig z siedmioma botami.",
+          "Sen zmienia zasady w trakcie biegu: księżycowe skoki, galaretka, olbrzymy, turbo kapcie."
+        ],
+        "en": [
+          "First test build: one dream, a race against seven bots.",
+          "The dream changes the rules mid-race: moon jumps, jelly floor, giants, turbo slippers."
+        ]
+      }
+    }
+  ],
+  "podtytul": {
+    "pl": "Wyścig we śnie",
+    "en": "Pajama Dream Race"
+  },
+  "wiek": "5–9 lat",
+  "cechy": [
+    {
+      "ikona": "👫",
+      "kolor": "r",
+      "tytul": "Grajcie razem",
+      "opis": "Dwoje graczy na jednym ekranie. Bez kont i bez internetu."
+    },
+    {
+      "ikona": "🌙",
+      "kolor": "f",
+      "tytul": "9 snów, 4 sposoby zabawy",
+      "opis": "Bieg z przeszkodami, zjazd na poduszce, lot na balonikach i podwodny wyścig."
+    },
+    {
+      "ikona": "🎨",
+      "kolor": "s",
+      "tytul": "Własna postać",
+      "opis": "Dziecko wybiera kolor, buzię i piżamę. Gwiazdki odblokowują piżamy bohaterów."
+    },
+    {
+      "ikona": "🏠",
+      "kolor": "m",
+      "tytul": "Mój pokój i Ziewaki",
+      "opis": "Pamiątki ze snów, świetlik Lumek i album Ziewaków ukrytych w snach."
+    },
+    {
+      "ikona": "📅",
+      "kolor": "f",
+      "tytul": "Sen dnia",
+      "opis": "Codziennie nowy tor, ten sam dla wszystkich tego dnia."
+    },
+    {
+      "ikona": "🖼️",
+      "kolor": "s",
+      "tytul": "Bez czytania",
+      "opis": "Obrazki i dźwięki podpowiadają, co robić. Historia z Budzikiem opowiedziana obrazkami."
+    }
+  ],
+  "dla_rodzicow": [
+    "Bez reklam, bez zbierania danych, działa offline.",
+    "Tryb na dobranoc: ustawiasz, ile czasu dziecko może grać.",
+    "Dwa pierwsze sny są za darmo, a każdy płatny sen można podejrzeć.",
+    "Pełna wersja to jednorazowy zakup, bez subskrypcji.",
+    "Zakup, ustawienia i linki są za bramką dla rodziców."
+  ]
+}

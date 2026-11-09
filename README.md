@@ -26,7 +26,7 @@ Workflow wydania w repozytorium gry (np. `psyabx/playgame`, plik `.github/workfl
 po udanej wysyłce do Google Play pobiera to repozytorium, uruchamia
 
 ```bash
-python3 narzedzia/strona.py wydanie --gra pizamersi --wersja 0.2.0 --kod 105 --sciezka internal \
+python3 narzedzia/strona.py wydanie --gra szlafmyce --wersja 0.2.0 --kod 105 --sciezka internal \
   --notatki-pl sklep/co-nowego/pl.txt --notatki-en sklep/co-nowego/en.txt --zrzuty sklep/zrzuty
 ```
 
@@ -45,7 +45,7 @@ python3 narzedzia/strona.py nowa-gra --gra moja-gra --nazwa "Moja gra" --pakiet 
 
 Potem uzupełnij opisy w `dane/gry/moja-gra.json`, dodaj politykę prywatności (np. jako osobny plik HTML)
 i wpisz jej adres w polu `polityka`. W repozytorium nowej gry skopiuj krok „Strona” z workflow wydania
-Piżamersów i zmień `--gra`.
+Szlafmyców i zmień `--gra`.
 
 ## Dla wirtualnego influencera i innych automatów
 
@@ -59,3 +59,8 @@ Stałe adresy do odpytywania:
 
 Zasada: posty publiczne tylko o wydaniach z `publiczne: true`, bez danych dzieci i bez reklam
 skierowanych do dzieci.
+
+## Czcionka
+
+`fonty/Grandstander.ttf` (licencja SIL Open Font License 1.1) jest serwowana z tej domeny,
+żeby strona nie łączyła się z zewnętrznymi serwerami (np. Google Fonts).

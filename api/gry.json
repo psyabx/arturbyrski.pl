@@ -3,62 +3,66 @@
   "strona": "https://arturbyrski.pl/",
   "gry": [
     {
-      "slug": "pizamersi",
-      "nazwa": "Piżamersi",
-      "nazwa_en": "Pajama Racers",
+      "slug": "szlafmyce",
+      "nazwa": "Szlafmyce",
+      "podtytul": {
+        "pl": "Wyścig we śnie",
+        "en": "Pajama Dream Race"
+      },
+      "nazwa_en": "Szlafmyce: Pajama Dream Race",
       "pakiet": "com.psyabx.pizamersi",
-      "strona": "https://arturbyrski.pl/gry/pizamersi/",
+      "strona": "https://arturbyrski.pl/gry/szlafmyce/",
       "google_play": null,
       "polityka_prywatnosci": "https://arturbyrski.pl/polityka-prywatnosci.html",
       "opis_krotki": {
-        "pl": "Dzieciaki w piżamach ścigają się przez krainę snów, w której zasady zmieniają się w trakcie wyścigu. Gra działa offline.",
-        "en": "Kids in pajamas race through a dream world where the rules change mid-race. Works offline."
+        "pl": "Wyścigi w piżamach przez zwariowane sny. Także we dwoje na jednym ekranie, bez reklam i bez internetu.",
+        "en": "Pajama races through crazy dreams, also for two players on one screen. No ads, works offline."
       },
       "opis": {
         "pl": [
-          "Całe miasteczko śpi, a jego dzieciaki spotykają się w jednym, wspólnym śnie. Kto pierwszy dobiegnie do budzika, ten wygrywa.",
-          "W połowie biegu sen „zmienia zdanie”: grawitacja słabnie, podłoga zamienia się w galaretkę, wszyscy rosną albo dostają turbo kapcie.",
-          "Gra działa bez internetu, nie zawiera reklam ani losowych skrzynek i nie zbiera żadnych danych."
+          "Kiedy miasteczko zasypia, Szlafmyce ruszają w drogę. Biegną, zjeżdżają, lecą i płyną przez dziewięć zwariowanych snów.",
+          "W połowie wyścigu sen zmienia zdanie: grawitacja słabnie jak na Księżycu, podłoga zamienia się w galaretkę albo wszyscy rosną jak olbrzymy. Upadek kończy się fikołkiem, a nie porażką.",
+          "Najwięcej śmiechu jest we dwoje: rodzeństwo albo rodzic z dzieckiem grają razem na jednym telefonie lub tablecie."
         ],
         "en": [
-          "The whole town is asleep and its kids meet in one shared dream. The first one to reach the alarm clock wins.",
-          "Halfway through the race the dream changes its mind: gravity gets weaker, the floor turns to jelly, everyone grows giant or gets turbo slippers.",
-          "The game works offline, has no ads or loot boxes, and collects no data."
+          "When the little town falls asleep, the Szlafmyce set off. They run, slide, fly and swim through nine crazy dreams.",
+          "Halfway through the race the dream changes its mind: gravity gets weak like on the Moon, the floor turns to jelly or everyone grows into giants. A fall ends in a somersault, not a defeat.",
+          "It is most fun for two: siblings or a parent with a child play together on one phone or tablet."
         ]
       },
-      "okladka": "https://arturbyrski.pl/img/pizamersi.png",
+      "okladka": "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
       "zrzuty": [
         {
-          "url": "https://arturbyrski.pl/img/gry/pizamersi/1-start.png",
+          "url": "https://arturbyrski.pl/img/gry/szlafmyce/1-razem.jpg",
           "opis": {
-            "pl": "Start wyścigu w krainie snów",
-            "en": "Race start in the dream world"
+            "pl": "Gra we dwoje na jednym ekranie",
+            "en": "Two players on one screen"
           }
         },
         {
-          "url": "https://arturbyrski.pl/img/gry/pizamersi/2-obrotowa-belka.png",
+          "url": "https://arturbyrski.pl/img/gry/szlafmyce/2-zjazd.jpg",
           "opis": {
-            "pl": "Obrotowa belka",
-            "en": "Spinning beam"
+            "pl": "Zjazd na poduszce po puchowej kołdrze",
+            "en": "Pillow sledding down a duvet"
           }
         },
         {
-          "url": "https://arturbyrski.pl/img/gry/pizamersi/3-ksiezycowe-skoki.png",
+          "url": "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
           "opis": {
-            "pl": "Sen zmienia zasady: księżycowe skoki",
-            "en": "Dream rule: moon jumps"
+            "pl": "Lot na balonikach nad chmurami",
+            "en": "Balloon flight above the clouds"
           }
         },
         {
-          "url": "https://arturbyrski.pl/img/gry/pizamersi/4-olbrzymy.png",
+          "url": "https://arturbyrski.pl/img/gry/szlafmyce/4-woda.jpg",
           "opis": {
-            "pl": "Sen zmienia zasady: wszyscy rosną",
-            "en": "Dream rule: everyone grows giant"
+            "pl": "Podwodny wyścig",
+            "en": "Underwater race"
           }
         }
       ],
       "najnowsze_wydanie": {
-        "id": "pizamersi-0.2.0-113",
+        "id": "szlafmyce-0.2.0-113",
         "wersja": "0.2.0",
         "kod": 113,
         "data": "2026-11-09",

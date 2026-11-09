@@ -65,10 +65,15 @@ def zapisz_gre(gra: dict) -> None:
     plik.write_text(json.dumps(gra, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def link_sklepu(gra: dict) -> str | None:
-    """Link do Google Play pokazujemy dopiero, gdy jest wydanie produkcyjne."""
+def link_sklepu(gra: dict, zrodlo: str = "strona") -> str | None:
+    """Link do Google Play pokazujemy dopiero, gdy jest wydanie produkcyjne.
+
+    Parametry utm_* pozwalają w Play Console (raport pozyskania) sprawdzić,
+    ile instalacji przyszło ze strony, bez żadnych narzędzi śledzących.
+    """
     if gra.get("pakiet") and any(w["sciezka"] == "production" for w in gra["wydania"]):
-        return f"https://play.google.com/store/apps/details?id={gra['pakiet']}"
+        return (f"https://play.google.com/store/apps/details?id={gra['pakiet']}"
+                f"&utm_source=arturbyrski.pl&utm_medium=strona&utm_campaign={zrodlo}")
     return None
 
 
@@ -90,113 +95,168 @@ def rok(gra: dict) -> int:
     return max([2026] + [int(w["data"][:4]) for w in gra["wydania"]])
 
 
+def pelna_nazwa(gra: dict, jezyk: str = "pl") -> str:
+    pod = (gra.get("podtytul") or {}).get(jezyk)
+    return f"{gra['nazwa']}: {pod}" if pod else gra["nazwa"]
+
+
+def znaczek_wersji(gra: dict) -> str:
+    n = gra["wydania"][0] if gra["wydania"] else None
+    if not n:
+        return ""
+    return (f'<p class="cichy">Wersja {e(n["wersja"])} · {e(SCIEZKI[n["sciezka"]][0])} · '
+            f'{e(data_pl(n["data"]))}</p>')
+
+
+def przycisk_sklepu(gra: dict, zrodlo: str) -> str:
+    sklep = link_sklepu(gra, zrodlo)
+    if sklep:
+        return f'<a class="przycisk" href="{e(sklep)}">Pobierz z Google Play</a>'
+    return '<span class="wkrotce">Wkrótce w Google Play. Gra jest teraz w testach.</span>'
+
+
 def karta_gry(gra: dict) -> str:
-    najnowsze = gra["wydania"][0] if gra["wydania"] else None
-    wersja = ""
-    if najnowsze:
-        wersja = (f'<p class="cichy">Wersja {e(najnowsze["wersja"])} · '
-                  f'{e(SCIEZKI[najnowsze["sciezka"]][0])} · {e(data_pl(najnowsze["data"]))}</p>')
+    s = e(gra["slug"])
     obraz = ""
     if gra.get("okladka"):
-        obraz = (f'<a href="gry/{e(gra["slug"])}/"><img src="{e(gra["okladka"])}" '
+        obraz = (f'<a href="gry/{s}/"><img src="{e(gra["okladka"])}" '
                  f'alt="Ekran gry {e(gra["nazwa"])}" width="1280" height="720"></a>')
-    linki = [f'<a href="gry/{e(gra["slug"])}/">Więcej o grze</a>']
-    sklep = link_sklepu(gra)
-    if sklep:
-        linki.append(f'<a href="{e(sklep)}">Google Play</a>')
+    znaczki = "".join(f"<li>{e(t)}</li>" for t in
+                      ([f"dla dzieci {gra['wiek']}"] if gra.get("wiek") else [])
+                      + ["bez reklam", "offline", "we dwoje"])
+    linki = [f'<a href="gry/{s}/">Więcej o grze</a>']
     if gra.get("polityka"):
         linki.append(f'<a href="{e(gra["polityka"])}">Polityka prywatności</a>')
     return (
-        f'  <div class="karta">\n'
+        f'  <article class="gra">\n'
         f'    {obraz}\n'
-        f'    <h3><a href="gry/{e(gra["slug"])}/">{e(gra["nazwa"])}</a></h3>\n'
-        f'    <p>{e(gra["opis_krotki"]["pl"])}</p>\n'
-        f'    {wersja}\n'
-        f'    <p class="linki">{" · ".join(linki)}</p>\n'
-        f'  </div>'
+        f'    <div class="gra-opis jasne">\n'
+        f'      <h3><a href="gry/{s}/">{e(pelna_nazwa(gra))}</a></h3>\n'
+        f'      <p>{e(gra["opis_krotki"]["pl"])}</p>\n'
+        f'      <ul class="znaczki">{znaczki}</ul>\n'
+        f'      <div class="przyciski">{przycisk_sklepu(gra, "karta")}</div>\n'
+        f'      {znaczek_wersji(gra)}\n'
+        f'      <p>{" · ".join(linki)}</p>\n'
+        f'    </div>\n'
+        f'  </article>'
     )
 
 
 def lista_notatek(notatki: list[str]) -> str:
-    return "<ul>" + "".join(f"<li>{e(n)}</li>" for n in notatki) + "</ul>"
+    return '<ul class="lista">' + "".join(f"<li>{e(n)}</li>" for n in notatki) + "</ul>"
+
+
+GWIAZDY = "".join(
+    f'<span style="left:{(i * 37) % 100}%;top:{(i * 53) % 70}%;animation-delay:{(i % 7) * 0.6:.1f}s"></span>'
+    for i in range(1, 28))
+
+LOGO_SVG = ('<svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">'
+            '<circle cx="16" cy="16" r="15" fill="#3d2a7a"/>'
+            '<path d="M21 6a10 10 0 1 0 5 15A8 8 0 0 1 21 6z" fill="#ffe08a"/></svg>')
+
+
+def pasek(g: str) -> str:
+    return (f'<header class="pasek"><div class="wrap">'
+            f'<a class="logo" href="{g}index.html">{LOGO_SVG}Senne gry Artura</a>'
+            f'<nav class="menu"><a href="{g}index.html#gry">Gry</a><a href="{g}index.html#rodzice">Dla rodziców</a>'
+            f'<a href="{g}index.html#dzieci">Dla dzieci</a><a href="{g}index.html#kontakt">Kontakt</a>'
+            f'<a href="#en">English</a></nav></div></header>')
+
+
+def stopka(rok_: int, g: str) -> str:
+    return (f'<footer><div class="wrap"><span>© {rok_} {FIRMA}</span>'
+            f'<span><a href="{g}polityka-prywatnosci.html">Polityka prywatności</a> · '
+            f'<a href="{g}feed.xml">Wydania (RSS)</a></span></div></footer>')
 
 
 def strona_gry(gra: dict) -> str:
     g = "../../"
-    sklep = link_sklepu(gra)
-    najnowsze = gra["wydania"][0] if gra["wydania"] else None
     czesci = []
-    czesci.append(f'<h1>{e(gra["nazwa"])}</h1>')
-    if najnowsze:
-        czesci.append(
-            f'<p class="cichy">Najnowsza wersja: <strong>{e(najnowsze["wersja"])}</strong> · '
-            f'{e(SCIEZKI[najnowsze["sciezka"]][0])} · {e(data_pl(najnowsze["data"]))}</p>')
-    for akapit in gra["opis"]["pl"]:
-        czesci.append(f"<p>{e(akapit)}</p>")
-    if sklep:
-        czesci.append(f'<p><a class="przycisk" href="{e(sklep)}">Pobierz z Google Play</a></p>')
-    else:
-        czesci.append('<p class="cichy">Gra jest w fazie testów. Link do Google Play pojawi się tutaj w dniu premiery.</p>')
+    okladka = ""
+    if gra.get("okladka"):
+        okladka = (f'<img src="{g}{e(gra["okladka"])}" alt="Ekran gry {e(gra["nazwa"])}" '
+                   f'width="1280" height="720">')
+    znaczki = "".join(f"<li>{e(t)}</li>" for t in
+                      ([f"dla dzieci {gra['wiek']}"] if gra.get("wiek") else [])
+                      + ["bez reklam", "bez internetu", "bez zbierania danych"])
+    czesci.append(
+        f'<section class="niebo"><div class="gwiazdy" aria-hidden="true">{GWIAZDY}</div>'
+        f'<div class="ksiezyc" aria-hidden="true"></div>'
+        f'<div class="wrap niebo-tresc"><div>'
+        f'<h1>{e(gra["nazwa"])}</h1>'
+        + (f'<p class="lead"><strong>{e(gra["podtytul"]["pl"])}</strong></p>' if gra.get("podtytul") else "")
+        + f'<p class="lead">{e(gra["opis_krotki"]["pl"])}</p>'
+        f'<ul class="znaczki">{znaczki}</ul>'
+        f'<div class="przyciski">{przycisk_sklepu(gra, "strona-gry")}</div>'
+        f'</div><div>{okladka}</div></div></section>')
+
+    tresc = "".join(f"<p>{e(a)}</p>" for a in gra["opis"]["pl"])
+    czesci.append(f'<section><div class="wrap waski"><h2>O grze</h2>{tresc}</div></section>')
+
+    if gra.get("cechy"):
+        kafle = "".join(
+            f'<div class="kafel"><div class="ikona {e(c.get("kolor", ""))}" aria-hidden="true">{e(c["ikona"])}</div>'
+            f'<h3>{e(c["tytul"])}</h3><p>{e(c["opis"])}</p></div>' for c in gra["cechy"])
+        czesci.append(f'<section><div class="wrap"><h2>Co jest w grze</h2><div class="kafelki">{kafle}</div></div></section>')
 
     if gra.get("zrzuty"):
-        czesci.append("<h2>Zrzuty ekranu</h2>")
-        czesci.append('<div class="zrzuty">')
-        for z in gra["zrzuty"]:
-            czesci.append(
-                f'<figure><img src="{g}{e(z["plik"])}" alt="{e(z["opis"]["pl"])}" width="1280" height="720" loading="lazy">'
-                f'<figcaption>{e(z["opis"]["pl"])}</figcaption></figure>')
-        czesci.append("</div>")
+        figury = "".join(
+            f'<figure><img src="{g}{e(z["plik"])}" alt="{e(z["opis"]["pl"])}" width="1280" height="720" loading="lazy">'
+            f'<figcaption>{e(z["opis"]["pl"])}</figcaption></figure>' for z in gra["zrzuty"])
+        czesci.append(f'<section><div class="wrap"><h2>Tak to wygląda</h2><div class="zrzuty">{figury}</div></div></section>')
+
+    if gra.get("dla_rodzicow"):
+        polityka = (f'<p><a href="{g}{e(gra["polityka"])}">Polityka prywatności gry {e(gra["nazwa"])}</a></p>'
+                    if gra.get("polityka") else "")
+        czesci.append(f'<section id="rodzice"><div class="wrap waski"><h2>Dla rodziców</h2>'
+                      f'{lista_notatek(gra["dla_rodzicow"])}{polityka}</div></section>')
 
     if gra["wydania"]:
-        czesci.append("<h2>Co nowego</h2>")
-        for w in gra["wydania"]:
-            czesci.append(
-                f'<h3 id="v{e(w["wersja"])}-{w["kod"]}">Wersja {e(w["wersja"])} '
-                f'<span class="cichy">({e(data_pl(w["data"]))}, {e(SCIEZKI[w["sciezka"]][0])})</span></h3>')
-            czesci.append(lista_notatek(w["notatki"]["pl"]))
-
-    if gra.get("polityka"):
-        czesci.append(f'<p><a href="{g}{e(gra["polityka"])}">Polityka prywatności gry {e(gra["nazwa"])}</a></p>')
+        wyd = []
+        for i, w in enumerate(gra["wydania"]):
+            naglowek = (f'Wersja {e(w["wersja"])} <span class="cichy">({e(data_pl(w["data"]))}, '
+                        f'{e(SCIEZKI[w["sciezka"]][0])})</span>')
+            kotwica = f'v{e(w["wersja"])}-{w["kod"]}'
+            if i == 0:
+                wyd.append(f'<h3 id="{kotwica}">{naglowek}</h3>{lista_notatek(w["notatki"]["pl"])}')
+            else:
+                wyd.append(f'<details id="{kotwica}"><summary>{naglowek}</summary>{lista_notatek(w["notatki"]["pl"])}</details>')
+        czesci.append(f'<section><div class="wrap waski"><h2>Co nowego</h2>{"".join(wyd)}</div></section>')
 
     # English
-    czesci.append(f'<h2 id="en">{e(gra.get("nazwa_en") or gra["nazwa"])} (English)</h2>')
-    for akapit in gra["opis"]["en"]:
-        czesci.append(f"<p>{e(akapit)}</p>")
-    if najnowsze:
-        czesci.append(
-            f'<p class="cichy">Latest version: {e(najnowsze["wersja"])} · '
-            f'{e(SCIEZKI[najnowsze["sciezka"]][1])} · {e(najnowsze["data"])}</p>')
-        czesci.append(lista_notatek(najnowsze["notatki"]["en"]))
+    n = gra["wydania"][0] if gra["wydania"] else None
+    en = [f'<h2>{e(gra.get("nazwa_en") or gra["nazwa"])} (English)</h2>']
+    en += [f"<p>{e(a)}</p>" for a in gra["opis"]["en"]]
+    if n:
+        en.append(f'<p class="cichy">Latest version: {e(n["wersja"])} · {e(SCIEZKI[n["sciezka"]][1])} · {e(n["data"])}</p>')
+    sklep = link_sklepu(gra, "strona-gry-en")
     if sklep:
-        czesci.append(f'<p><a href="{e(sklep)}">Get it on Google Play</a></p>')
+        en.append(f'<p><a class="przycisk" href="{e(sklep)}">Get it on Google Play</a></p>')
+    czesci.append(f'<section id="en"><div class="wrap waski">{"".join(en)}</div></section>')
 
-    tresc = "\n  ".join(czesci)
+    tresc = "\n".join(czesci)
     obraz_og = adres(gra["okladka"]) if gra.get("okladka") else ""
     return f"""<!doctype html>
 <html lang="pl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{e(gra["nazwa"])} · {FIRMA}</title>
+<title>{e(pelna_nazwa(gra))} · gra dla dzieci</title>
 <meta name="description" content="{e(gra["opis_krotki"]["pl"])}">
-<meta property="og:title" content="{e(gra["nazwa"])}">
+<meta property="og:title" content="{e(pelna_nazwa(gra))}">
 <meta property="og:description" content="{e(gra["opis_krotki"]["pl"])}">
 <meta property="og:image" content="{e(obraz_og)}">
+<link rel="icon" href="{g}ikona.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="Wydania gier" href="{g}feed.xml">
 <link rel="stylesheet" href="{g}styl.css">
 </head>
 <body>
 <!-- Plik wygenerowany przez narzedzia/strona.py z dane/gry/{e(gra["slug"])}.json. Nie edytuj ręcznie. -->
+{pasek(g)}
 <main>
-  <header>
-    <a href="{g}index.html">← {FIRMA}</a>
-    <a href="#en">English</a>
-  </header>
-
-  {tresc}
-
-  <footer>© {rok(gra)} {FIRMA}</footer>
+{tresc}
 </main>
+{stopka(rok(gra), g)}
 </body>
 </html>
 """
@@ -232,10 +292,11 @@ def api_gry(gry: list[dict]) -> dict:
         wynik.append({
             "slug": g["slug"],
             "nazwa": g["nazwa"],
+            "podtytul": g.get("podtytul"),
             "nazwa_en": g.get("nazwa_en"),
             "pakiet": g.get("pakiet"),
             "strona": adres(f"gry/{g['slug']}/"),
-            "google_play": link_sklepu(g),
+            "google_play": link_sklepu(g, "api"),
             "polityka_prywatnosci": adres(g["polityka"]) if g.get("polityka") else None,
             "opis_krotki": g["opis_krotki"],
             "opis": g["opis"],
@@ -266,7 +327,7 @@ def json_feed(gry: list[dict]) -> dict:
                 "publiczne": w["sciezka"] == "production",
                 "notatki": w["notatki"],
                 "zrzuty": [adres(z["plik"]) for z in g.get("zrzuty", [])],
-                "google_play": link_sklepu(g),
+                "google_play": link_sklepu(g, "wydania"),
             },
         })
     return {
