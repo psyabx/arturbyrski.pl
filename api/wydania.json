@@ -6,18 +6,18 @@
   "language": "pl",
   "items": [
     {
-      "id": "pizamersi-0.2.0-113",
-      "url": "https://arturbyrski.pl/gry/pizamersi/#v0.2.0-113",
-      "title": "Piżamersi 0.2.0",
+      "id": "szlafmyce-0.2.0-113",
+      "url": "https://arturbyrski.pl/gry/szlafmyce/#v0.2.0-113",
+      "title": "Szlafmyce 0.2.0",
       "content_text": "• Pierwsza wersja testowa: jeden sen, wyścig z siedmioma botami.\n• Sen zmienia zasady w trakcie biegu: księżycowe skoki, galaretka, olbrzymy, turbo kapcie.",
       "date_published": "2026-11-09T12:00:00+00:00",
-      "image": "https://arturbyrski.pl/img/pizamersi.png",
+      "image": "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
       "tags": [
-        "pizamersi",
+        "szlafmyce",
         "internal"
       ],
       "_wydanie": {
-        "gra": "pizamersi",
+        "gra": "szlafmyce",
         "wersja": "0.2.0",
         "kod": 113,
         "sciezka": "internal",
@@ -33,27 +33,27 @@
           ]
         },
         "zrzuty": [
-          "https://arturbyrski.pl/img/gry/pizamersi/1-start.png",
-          "https://arturbyrski.pl/img/gry/pizamersi/2-obrotowa-belka.png",
-          "https://arturbyrski.pl/img/gry/pizamersi/3-ksiezycowe-skoki.png",
-          "https://arturbyrski.pl/img/gry/pizamersi/4-olbrzymy.png"
+          "https://arturbyrski.pl/img/gry/szlafmyce/1-razem.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/2-zjazd.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/4-woda.jpg"
         ],
         "google_play": null
       }
     },
     {
-      "id": "pizamersi-0.1.0-104",
-      "url": "https://arturbyrski.pl/gry/pizamersi/#v0.1.0-104",
-      "title": "Piżamersi 0.1.0",
+      "id": "szlafmyce-0.1.0-104",
+      "url": "https://arturbyrski.pl/gry/szlafmyce/#v0.1.0-104",
+      "title": "Szlafmyce 0.1.0",
       "content_text": "• Pierwsza wersja testowa: jeden sen, wyścig z siedmioma botami.\n• Sen zmienia zasady w trakcie biegu: księżycowe skoki, galaretka, olbrzymy, turbo kapcie.",
       "date_published": "2026-11-07T12:00:00+00:00",
-      "image": "https://arturbyrski.pl/img/pizamersi.png",
+      "image": "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
       "tags": [
-        "pizamersi",
+        "szlafmyce",
         "internal"
       ],
       "_wydanie": {
-        "gra": "pizamersi",
+        "gra": "szlafmyce",
         "wersja": "0.1.0",
         "kod": 104,
         "sciezka": "internal",
@@ -69,10 +69,10 @@
           ]
         },
         "zrzuty": [
-          "https://arturbyrski.pl/img/gry/pizamersi/1-start.png",
-          "https://arturbyrski.pl/img/gry/pizamersi/2-obrotowa-belka.png",
-          "https://arturbyrski.pl/img/gry/pizamersi/3-ksiezycowe-skoki.png",
-          "https://arturbyrski.pl/img/gry/pizamersi/4-olbrzymy.png"
+          "https://arturbyrski.pl/img/gry/szlafmyce/1-razem.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/2-zjazd.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/4-woda.jpg"
         ],
         "google_play": null
       }
