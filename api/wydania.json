@@ -6,6 +6,44 @@
   "language": "pl",
   "items": [
     {
+      "id": "szlafmyce-1.0.0-139",
+      "url": "https://arturbyrski.pl/gry/szlafmyce/#v1.0.0-139",
+      "title": "Szlafmyce 1.0.0",
+      "content_text": "• Premiera! Szlafmyce wyruszają w drogę: dziewięć snów do przebiegnięcia, każdy z własną zabawą.\n• Gra we dwoje na jednym telefonie, tryb Maluch dla najmłodszych i tryb na dobranoc dla rodziców.\n• Bez reklam, gra działa bez internetu. Dwa sny za darmo, resztę odblokowuje jeden zakup w strefie rodzica.",
+      "date_published": "2026-11-10T12:00:00+00:00",
+      "image": "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
+      "tags": [
+        "szlafmyce",
+        "internal"
+      ],
+      "_wydanie": {
+        "gra": "szlafmyce",
+        "wersja": "1.0.0",
+        "kod": 139,
+        "sciezka": "internal",
+        "publiczne": false,
+        "notatki": {
+          "pl": [
+            "Premiera! Szlafmyce wyruszają w drogę: dziewięć snów do przebiegnięcia, każdy z własną zabawą.",
+            "Gra we dwoje na jednym telefonie, tryb Maluch dla najmłodszych i tryb na dobranoc dla rodziców.",
+            "Bez reklam, gra działa bez internetu. Dwa sny za darmo, resztę odblokowuje jeden zakup w strefie rodzica."
+          ],
+          "en": [
+            "Launch day! The Szlafmyce set off: nine dreams to race through, each with its own kind of fun.",
+            "Two players on one phone, Little mode for the youngest and a bedtime mode for parents.",
+            "No ads, and the game works offline. Two dreams are free; one purchase in the parents' area unlocks the rest."
+          ]
+        },
+        "zrzuty": [
+          "https://arturbyrski.pl/img/gry/szlafmyce/1-razem.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/2-zjazd.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/4-woda.jpg"
+        ],
+        "google_play": null
+      }
+    },
+    {
       "id": "szlafmyce-0.2.0-113",
       "url": "https://arturbyrski.pl/gry/szlafmyce/#v0.2.0-113",
       "title": "Szlafmyce 0.2.0",

@@ -54,6 +54,24 @@
   ],
   "wydania": [
     {
+      "wersja": "1.0.0",
+      "kod": 139,
+      "data": "2026-11-10",
+      "sciezka": "internal",
+      "notatki": {
+        "pl": [
+          "Premiera! Szlafmyce wyruszają w drogę: dziewięć snów do przebiegnięcia, każdy z własną zabawą.",
+          "Gra we dwoje na jednym telefonie, tryb Maluch dla najmłodszych i tryb na dobranoc dla rodziców.",
+          "Bez reklam, gra działa bez internetu. Dwa sny za darmo, resztę odblokowuje jeden zakup w strefie rodzica."
+        ],
+        "en": [
+          "Launch day! The Szlafmyce set off: nine dreams to race through, each with its own kind of fun.",
+          "Two players on one phone, Little mode for the youngest and a bedtime mode for parents.",
+          "No ads, and the game works offline. Two dreams are free; one purchase in the parents' area unlocks the rest."
+        ]
+      }
+    },
+    {
       "wersja": "0.2.0",
       "kod": 113,
       "data": "2026-11-09",
