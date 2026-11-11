@@ -1,0 +1,155 @@
+{
+  "slug": "ortopotwory",
+  "kolejnosc": 2,
+  "nazwa": "Ortopotwory",
+  "nazwa_en": "Ortopotwory: Spelling Detectives",
+  "pakiet": "com.psyabx.ortopotwory",
+  "okladka": "img/gry/ortopotwory/okladka.jpg",
+  "polityka": "polityka-prywatnosci-ortopotwory.html",
+  "podtytul": {
+    "pl": "Detektywi ortografii",
+    "en": "Spelling Detectives"
+  },
+  "wiek": "7–12 lat",
+  "znaczki": [
+    "bez reklam",
+    "offline",
+    "nauka ortografii"
+  ],
+  "opis_krotki": {
+    "pl": "Gra do nauki ortografii: dziecko jako detektyw łapie potworki, które pomieszały litery ó/u, rz/ż i ch/h. Bez reklam i bez internetu.",
+    "en": "A Polish spelling game: as a detective, your child catches little monsters who mixed up the letters ó/u, rz/ż and ch/h. No ads, works offline."
+  },
+  "opis": {
+    "pl": [
+      "Złośliwe potworki pomieszały litery w Słowolandii. Óśmiornica z bagna, Żarłok z wulkanu i Chochlik z kominów podmieniają ó i u, rz i ż, ch i h. Dziecko jako ortodetektyw łapie je, poprawiając wyrazy.",
+      "Każdego dnia czeka krótka misja: kilka minigier na przemian i pojedynek z Królem potworów. Każda kraina zaczyna się komiksem z regułą, a wyrazy wracają w powtórkach po 1, 3, 7, 14 i 30 dniach, żeby zostały w pamięci na dłużej.",
+      "Gra nigdy nie pokazuje wyrazu z błędem. Brakująca litera to puste pole, a po odpowiedzi dziecko widzi tylko poprawną pisownię."
+    ],
+    "en": [
+      "Mischievous monsters have mixed up the letters in Wordland. The Octopus from the swamp, the Glutton from the volcano and the Imp from the chimneys swap ó and u, rz and ż, ch and h. As a spelling detective, your child catches them by fixing the words.",
+      "Every day brings a short mission: a few alternating mini-games and a duel with the Monster King. Each land starts with a comic that explains the rule, and words come back for review after 1, 3, 7, 14 and 30 days so they stick.",
+      "The game never shows a misspelled word. The missing letter is an empty box, and after answering the child only ever sees the correct spelling."
+    ]
+  },
+  "zrzuty": [
+    {
+      "plik": "img/gry/ortopotwory/1-biuro.jpg",
+      "szerokosc": 300,
+      "wysokosc": 526,
+      "opis": {
+        "pl": "Biuro detektywa i trzy krainy",
+        "en": "Detective office and three lands"
+      }
+    },
+    {
+      "plik": "img/gry/ortopotwory/5-pulapka.jpg",
+      "szerokosc": 300,
+      "wysokosc": 526,
+      "opis": {
+        "pl": "Pułapka: ó czy u, zanim potwór wpadnie do bagna",
+        "en": "Trap: ó or u before the monster falls into the swamp"
+      }
+    },
+    {
+      "plik": "img/gry/ortopotwory/6-labirynt.jpg",
+      "szerokosc": 300,
+      "wysokosc": 526,
+      "opis": {
+        "pl": "Labirynt: wybierz drzwi z dobrą literą",
+        "en": "Maze: pick the door with the right letter"
+      }
+    },
+    {
+      "plik": "img/gry/ortopotwory/7-dyktando.jpg",
+      "szerokosc": 300,
+      "wysokosc": 526,
+      "opis": {
+        "pl": "Dyktando potwora: lektor czyta zdanie",
+        "en": "Monster dictation: the narrator reads a sentence"
+      }
+    },
+    {
+      "plik": "img/gry/ortopotwory/8-krol.jpg",
+      "szerokosc": 300,
+      "wysokosc": 526,
+      "opis": {
+        "pl": "Pojedynek z Królem potworów",
+        "en": "Duel with the Monster King"
+      }
+    },
+    {
+      "plik": "img/gry/ortopotwory/3-baza.jpg",
+      "szerokosc": 300,
+      "wysokosc": 526,
+      "opis": {
+        "pl": "Baza potworów: kartoteka złapanych wyrazów",
+        "en": "Monster base: catalogue of caught words"
+      }
+    },
+    {
+      "plik": "img/gry/ortopotwory/2-detektyw.jpg",
+      "szerokosc": 300,
+      "wysokosc": 526,
+      "opis": {
+        "pl": "Własny detektyw: wygląd i zwierzak",
+        "en": "Your own detective: looks and a pet"
+      }
+    },
+    {
+      "plik": "img/gry/ortopotwory/9-podsumowanie.jpg",
+      "szerokosc": 300,
+      "wysokosc": 526,
+      "opis": {
+        "pl": "Podsumowanie misji i drzewko serii",
+        "en": "Mission summary and streak tree"
+      }
+    }
+  ],
+  "cechy": [
+    {
+      "ikona": "🔍",
+      "kolor": "f",
+      "tytul": "3 krainy, 200 wyrazów",
+      "opis": "Bagno (ó/u), Wulkan (rz/ż) i Kominy (ch/h). Każda kraina zaczyna się komiksem z regułą."
+    },
+    {
+      "ikona": "🎮",
+      "kolor": "r",
+      "tytul": "Minigry na zmianę",
+      "opis": "Pułapka, Lupa, Labirynt i Dyktando potwora, a na koniec misji Król potworów."
+    },
+    {
+      "ikona": "🧠",
+      "kolor": "s",
+      "tytul": "Powtórki w czasie",
+      "opis": "Wyraz wraca po 1, 3, 7, 14 i 30 dniach. Po błędzie wraca jutro."
+    },
+    {
+      "ikona": "✋",
+      "kolor": "m",
+      "tytul": "Odcisk palca",
+      "opis": "Po błędzie dziecko obrysowuje wyraz palcem, a lektor go czyta. Ruch, wzrok i słuch razem."
+    },
+    {
+      "ikona": "🕵️",
+      "kolor": "f",
+      "tytul": "Własny detektyw",
+      "opis": "Wygląd, zwierzak, baza złapanych potworów i biuro z ozdobami za gwiazdki."
+    },
+    {
+      "ikona": "🌱",
+      "kolor": "s",
+      "tytul": "Drzewko serii",
+      "opis": "Rośnie za każdy dzień z misją i nigdy nie usycha. Przerwa niczego nie zabiera."
+    }
+  ],
+  "dla_rodzicow": [
+    "Bez reklam, bez zbierania danych, działa offline. Gra nie prosi o żadne uprawnienia.",
+    "Gra nigdy nie pokazuje wyrazu z błędem, więc dziecko nie utrwala złej pisowni.",
+    "Strefa dla rodzica za bramką: raport postępów w każdej krainie i najtrudniejsze wyrazy. Wszystko liczone na telefonie.",
+    "Gwiazdki są za dokładność, nie za szybkość. Ozdoby kupuje się za gwiazdki, bez prawdziwych pieniędzy i bez losowania.",
+    "Detektyw ma tylko imię, bez nazwiska i zdjęcia. Akta sprawy dla starszych dzieci (10–12 lat) uczą uzasadniać pisownię regułą."
+  ],
+  "wydania": []
+}
