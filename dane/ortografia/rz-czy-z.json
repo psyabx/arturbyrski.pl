@@ -1,0 +1,60 @@
+{
+  "slug": "rz-czy-z",
+  "kolejnosc": 2,
+  "litery": "rz/ż",
+  "tytul": "Rz czy ż? Zasady pisowni dla dzieci",
+  "seo": {
+    "tytul": "Rz czy ż? Zasady pisowni rz i ż z przykładami dla dzieci",
+    "opis": "Kiedy piszemy rz, a kiedy ż? Zasady pisowni rz i ż dla dzieci: wymiana na r, rz po spółgłoskach, -arz i -erz, ż wymienne na g, z, s, h, wyjątki i ćwiczenie."
+  },
+  "opis_krotki": "Rz wymienne na r, rz po b, p, d, t, g, k, ch, j, w, końcówki -arz i -erz, ż wymienne na g, dz, z, s, h, ź i wyjątki.",
+  "w_skrocie": [
+    "Piszemy <b>rz</b>, gdy w rodzinie wyrazu słychać r: dobrze, bo dobry.",
+    "Piszemy <b>rz</b> po b, p, d, t, g, k, ch, j, w: brzeg, drzewo, trzy.",
+    "Piszemy <b>rz</b> w końcówkach -arz i -erz: lekarz, talerz.",
+    "Piszemy <b>ż</b>, gdy w rodzinie wyrazu słychać g, dz, z, s, h albo ź: książka, bo księga.",
+    "Uwaga na pułapki: bagaż, garaż, młodzież mają ż."
+  ],
+  "wstep": "Rz i ż brzmią tak samo. Na szczęście wiele wyrazów da się sprawdzić regułą: albo rodziną wyrazu, albo literą, która stoi przed rz. Reszty uczymy się na pamięć. Poniżej są reguły z przykładami i ćwiczenie na końcu.",
+  "reguly": [
+    {
+      "tytul": "Rz wymienia się na r",
+      "tekst": "Jeśli w innej formie wyrazu albo w wyrazie z rodziny słychać r, piszemy rz.",
+      "przyklady": ["dob[rz]e|dobry", "gó[rz]e|góra", "mie[rz]yć|miara", "wie[rz]yć|wiara", "rowe[rz]e|rower", "siost[rz]e|siostra", "wiet[rz]e|wiatr", "teat[rz]e|teatr", "ma[rz]ec|marca"]
+    },
+    {
+      "tytul": "Rz po spółgłoskach b, p, d, t, g, k, ch, j, w",
+      "tekst": "Po tych literach piszemy rz. Łatwo zapamiętać je jako wierszyk albo ułożyć z nich zdanie.",
+      "przyklady": ["b[rz]eg", "p[rz]yjaciel", "d[rz]ewo", "t[rz]y", "g[rz]yb", "k[rz]esło", "ch[rz]an", "spoj[rz]eć", "w[rz]esień"],
+      "wyjatki": "Wyjątki: pszczoła, pszenica, kształt, gżegżółka."
+    },
+    {
+      "tytul": "Końcówki -arz i -erz",
+      "tekst": "Nazwy osób i rzeczy zakończone na -arz i -erz piszemy przez rz.",
+      "przyklady": ["leka[rz]", "kucha[rz]", "pieka[rz]", "mala[rz]", "kalenda[rz]", "tale[rz]", "ryce[rz]", "żołnie[rz]"],
+      "wyjatki": "Wyjątki z ż: bagaż, garaż, bandaż, masaż, młodzież, odzież, papież."
+    },
+    {
+      "tytul": "Ż wymienia się na g, dz, z, s, h albo ź",
+      "tekst": "Jeśli w rodzinie wyrazu słychać jedną z tych liter, piszemy ż.",
+      "przyklady": ["ksią[ż]ka|księga", "no[ż]ny|noga", "śnie[ż]ny|śnieg", "mro[ż]ony|mróz", "wy[ż]ej|wysoko", "dru[ż]yna|druh", "gałą[ż]ka|gałąź", "pienią[ż]ek|pieniądz", "mo[ż]na|mogę"]
+    }
+  ],
+  "do_zapamietania": {
+    "tytul": "Wyrazy do zapamiętania",
+    "tekst": "Tu nie pomoże żadna reguła. W grze Ortopotwory pilnują ich bracia z Wulkanu: Rzepek wyrazów z rz, a Żarłok wyrazów z ż.",
+    "wyrazy": ["[rz]eka", "bu[rz]a", "o[rz]ech", "ko[rz]eń", "wa[rz]ywa", "[rz]ecz", "po[rz]ądek", "[ż]aba", "[ż]yrafa", "wie[ż]a", "pla[ż]a", "je[ż]", "ły[ż]ka", "[ż]ółty"]
+  },
+  "cwiczenie": ["d[rz]ewo", "ksią[ż]ka", "leka[rz]", "dob[rz]e", "[ż]aba", "t[rz]y", "śnie[ż]ny", "baga[ż]", "k[rz]esło", "[rz]eka"],
+  "dla_rodzica": [
+    "Najwięcej daje szukanie rodziny wyrazu: „dobrze, bo dobry”, „książka, bo księga”. Zachęcaj dziecko, żeby mówiło to na głos.",
+    "Litery, po których piszemy rz, łatwiej zapamiętać w rymowance albo jako zabawne zdanie.",
+    "Wyjątki (bagaż, garaż) ćwiczcie osobno, gdy reguła -arz jest już pewna.",
+    "Pokazuj tylko poprawne wyrazy. Puste miejsce na literę działa lepiej niż szukanie błędów."
+  ],
+  "pytania": [
+    {"p": "Kiedy piszemy rz?", "o": "Gdy rz wymienia się na r (dobrze, bo dobry), po literach b, p, d, t, g, k, ch, j, w (drzewo, trzy) i w końcówkach -arz, -erz (lekarz, talerz)."},
+    {"p": "Kiedy piszemy ż?", "o": "Gdy ż wymienia się na g, dz, z, s, h albo ź (książka, bo księga) oraz w wyrazach do zapamiętania, np. żaba, plaża, jeż."},
+    {"p": "Dlaczego bagaż piszemy przez ż?", "o": "Bagaż, garaż czy masaż to wyrazy zapożyczone i są wyjątkiem od reguły -arz. Trzeba je zapamiętać."}
+  ]
+}

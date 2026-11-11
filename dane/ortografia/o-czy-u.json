@@ -1,0 +1,149 @@
+{
+  "slug": "o-czy-u",
+  "kolejnosc": 1,
+  "litery": "ó/u",
+  "tytul": "Ó czy u? Zasady pisowni dla dzieci",
+  "seo": {
+    "tytul": "Ó czy u? Zasady pisowni ó i u z przykładami dla dzieci",
+    "opis": "Kiedy piszemy ó, a kiedy u? Proste zasady pisowni ó i u dla dzieci: wymiana na o, e, a, końcówki -ów, -ówka, -uje, -unek, wyjątki i ćwiczenie z odpowiedziami."
+  },
+  "opis_krotki": "Ó wymienne na o, e, a, końcówki -ów i -ówka, u na początku wyrazu, -uje, -unek, -usz, -uch i wyjątki do zapamiętania.",
+  "w_skrocie": [
+    "Piszemy <b>ó</b>, gdy w innym wyrazie z rodziny słychać o, e albo a: stół, bo stoły.",
+    "Piszemy <b>ó</b> w końcówkach -ów i -ówka: kotów, pocztówka.",
+    "Piszemy <b>u</b> na początku i na końcu wyrazu: ucho, domu.",
+    "Piszemy <b>u</b> w końcówkach -uje, -unek, -usz, -uch: maluje, rysunek, kapelusz, maluch.",
+    "Kilka wyrazów z ó trzeba po prostu zapamiętać: góra, król, żółw."
+  ],
+  "wstep": "Ó i u brzmią tak samo, więc ucho nie pomoże. Pomaga za to kilka prostych reguł i jeden sprytny trik: szukanie wyrazu z tej samej rodziny. Poniżej są wszystkie reguły, których uczą się dzieci w klasach 1–4, z przykładami i krótkim ćwiczeniem na końcu.",
+  "reguly": [
+    {
+      "tytul": "Ó wymienia się na o, e albo a",
+      "tekst": "To najważniejsza reguła. Jeśli w innej formie wyrazu albo w wyrazie z tej samej rodziny słychać o, e albo a, piszemy ó. Najprościej sprawdzić to liczbą mnogą albo zdrobnieniem.",
+      "przyklady": [
+        "st[ó]ł|stoły",
+        "n[ó]ż|noże",
+        "r[ó]g|rogi",
+        "w[ó]z|wozy",
+        "samoch[ó]d|samochody",
+        "m[ó]wić|mowa",
+        "kr[ó]wka|krowa",
+        "dr[ó]żka|droga",
+        "s[ó]wka|sowa",
+        "ł[ó]dka|łodzie",
+        "si[ó]dmy|siedem",
+        "ni[ó]sł|niesie",
+        "wr[ó]cić|wracać"
+      ]
+    },
+    {
+      "tytul": "Końcówka -ów",
+      "tekst": "Na końcu wyrazu piszemy -ów. Tak kończy się wiele wyrazów w liczbie mnogiej i wiele nazw miast.",
+      "przyklady": [
+        "kot[ó]w",
+        "dom[ó]w",
+        "kwiat[ó]w",
+        "rower[ó]w",
+        "Krak[ó]w",
+        "Tarn[ó]w"
+      ]
+    },
+    {
+      "tytul": "Końcówka -ówka",
+      "tekst": "Wyrazy zakończone na -ówka piszemy przez ó.",
+      "przyklady": [
+        "poczt[ó]wka",
+        "kryj[ó]wka",
+        "wskaz[ó]wka",
+        "wiatr[ó]wka"
+      ]
+    },
+    {
+      "tytul": "U na początku i na końcu wyrazu",
+      "tekst": "Na początku wyrazu piszemy u. Na końcu wyrazu też piszemy u, np. w odpowiedzi na pytania komu? czemu?: domu, kotu.",
+      "przyklady": [
+        "[u]cho",
+        "[u]l",
+        "[u]czeń",
+        "[u]rodziny",
+        "[u]śmiech",
+        "[u]branie",
+        "dom[u]",
+        "kot[u]"
+      ],
+      "wyjatki": "Wyjątki na początku wyrazu: ósmy, ósemka, ów."
+    },
+    {
+      "tytul": "Końcówka -uje",
+      "tekst": "Czasowniki zakończone na -uje piszemy przez u.",
+      "przyklady": [
+        "mal[u]je",
+        "bud[u]je",
+        "rys[u]je",
+        "dzięk[u]je",
+        "prac[u]je"
+      ]
+    },
+    {
+      "tytul": "Końcówki -unek, -usz, -uch, -utki, -uszka",
+      "tekst": "Wyrazy z tymi końcówkami piszemy przez u.",
+      "przyklady": [
+        "rys[u]nek",
+        "rat[u]nek",
+        "kapel[u]sz",
+        "mal[u]ch",
+        "brz[u]ch",
+        "mal[u]tki",
+        "pod[u]szka"
+      ]
+    }
+  ],
+  "do_zapamietania": {
+    "tytul": "Wyjątki do zapamiętania",
+    "tekst": "W tych wyrazach ó nie wymienia się na o, e ani a i nie pasuje do żadnej końcówki. Trzeba je zapamiętać. W grze Ortopotwory to złote potwory, które wracają częściej.",
+    "wyrazy": [
+      "g[ó]ra",
+      "ż[ó]łw",
+      "m[ó]zg",
+      "r[ó]ża",
+      "c[ó]rka",
+      "wr[ó]bel",
+      "oł[ó]wek",
+      "og[ó]rek",
+      "sk[ó]ra",
+      "kr[ó]l"
+    ]
+  },
+  "cwiczenie": [
+    "st[ó]ł",
+    "[u]cho",
+    "kot[ó]w",
+    "mal[u]je",
+    "kr[ó]l",
+    "poczt[ó]wka",
+    "rys[u]nek",
+    "n[ó]żka",
+    "kapel[u]sz",
+    "g[ó]ra"
+  ],
+  "dla_rodzica": [
+    "Najpierw ucz szukania rodziny wyrazu („stół, bo stoły”). To jedna reguła, która rozwiązuje najwięcej przypadków.",
+    "Nie pokazuj dziecku wyrazów z błędem do poprawiania. Lepiej zostawić puste miejsce na literę, wtedy w pamięci zostaje tylko poprawny zapis.",
+    "Ćwicz krótko i często: 5 minut dziennie daje więcej niż godzina raz w tygodniu.",
+    "Wracaj do tych samych wyrazów po kilku dniach. Powtórka po przerwie utrwala pisownię najlepiej."
+  ],
+  "pytania": [
+    {
+      "p": "Kiedy piszemy ó?",
+      "o": "Gdy ó wymienia się na o, e albo a (stół, bo stoły), w końcówkach -ów i -ówka (kotów, pocztówka) oraz w wyrazach do zapamiętania, np. góra, król, żółw."
+    },
+    {
+      "p": "Kiedy piszemy u?",
+      "o": "Na początku wyrazu (ucho), na końcu wyrazu (domu) i w końcówkach -uje, -unek, -usz, -uch (maluje, rysunek, kapelusz, maluch)."
+    },
+    {
+      "p": "Czy na początku wyrazu może być ó?",
+      "o": "Tylko w kilku wyrazach: ósmy, ósemka, ów. W pozostałych na początku piszemy u."
+    }
+  ]
+}

@@ -16,6 +16,7 @@ generuje z nich:
 | `api/gry.json` | wszystkie gry, najnowsze wersje, opisy i adresy zrzutów |
 | `api/wydania.json` | [JSON Feed 1.1](https://jsonfeed.org/version/1.1) z wydaniami, od najnowszego |
 | `feed.xml` | to samo jako RSS |
+| `ortografia/<slug>/index.html`, `ortografia/index.html` | zasady pisowni (ó/u, rz/ż, ch/h) z `dane/ortografia/<slug>.json` |
 | `sitemap.xml`, `robots.txt` | wyszukiwarki: lista stron do zaindeksowania |
 
 Strony gier mają też adres kanoniczny, podgląd linku (Open Graph) i dane strukturalne schema.org
@@ -26,6 +27,14 @@ nazwa gry i `opis_krotki`.
 
 Plików wygenerowanych nie edytuj ręcznie. Zmień dane i uruchom `python3 narzedzia/strona.py zbuduj`
 (albo tylko wypchnij zmianę danych: workflow „Zbuduj stronę” przebuduje stronę sam).
+
+## Zasady ortografii
+
+Strony w `ortografia/` przyciągają rodziców, którzy szukają w Google np. „ó czy u zasady”, i prowadzą do
+gry Ortopotwory. Każda strona to jeden plik `dane/ortografia/<slug>.json`: reguły, przykłady, wyjątki,
+ćwiczenie i pytania. Wyrazy zapisujemy jak w grze: litera do odgadnięcia w nawiasach, np. `st[ó]ł`,
+a przykład z rodziną wyrazu jako `st[ó]ł|stoły`. Strony nigdy nie pokazują wyrazu z błędem.
+Nowa strona: dodaj plik JSON i uruchom `python3 narzedzia/strona.py zbuduj`.
 
 ## Automatyczna aktualizacja po wydaniu gry
 
