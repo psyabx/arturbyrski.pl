@@ -8,6 +8,8 @@ Wynik (commitowany, bo GitHub Pages serwuje gałąź main):
   - api/gry.json          wszystkie gry i ich najnowsze wersje (dla automatów, np. influencera)
   - api/wydania.json      JSON Feed 1.1 z wydaniami, od najnowszego
   - feed.xml              RSS 2.0 z wydaniami
+  - skrypt statystyk Cloudflare Web Analytics (bez ciasteczek) między <!-- statystyki:start -->
+    i <!-- statystyki:koniec --> na każdej stronie, jeśli dane/statystyki.json ma token
 
 Użycie:
   python3 narzedzia/strona.py zbuduj
@@ -34,6 +36,9 @@ ADRES = "https://arturbyrski.pl"
 FIRMA = "Artur Byrski Link Technologies"
 ZNACZNIK_START = "<!-- gry:start -->"
 ZNACZNIK_KONIEC = "<!-- gry:koniec -->"
+STAT_START = "<!-- statystyki:start -->"
+STAT_KONIEC = "<!-- statystyki:koniec -->"
+STRONY_RECZNE = ["index.html", "polityka-prywatnosci.html", "polityka-prywatnosci-ortopotwory.html"]
 SLUG = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 
 SCIEZKI = {
@@ -258,6 +263,7 @@ def strona_gry(gra: dict) -> str:
 {tresc}
 </main>
 {stopka(rok(gra), g, gra.get("polityka") or "polityka-prywatnosci.html")}
+{statystyki()}
 </body>
 </html>
 """
@@ -374,6 +380,24 @@ def rss(gry: list[dict]) -> str:
 
 # ---------- polecenia ----------
 
+def statystyki() -> str:
+    """Blok ze skryptem Cloudflare Web Analytics albo pusty blok, gdy nie ma tokenu."""
+    plik = KORZEN / "dane" / "statystyki.json"
+    token = json.loads(plik.read_text(encoding="utf-8")).get("cloudflare_token", "") if plik.exists() else ""
+    if token and not re.fullmatch(r"[0-9a-f]{32}", token):
+        sys.exit("dane/statystyki.json: cloudflare_token to 32 znaki 0-9a-f")
+    skrypt = ("<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" "
+              f"data-cf-beacon='{{\"token\": \"{token}\"}}'></script>\n" if token else "")
+    return f"{STAT_START}\n{skrypt}{STAT_KONIEC}"
+
+
+def wstaw_statystyki(tekst: str, blok: str) -> str:
+    if STAT_START in tekst:
+        przed, reszta = tekst.split(STAT_START, 1)
+        return przed + blok + reszta.split(STAT_KONIEC, 1)[1]
+    return tekst.replace("</body>", f"{blok}\n</body>", 1)
+
+
 def zbuduj() -> None:
     gry = wczytaj_gry()
     for g in gry:
@@ -387,6 +411,11 @@ def zbuduj() -> None:
         katalog.mkdir(parents=True, exist_ok=True)
         (katalog / "index.html").write_text(strona_gry(g), encoding="utf-8")
     podmien_index(gry)
+    blok = statystyki()
+    for nazwa in STRONY_RECZNE:
+        plik = KORZEN / nazwa
+        if plik.exists():
+            plik.write_text(wstaw_statystyki(plik.read_text(encoding="utf-8"), blok), encoding="utf-8")
     (KORZEN / "api").mkdir(exist_ok=True)
     (KORZEN / "api" / "gry.json").write_text(
         json.dumps(api_gry(gry), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
