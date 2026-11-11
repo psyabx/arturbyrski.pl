@@ -123,7 +123,7 @@ def karta_gry(gra: dict) -> str:
                  f'alt="Ekran gry {e(gra["nazwa"])}" width="1280" height="720"></a>')
     znaczki = "".join(f"<li>{e(t)}</li>" for t in
                       ([f"dla dzieci {gra['wiek']}"] if gra.get("wiek") else [])
-                      + ["bez reklam", "offline", "we dwoje"])
+                      + gra.get("znaczki", ["bez reklam", "offline", "we dwoje"]))
     linki = [f'<a href="gry/{s}/">Więcej o grze</a>']
     if gra.get("polityka"):
         linki.append(f'<a href="{e(gra["polityka"])}">Polityka prywatności</a>')
@@ -163,9 +163,9 @@ def pasek(g: str) -> str:
             f'<a href="#en">English</a></nav></div></header>')
 
 
-def stopka(rok_: int, g: str) -> str:
+def stopka(rok_: int, g: str, polityka: str = "polityka-prywatnosci.html") -> str:
     return (f'<footer><div class="wrap"><span>© {rok_} {FIRMA}</span>'
-            f'<span><a href="{g}polityka-prywatnosci.html">Polityka prywatności</a> · '
+            f'<span><a href="{g}{e(polityka)}">Polityka prywatności</a> · '
             f'<a href="{g}feed.xml">Wydania (RSS)</a></span></div></footer>')
 
 
@@ -201,7 +201,8 @@ def strona_gry(gra: dict) -> str:
 
     if gra.get("zrzuty"):
         figury = "".join(
-            f'<figure><img src="{g}{e(z["plik"])}" alt="{e(z["opis"]["pl"])}" width="1280" height="720" loading="lazy">'
+            f'<figure><img src="{g}{e(z["plik"])}" alt="{e(z["opis"]["pl"])}" '
+            f'width="{z.get("szerokosc", 1280)}" height="{z.get("wysokosc", 720)}" loading="lazy">'
             f'<figcaption>{e(z["opis"]["pl"])}</figcaption></figure>' for z in gra["zrzuty"])
         czesci.append(f'<section><div class="wrap"><h2>Tak to wygląda</h2><div class="zrzuty">{figury}</div></div></section>')
 
@@ -256,7 +257,7 @@ def strona_gry(gra: dict) -> str:
 <main>
 {tresc}
 </main>
-{stopka(rok(gra), g)}
+{stopka(rok(gra), g, gra.get("polityka") or "polityka-prywatnosci.html")}
 </body>
 </html>
 """

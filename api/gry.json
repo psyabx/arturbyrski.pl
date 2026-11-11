@@ -80,6 +80,95 @@
           ]
         }
       }
+    },
+    {
+      "slug": "ortopotwory",
+      "nazwa": "Ortopotwory",
+      "podtytul": {
+        "pl": "Detektywi ortografii",
+        "en": "Spelling Detectives"
+      },
+      "nazwa_en": "Ortopotwory: Spelling Detectives",
+      "pakiet": "com.psyabx.ortopotwory",
+      "strona": "https://arturbyrski.pl/gry/ortopotwory/",
+      "google_play": null,
+      "polityka_prywatnosci": "https://arturbyrski.pl/polityka-prywatnosci-ortopotwory.html",
+      "opis_krotki": {
+        "pl": "Gra do nauki ortografii: dziecko jako detektyw łapie potworki, które pomieszały litery ó/u, rz/ż i ch/h. Bez reklam i bez internetu.",
+        "en": "A Polish spelling game: as a detective, your child catches little monsters who mixed up the letters ó/u, rz/ż and ch/h. No ads, works offline."
+      },
+      "opis": {
+        "pl": [
+          "Złośliwe potworki pomieszały litery w Słowolandii. Óśmiornica z bagna, Żarłok z wulkanu i Chochlik z kominów podmieniają ó i u, rz i ż, ch i h. Dziecko jako ortodetektyw łapie je, poprawiając wyrazy.",
+          "Każdego dnia czeka krótka misja: kilka minigier na przemian i pojedynek z Królem potworów. Każda kraina zaczyna się komiksem z regułą, a wyrazy wracają w powtórkach po 1, 3, 7, 14 i 30 dniach, żeby zostały w pamięci na dłużej.",
+          "Gra nigdy nie pokazuje wyrazu z błędem. Brakująca litera to puste pole, a po odpowiedzi dziecko widzi tylko poprawną pisownię."
+        ],
+        "en": [
+          "Mischievous monsters have mixed up the letters in Wordland. The Octopus from the swamp, the Glutton from the volcano and the Imp from the chimneys swap ó and u, rz and ż, ch and h. As a spelling detective, your child catches them by fixing the words.",
+          "Every day brings a short mission: a few alternating mini-games and a duel with the Monster King. Each land starts with a comic that explains the rule, and words come back for review after 1, 3, 7, 14 and 30 days so they stick.",
+          "The game never shows a misspelled word. The missing letter is an empty box, and after answering the child only ever sees the correct spelling."
+        ]
+      },
+      "okladka": "https://arturbyrski.pl/img/gry/ortopotwory/okladka.jpg",
+      "zrzuty": [
+        {
+          "url": "https://arturbyrski.pl/img/gry/ortopotwory/1-biuro.jpg",
+          "opis": {
+            "pl": "Biuro detektywa i trzy krainy",
+            "en": "Detective office and three lands"
+          }
+        },
+        {
+          "url": "https://arturbyrski.pl/img/gry/ortopotwory/5-pulapka.jpg",
+          "opis": {
+            "pl": "Pułapka: ó czy u, zanim potwór wpadnie do bagna",
+            "en": "Trap: ó or u before the monster falls into the swamp"
+          }
+        },
+        {
+          "url": "https://arturbyrski.pl/img/gry/ortopotwory/6-labirynt.jpg",
+          "opis": {
+            "pl": "Labirynt: wybierz drzwi z dobrą literą",
+            "en": "Maze: pick the door with the right letter"
+          }
+        },
+        {
+          "url": "https://arturbyrski.pl/img/gry/ortopotwory/7-dyktando.jpg",
+          "opis": {
+            "pl": "Dyktando potwora: lektor czyta zdanie",
+            "en": "Monster dictation: the narrator reads a sentence"
+          }
+        },
+        {
+          "url": "https://arturbyrski.pl/img/gry/ortopotwory/8-krol.jpg",
+          "opis": {
+            "pl": "Pojedynek z Królem potworów",
+            "en": "Duel with the Monster King"
+          }
+        },
+        {
+          "url": "https://arturbyrski.pl/img/gry/ortopotwory/3-baza.jpg",
+          "opis": {
+            "pl": "Baza potworów: kartoteka złapanych wyrazów",
+            "en": "Monster base: catalogue of caught words"
+          }
+        },
+        {
+          "url": "https://arturbyrski.pl/img/gry/ortopotwory/2-detektyw.jpg",
+          "opis": {
+            "pl": "Własny detektyw: wygląd i zwierzak",
+            "en": "Your own detective: looks and a pet"
+          }
+        },
+        {
+          "url": "https://arturbyrski.pl/img/gry/ortopotwory/9-podsumowanie.jpg",
+          "opis": {
+            "pl": "Podsumowanie misji i drzewko serii",
+            "en": "Mission summary and streak tree"
+          }
+        }
+      ],
+      "najnowsze_wydanie": null
     }
   ]
 }
