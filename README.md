@@ -60,6 +60,14 @@ Stałe adresy do odpytywania:
 Zasada: posty publiczne tylko o wydaniach z `publiczne: true`, bez danych dzieci i bez reklam
 skierowanych do dzieci.
 
+## Statystyki odwiedzin
+
+Strona liczy odwiedziny przez Cloudflare Web Analytics (bez ciasteczek i danych osobowych).
+Token jest w `dane/statystyki.json` (`cloudflare_token`, pusty = statystyki wyłączone).
+Generator wstawia skrypt między `<!-- statystyki:start -->` a `<!-- statystyki:koniec -->`
+na każdej stronie, także w `index.html` i politykach prywatności. Po zmianie tokenu na `main`
+workflow „Zbuduj stronę” przebuduje strony sam. Wyniki: dash.cloudflare.com → Analytics & Logs → Web Analytics.
+
 ## Czcionka
 
 `fonty/Grandstander.ttf` (licencja SIL Open Font License 1.1) jest serwowana z tej domeny,
