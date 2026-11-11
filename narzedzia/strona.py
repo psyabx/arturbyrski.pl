@@ -8,6 +8,7 @@ Wynik (commitowany, bo GitHub Pages serwuje gałąź main):
   - api/gry.json          wszystkie gry i ich najnowsze wersje (dla automatów, np. influencera)
   - api/wydania.json      JSON Feed 1.1 z wydaniami, od najnowszego
   - feed.xml              RSS 2.0 z wydaniami
+  - sitemap.xml, robots.txt  dla wyszukiwarek (lista stron i adres mapy)
   - skrypt statystyk Cloudflare Web Analytics (bez ciasteczek) między <!-- statystyki:start -->
     i <!-- statystyki:koniec --> na każdej stronie, jeśli dane/statystyki.json ma token
 
@@ -93,6 +94,116 @@ def data_pl(iso: str) -> str:
     return f"{d.day} {miesiace[d.month - 1]} {d.year}"
 
 
+# ---------- SEO ----------
+
+def jsonld(dane: dict | list) -> str:
+    """Dane strukturalne schema.org. Zamiana "</" chroni przed zamknięciem <script> w tekście."""
+    tekst = json.dumps(dane, ensure_ascii=False, indent=1).replace("</", "<\\/")
+    return f'<script type="application/ld+json">\n{tekst}\n</script>'
+
+
+def wydawca() -> dict:
+    return {"@type": "Organization", "@id": ADRES + "/#firma", "name": FIRMA, "url": ADRES + "/"}
+
+
+def wiek_od_do(gra: dict) -> tuple[int, int] | None:
+    liczby = re.findall(r"\d+", gra.get("wiek") or "")
+    return (int(liczby[0]), int(liczby[-1])) if liczby else None
+
+
+def seo(gra: dict) -> dict:
+    """Tytuł, opis i kategoria dla wyszukiwarek. Pole "seo" w danych gry nadpisuje domyślne."""
+    s = gra.get("seo") or {}
+    return {
+        "tytul": s.get("tytul") or f"{pelna_nazwa(gra)} · gra dla dzieci",
+        "opis": s.get("opis") or gra["opis_krotki"]["pl"],
+        "kategoria": s.get("kategoria") or "GameApplication",
+        "tematy": s.get("tematy") or [],
+    }
+
+
+def dane_gry(gra: dict) -> list[dict]:
+    url = adres(f"gry/{gra['slug']}/")
+    s = seo(gra)
+    aplikacja = {
+        "@context": "https://schema.org",
+        "@type": ["SoftwareApplication", "VideoGame"],
+        "@id": url + "#gra",
+        "name": pelna_nazwa(gra),
+        "alternateName": gra.get("nazwa_en") or gra["nazwa"],
+        "url": url,
+        "description": s["opis"],
+        "applicationCategory": s["kategoria"],
+        "operatingSystem": "Android",
+        "inLanguage": "pl",
+        "isFamilyFriendly": True,
+        "publisher": wydawca(),
+        "author": wydawca(),
+    }
+    if gra.get("okladka"):
+        aplikacja["image"] = adres(gra["okladka"])
+    if gra.get("zrzuty"):
+        aplikacja["screenshot"] = [adres(z["plik"]) for z in gra["zrzuty"]]
+    wiek = wiek_od_do(gra)
+    if wiek:
+        aplikacja["audience"] = {"@type": "PeopleAudience",
+                                 "suggestedMinAge": wiek[0], "suggestedMaxAge": wiek[1]}
+        aplikacja["typicalAgeRange"] = f"{wiek[0]}-{wiek[1]}"
+    if s["tematy"]:
+        aplikacja["keywords"] = ", ".join(s["tematy"])
+    if gra["wydania"]:
+        aplikacja["softwareVersion"] = gra["wydania"][0]["wersja"]
+    sklep = link_sklepu(gra, "schema")
+    if sklep:
+        aplikacja["installUrl"] = sklep
+    okruszki = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Senne gry Artura", "item": ADRES + "/"},
+            {"@type": "ListItem", "position": 2, "name": pelna_nazwa(gra), "item": url},
+        ],
+    }
+    return [aplikacja, okruszki]
+
+
+def meta_udostepniania(url: str, tytul: str, opis: str, obraz: str) -> str:
+    """Adres kanoniczny i podgląd linku (Facebook, Messenger, WhatsApp, X)."""
+    wiersze = [
+        f'<link rel="canonical" href="{e(url)}">',
+        '<meta property="og:type" content="website">',
+        '<meta property="og:locale" content="pl_PL">',
+        '<meta property="og:site_name" content="Senne gry Artura">',
+        f'<meta property="og:url" content="{e(url)}">',
+        f'<meta property="og:title" content="{e(tytul)}">',
+        f'<meta property="og:description" content="{e(opis)}">',
+    ]
+    if obraz:
+        wiersze += [f'<meta property="og:image" content="{e(obraz)}">',
+                    f'<meta property="og:image:alt" content="{e(tytul)}">',
+                    '<meta name="twitter:card" content="summary_large_image">']
+    return "\n".join(wiersze)
+
+
+def mapa_strony(gry: list[dict]) -> str:
+    wpisy = [(adres("" if n == "index.html" else n), None, "1.0" if n == "index.html" else "0.3")
+             for n in STRONY_RECZNE if (KORZEN / n).exists()]
+    for g in gry:
+        data = g["wydania"][0]["data"] if g["wydania"] else None
+        wpisy.append((adres(f"gry/{g['slug']}/"), data, "0.9"))
+    linie = []
+    for url, data, pr in wpisy:
+        mod = f"<lastmod>{data}</lastmod>" if data else ""
+        linie.append(f"  <url><loc>{html.escape(url)}</loc>{mod}<priority>{pr}</priority></url>")
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            + "\n".join(linie) + "\n</urlset>\n")
+
+
+def robots() -> str:
+    return f"User-agent: *\nAllow: /\n\nSitemap: {ADRES}/sitemap.xml\n"
+
+
 # ---------- HTML ----------
 
 def rok(gra: dict) -> int:
@@ -125,7 +236,7 @@ def karta_gry(gra: dict) -> str:
     obraz = ""
     if gra.get("okladka"):
         obraz = (f'<a href="gry/{s}/"><img src="{e(gra["okladka"])}" '
-                 f'alt="Ekran gry {e(gra["nazwa"])}" width="1280" height="720"></a>')
+                 f'alt="{e(pelna_nazwa(gra))}: ekran gry dla dzieci" width="1280" height="720"></a>')
     znaczki = "".join(f"<li>{e(t)}</li>" for t in
                       ([f"dla dzieci {gra['wiek']}"] if gra.get("wiek") else [])
                       + gra.get("znaczki", ["bez reklam", "offline", "we dwoje"]))
@@ -179,7 +290,7 @@ def strona_gry(gra: dict) -> str:
     czesci = []
     okladka = ""
     if gra.get("okladka"):
-        okladka = (f'<img src="{g}{e(gra["okladka"])}" alt="Ekran gry {e(gra["nazwa"])}" '
+        okladka = (f'<img src="{g}{e(gra["okladka"])}" alt="{e(pelna_nazwa(gra))}: ekran gry dla dzieci" '
                    f'width="1280" height="720">')
     znaczki = "".join(f"<li>{e(t)}</li>" for t in
                       ([f"dla dzieci {gra['wiek']}"] if gra.get("wiek") else [])
@@ -188,9 +299,8 @@ def strona_gry(gra: dict) -> str:
         f'<section class="niebo"><div class="gwiazdy" aria-hidden="true">{GWIAZDY}</div>'
         f'<div class="ksiezyc" aria-hidden="true"></div>'
         f'<div class="wrap niebo-tresc"><div>'
-        f'<h1>{e(gra["nazwa"])}</h1>'
-        + (f'<p class="lead"><strong>{e(gra["podtytul"]["pl"])}</strong></p>' if gra.get("podtytul") else "")
-        + f'<p class="lead">{e(gra["opis_krotki"]["pl"])}</p>'
+        f'<h1>{e(pelna_nazwa(gra))}</h1>'
+        f'<p class="lead">{e(gra["opis_krotki"]["pl"])}</p>'
         f'<ul class="znaczki">{znaczki}</ul>'
         f'<div class="przyciski">{przycisk_sklepu(gra, "strona-gry")}</div>'
         f'</div><div>{okladka}</div></div></section>')
@@ -242,16 +352,16 @@ def strona_gry(gra: dict) -> str:
 
     tresc = "\n".join(czesci)
     obraz_og = adres(gra["okladka"]) if gra.get("okladka") else ""
+    s = seo(gra)
     return f"""<!doctype html>
 <html lang="pl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{e(pelna_nazwa(gra))} · gra dla dzieci</title>
-<meta name="description" content="{e(gra["opis_krotki"]["pl"])}">
-<meta property="og:title" content="{e(pelna_nazwa(gra))}">
-<meta property="og:description" content="{e(gra["opis_krotki"]["pl"])}">
-<meta property="og:image" content="{e(obraz_og)}">
+<title>{e(s["tytul"])}</title>
+<meta name="description" content="{e(s["opis"])}">
+{meta_udostepniania(adres(f"gry/{gra['slug']}/"), pelna_nazwa(gra), s["opis"], obraz_og)}
+{jsonld(dane_gry(gra))}
 <link rel="icon" href="{g}ikona.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="Wydania gier" href="{g}feed.xml">
 <link rel="stylesheet" href="{g}styl.css">
@@ -422,6 +532,8 @@ def zbuduj() -> None:
     (KORZEN / "api" / "wydania.json").write_text(
         json.dumps(json_feed(gry), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (KORZEN / "feed.xml").write_text(rss(gry), encoding="utf-8")
+    (KORZEN / "sitemap.xml").write_text(mapa_strony(gry), encoding="utf-8")
+    (KORZEN / "robots.txt").write_text(robots(), encoding="utf-8")
     print(f"Zbudowano strony dla gier: {', '.join(g['slug'] for g in gry)}")
 
 
