@@ -202,3 +202,23 @@ main.tekst h2 { font-size: 24px; margin-top: 32px; }
 .kontakt dt { color: #b8b0da; }
 .kontakt a:not(.przycisk) { color: var(--ksiezyc); }
 @media (max-width: 560px) { .ksiezyc { width: 54px; height: 54px; top: 12px; right: 3%; opacity: 0.8; } }
+
+/* Zasady ortografii (ortografia/) */
+.okruszki { font-size: 15px; color: var(--cichy); margin: 0 0 8px; }
+.okruszki a { color: var(--cichy); }
+.ramka { background: var(--karta); border: 1px solid var(--linia); border-radius: 20px; padding: 6px 22px 10px; box-shadow: var(--cien); margin-top: 20px; }
+.ramka h2 { font-size: 22px; }
+.litera { color: var(--roz); font-weight: 800; }
+.wyrazy { list-style: none; padding: 0; margin: 12px 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.wyrazy li { background: var(--karta); border: 1px solid var(--linia); border-radius: 12px; padding: 4px 12px; font-size: 19px; }
+ol.cwiczenie { counter-reset: nr; }
+ol.cwiczenie li { counter-increment: nr; }
+ol.cwiczenie li::before { content: counter(nr) ". "; color: var(--cichy); font-size: 15px; }
+.luka { display: inline-block; min-width: 1.4em; border-bottom: 2px solid var(--akcent); color: transparent; text-align: center; }
+.uwaga { background: var(--linia); border-radius: 12px; padding: 8px 14px; font-size: 16px; }
+@media print {
+  .pasek, footer, .przyciski, .menu { display: none; }
+  body { background: #fff; color: #000; }
+  .ramka, .wyrazy li, details, .kontakt { box-shadow: none; }
+  details[open] summary ~ * { display: block; }
+}

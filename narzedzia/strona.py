@@ -8,6 +8,7 @@ Wynik (commitowany, bo GitHub Pages serwuje gałąź main):
   - api/gry.json          wszystkie gry i ich najnowsze wersje (dla automatów, np. influencera)
   - api/wydania.json      JSON Feed 1.1 z wydaniami, od najnowszego
   - feed.xml              RSS 2.0 z wydaniami
+  - ortografia/<slug>/index.html i ortografia/index.html  zasady pisowni z dane/ortografia/*.json
   - sitemap.xml, robots.txt  dla wyszukiwarek (lista stron i adres mapy)
   - skrypt statystyk Cloudflare Web Analytics (bez ciasteczek) między <!-- statystyki:start -->
     i <!-- statystyki:koniec --> na każdej stronie, jeśli dane/statystyki.json ma token
@@ -33,6 +34,7 @@ from pathlib import Path
 
 KORZEN = Path(__file__).resolve().parent.parent
 DANE = KORZEN / "dane" / "gry"
+DANE_ORTO = KORZEN / "dane" / "ortografia"
 ADRES = "https://arturbyrski.pl"
 FIRMA = "Artur Byrski Link Technologies"
 ZNACZNIK_START = "<!-- gry:start -->"
@@ -185,12 +187,15 @@ def meta_udostepniania(url: str, tytul: str, opis: str, obraz: str) -> str:
     return "\n".join(wiersze)
 
 
-def mapa_strony(gry: list[dict]) -> str:
+def mapa_strony(gry: list[dict], porady: list[dict] | None = None) -> str:
     wpisy = [(adres("" if n == "index.html" else n), None, "1.0" if n == "index.html" else "0.3")
              for n in STRONY_RECZNE if (KORZEN / n).exists()]
     for g in gry:
         data = g["wydania"][0]["data"] if g["wydania"] else None
         wpisy.append((adres(f"gry/{g['slug']}/"), data, "0.9"))
+    if porady:
+        wpisy.append((adres("ortografia/"), None, "0.8"))
+        wpisy += [(adres(f"ortografia/{p['slug']}/"), None, "0.8") for p in porady]
     linie = []
     for url, data, pr in wpisy:
         mod = f"<lastmod>{data}</lastmod>" if data else ""
@@ -271,12 +276,13 @@ LOGO_SVG = ('<svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
             '<path d="M21 6a10 10 0 1 0 5 15A8 8 0 0 1 21 6z" fill="#ffe08a"/></svg>')
 
 
-def pasek(g: str) -> str:
+def pasek(g: str, en: bool = True) -> str:
     return (f'<header class="pasek"><div class="wrap">'
             f'<a class="logo" href="{g}index.html">{LOGO_SVG}Senne gry Artura</a>'
-            f'<nav class="menu"><a href="{g}index.html#gry">Gry</a><a href="{g}index.html#rodzice">Dla rodziców</a>'
+            f'<nav class="menu"><a href="{g}index.html#gry">Gry</a><a href="{g}ortografia/">Zasady ortografii</a>'
+            f'<a href="{g}index.html#rodzice">Dla rodziców</a>'
             f'<a href="{g}index.html#dzieci">Dla dzieci</a><a href="{g}index.html#kontakt">Kontakt</a>'
-            f'<a href="#en">English</a></nav></div></header>')
+            + ('<a href="#en">English</a>' if en else "") + '</nav></div></header>')
 
 
 def stopka(rok_: int, g: str, polityka: str = "polityka-prywatnosci.html") -> str:
@@ -388,6 +394,220 @@ def podmien_index(gry: list[dict]) -> None:
     _, po = reszta.split(ZNACZNIK_KONIEC, 1)
     karty = "\n".join(karta_gry(g) for g in gry)
     plik.write_text(f"{przed}{ZNACZNIK_START}\n{karty}\n  {ZNACZNIK_KONIEC}{po}", encoding="utf-8")
+
+
+# ---------- zasady ortografii ----------
+
+def wczytaj_porady() -> list[dict]:
+    porady = []
+    for plik in sorted(DANE_ORTO.glob("*.json")):
+        p = json.loads(plik.read_text(encoding="utf-8"))
+        if p.get("slug") != plik.stem:
+            sys.exit(f"{plik}: pole slug musi być równe nazwie pliku ({plik.stem})")
+        porady.append(p)
+    porady.sort(key=lambda p: (p.get("kolejnosc", 999), p["slug"]))
+    return porady
+
+
+WYRAZ = re.compile(r"^([^\[\]]*)\[([^\[\]]+)\]([^\[\]]*)$")
+
+
+def rozbij(zapis: str) -> tuple[str, str, str]:
+    """"st[ó]ł" -> ("st", "ó", "ł"). Ten sam zapis co w grze Ortopotwory."""
+    m = WYRAZ.match(zapis)
+    if not m:
+        sys.exit(f"Zły zapis wyrazu: {zapis!r} (oczekiwano np. st[ó]ł)")
+    return m.group(1), m.group(2), m.group(3)
+
+
+def wyraz_html(zapis: str) -> str:
+    """Wyraz z wyróżnioną literą. Zawsze poprawna pisownia, nigdy wersja z błędem."""
+    przed, litera, po = rozbij(zapis)
+    return f'{e(przed)}<b class="litera">{e(litera)}</b>{e(po)}'
+
+
+def wyraz_tekst(zapis: str) -> str:
+    return "".join(rozbij(zapis))
+
+
+def luka_html(zapis: str) -> str:
+    przed, litera, po = rozbij(zapis)
+    return f'{e(przed)}<span class="luka" aria-label="brakująca litera">{"_" * len(litera)}</span>{e(po)}'
+
+
+def przyklad_html(p: str) -> str:
+    wyraz, _, bo = p.partition("|")
+    return f"<li>{wyraz_html(wyraz)}" + (f' <span class="cichy">bo {e(bo)}</span>' if bo else "") + "</li>"
+
+
+def strona_porady(p: dict, porady: list[dict], gra: dict | None) -> str:
+    g = "../../"
+    url = adres(f"ortografia/{p['slug']}/")
+    czesci = []
+    skrot = "".join(f"<li>{punkt}</li>" for punkt in p["w_skrocie"])  # punkty mają celowo <b>
+    czesci.append(
+        f'<section class="porada-gora"><div class="wrap waski">'
+        f'<p class="okruszki"><a href="{g}index.html">Senne gry Artura</a> › <a href="../">Zasady ortografii</a></p>'
+        f'<h1>{e(p["tytul"])}</h1><p class="lead">{e(p["wstep"])}</p>'
+        f'<div class="ramka"><h2>W skrócie</h2><ul class="lista">{skrot}</ul></div>'
+        f'</div></section>')
+
+    reg = []
+    for r in p["reguly"]:
+        wyj = f'<p class="uwaga">{e(r["wyjatki"])}</p>' if r.get("wyjatki") else ""
+        przyk = "".join(przyklad_html(x) for x in r["przyklady"])
+        reg.append(f'<h3>{e(r["tytul"])}</h3><p>{e(r["tekst"])}</p><ul class="wyrazy">{przyk}</ul>{wyj}')
+    czesci.append(f'<section><div class="wrap waski"><h2>Zasady pisowni {e(p["litery"])}</h2>{"".join(reg)}</div></section>')
+
+    z = p.get("do_zapamietania")
+    if z:
+        wyrazy = "".join(f"<li>{wyraz_html(w)}</li>" for w in z["wyrazy"])
+        czesci.append(f'<section><div class="wrap waski"><h2>{e(z["tytul"])}</h2><p>{e(z["tekst"])}</p>'
+                      f'<ul class="wyrazy">{wyrazy}</ul></div></section>')
+
+    if p.get("cwiczenie"):
+        luki = "".join(f"<li>{luka_html(w)}</li>" for w in p["cwiczenie"])
+        odp = "".join(f"<li>{wyraz_html(w)}</li>" for w in p["cwiczenie"])
+        czesci.append(
+            f'<section><div class="wrap waski"><h2>Ćwiczenie: wpisz {e(p["litery"])}</h2>'
+            f'<p>Przepisz wyrazy do zeszytu i wpisz brakujące litery. Potem sprawdź odpowiedzi.</p>'
+            f'<ol class="wyrazy cwiczenie">{luki}</ol>'
+            f'<details><summary>Pokaż odpowiedzi</summary><ol class="wyrazy">{odp}</ol></details>'
+            f'</div></section>')
+
+    if p.get("dla_rodzica"):
+        czesci.append(f'<section><div class="wrap waski"><h2>Jak ćwiczyć w domu</h2>{lista_notatek(p["dla_rodzica"])}</div></section>')
+
+    if gra:
+        czesci.append(
+            f'<section><div class="wrap waski"><div class="kontakt">'
+            f'<h2>Poćwicz z Ortopotworami</h2>'
+            f'<p>{e(gra["opis_krotki"]["pl"])} Wyrazy z tej strony wracają w grze w powtórkach po 1, 3, 7, 14 i 30 dniach.</p>'
+            f'<div class="przyciski"><a class="przycisk" href="{g}gry/{e(gra["slug"])}/">Poznaj grę Ortopotwory</a></div>'
+            f'</div></div></section>')
+
+    if p.get("pytania"):
+        pyt = "".join(f'<details><summary>{e(q["p"])}</summary><p>{e(q["o"])}</p></details>' for q in p["pytania"])
+        czesci.append(f'<section><div class="wrap waski"><h2>Częste pytania</h2>{pyt}</div></section>')
+
+    inne = [x for x in porady if x["slug"] != p["slug"]]
+    if inne:
+        linki = "".join(f'<li><a href="../{e(x["slug"])}/">{e(x["tytul"])}</a></li>' for x in inne)
+        czesci.append(f'<section><div class="wrap waski"><h2>Inne zasady ortografii</h2><ul class="lista">{linki}</ul></div></section>')
+
+    dane = [
+        {
+            "@context": "https://schema.org",
+            "@type": ["Article", "LearningResource"],
+            "@id": url + "#porada",
+            "headline": p["tytul"],
+            "description": p["seo"]["opis"],
+            "url": url,
+            "inLanguage": "pl",
+            "learningResourceType": "zasady i ćwiczenie",
+            "educationalLevel": "szkoła podstawowa, klasy 1–4",
+            "teaches": f"pisownia {p['litery']}",
+            "isAccessibleForFree": True,
+            "author": wydawca(),
+            "publisher": wydawca(),
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{"@type": "Question", "name": q["p"],
+                            "acceptedAnswer": {"@type": "Answer", "text": q["o"]}} for q in p.get("pytania", [])],
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Senne gry Artura", "item": ADRES + "/"},
+                {"@type": "ListItem", "position": 2, "name": "Zasady ortografii", "item": adres("ortografia/")},
+                {"@type": "ListItem", "position": 3, "name": p["tytul"], "item": url},
+            ],
+        },
+    ]
+    if not p.get("pytania"):
+        dane.pop(1)
+    return strona_szkielet(g, url, p["seo"]["tytul"], p["seo"]["opis"], p["tytul"], dane,
+                           "\n".join(czesci), f"dane/ortografia/{p['slug']}.json")
+
+
+def strona_ortografii(porady: list[dict]) -> str:
+    g = "../"
+    url = adres("ortografia/")
+    karty = "".join(
+        f'<div class="kafel"><div class="ikona {"frs"[i % 3]}" aria-hidden="true">{e(p["litery"])}</div>'
+        f'<h3><a href="{e(p["slug"])}/">{e(p["tytul"])}</a></h3><p>{e(p["opis_krotki"])}</p></div>'
+        for i, p in enumerate(porady))
+    tresc = (
+        f'<section class="porada-gora"><div class="wrap waski">'
+        f'<p class="okruszki"><a href="{g}index.html">Senne gry Artura</a></p>'
+        f'<h1>Zasady ortografii dla dzieci</h1>'
+        f'<p class="lead">Proste zasady pisowni ó i u, rz i ż oraz ch i h, z przykładami i ćwiczeniami z odpowiedziami. '
+        f'Dla dzieci w klasach 1–4 i rodziców, którzy pomagają w lekcjach.</p></div></section>'
+        f'<section><div class="wrap"><div class="kafelki">{karty}</div></div></section>'
+        f'<section><div class="wrap waski"><h2>Jak uczyć ortografii, żeby została w głowie</h2>'
+        + lista_notatek([
+            "Szukajcie rodziny wyrazu: stół, bo stoły; dobrze, bo dobry. To jedna sztuczka do wielu reguł.",
+            "Pokazuj tylko poprawny zapis. Puste miejsce na literę działa lepiej niż poprawianie błędów.",
+            "Ćwiczcie krótko i często, a trudne wyrazy powtarzajcie po kilku dniach.",
+            "Wyjątki łączcie w zabawne zdania albo historyjki, wtedy łatwiej je zapamiętać.",
+        ])
+        + f'<p>Te same zasady ćwiczy gra <a href="{g}gry/ortopotwory/">Ortopotwory: Detektywi ortografii</a>.</p>'
+        f'</div></section>')
+    dane = [
+        {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "@id": url,
+            "name": "Zasady ortografii dla dzieci",
+            "url": url,
+            "inLanguage": "pl",
+            "publisher": wydawca(),
+            "hasPart": [{"@type": "Article", "headline": p["tytul"], "url": adres(f"ortografia/{p['slug']}/")}
+                        for p in porady],
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Senne gry Artura", "item": ADRES + "/"},
+                {"@type": "ListItem", "position": 2, "name": "Zasady ortografii", "item": url},
+            ],
+        },
+    ]
+    return strona_szkielet(g, url, "Zasady ortografii dla dzieci: ó/u, rz/ż, ch/h z ćwiczeniami",
+                           "Zasady pisowni ó i u, rz i ż, ch i h dla dzieci z klas 1–4: proste reguły, przykłady, "
+                           "wyjątki do zapamiętania i ćwiczenia z odpowiedziami.",
+                           "Zasady ortografii dla dzieci", dane, tresc, "dane/ortografia/*.json")
+
+
+def strona_szkielet(g: str, url: str, tytul: str, opis: str, tytul_og: str, dane: list[dict],
+                    tresc: str, zrodlo: str) -> str:
+    return f"""<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{e(tytul)}</title>
+<meta name="description" content="{e(opis)}">
+{meta_udostepniania(url, tytul_og, opis, adres("img/gry/ortopotwory/okladka.jpg"))}
+{jsonld(dane)}
+<link rel="icon" href="{g}ikona.svg" type="image/svg+xml">
+<link rel="stylesheet" href="{g}styl.css">
+</head>
+<body>
+<!-- Plik wygenerowany przez narzedzia/strona.py z {e(zrodlo)}. Nie edytuj ręcznie. -->
+{pasek(g, en=False)}
+<main>
+{tresc}
+</main>
+{stopka(2026, g)}
+{statystyki()}
+</body>
+</html>
+"""
 
 
 # ---------- dane dla automatów ----------
@@ -521,6 +741,14 @@ def zbuduj() -> None:
         katalog.mkdir(parents=True, exist_ok=True)
         (katalog / "index.html").write_text(strona_gry(g), encoding="utf-8")
     podmien_index(gry)
+    porady = wczytaj_porady()
+    if porady:
+        orto = KORZEN / "ortografia"
+        gra_orto = next((x for x in gry if x["slug"] == "ortopotwory"), None)
+        for p in porady:
+            (orto / p["slug"]).mkdir(parents=True, exist_ok=True)
+            (orto / p["slug"] / "index.html").write_text(strona_porady(p, porady, gra_orto), encoding="utf-8")
+        (orto / "index.html").write_text(strona_ortografii(porady), encoding="utf-8")
     blok = statystyki()
     for nazwa in STRONY_RECZNE:
         plik = KORZEN / nazwa
@@ -532,7 +760,7 @@ def zbuduj() -> None:
     (KORZEN / "api" / "wydania.json").write_text(
         json.dumps(json_feed(gry), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (KORZEN / "feed.xml").write_text(rss(gry), encoding="utf-8")
-    (KORZEN / "sitemap.xml").write_text(mapa_strony(gry), encoding="utf-8")
+    (KORZEN / "sitemap.xml").write_text(mapa_strony(gry, porady), encoding="utf-8")
     (KORZEN / "robots.txt").write_text(robots(), encoding="utf-8")
     print(f"Zbudowano strony dla gier: {', '.join(g['slug'] for g in gry)}")
 

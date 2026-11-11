@@ -1,0 +1,120 @@
+{
+  "slug": "ch-czy-h",
+  "kolejnosc": 3,
+  "litery": "ch/h",
+  "tytul": "Ch czy h? Zasady pisowni dla dzieci",
+  "seo": {
+    "tytul": "Ch czy h? Zasady pisowni ch i h z przykładami dla dzieci",
+    "opis": "Kiedy piszemy ch, a kiedy h? Zasady pisowni ch i h dla dzieci: ch na końcu wyrazu, ch po s, ch wymienne na sz, h wymienne na g, z, ż, wyrazy do zapamiętania i ćwiczenie."
+  },
+  "opis_krotki": "Ch na końcu wyrazu i po s, ch wymienne na sz, h wymienne na g, z, ż oraz wyrazy z ch i h do zapamiętania.",
+  "w_skrocie": [
+    "Piszemy <b>ch</b> na końcu wyrazu: dach, groch. Wyjątek: druh.",
+    "Piszemy <b>ch</b> po literze s: schody, schab.",
+    "Piszemy <b>ch</b>, gdy wymienia się na sz: mucha, bo muszka.",
+    "Piszemy <b>h</b>, gdy wymienia się na g, z albo ż: druh, bo drużyna.",
+    "Wiele wyrazów z h trzeba zapamiętać: herbata, hamak, hipopotam."
+  ],
+  "wstep": "Ch i h brzmią dziś tak samo. Reguł jest mniej niż przy ó/u i rz/ż, za to więcej wyrazów do zapamiętania. Poniżej są reguły z przykładami i ćwiczenie na końcu.",
+  "reguly": [
+    {
+      "tytul": "Ch na końcu wyrazu",
+      "tekst": "Na końcu wyrazu piszemy ch.",
+      "przyklady": [
+        "da[ch]",
+        "gro[ch]",
+        "zapa[ch]",
+        "ru[ch]",
+        "stra[ch]",
+        "du[ch]",
+        "słu[ch]",
+        "kożu[ch]"
+      ],
+      "wyjatki": "Wyjątek: druh (bo drużyna)."
+    },
+    {
+      "tytul": "Ch po literze s",
+      "tekst": "Po s piszemy ch.",
+      "przyklady": [
+        "s[ch]ody",
+        "s[ch]ować",
+        "s[ch]ronisko",
+        "s[ch]ab",
+        "s[ch]ylić",
+        "s[ch]nąć"
+      ]
+    },
+    {
+      "tytul": "Ch wymienia się na sz",
+      "tekst": "Jeśli w rodzinie wyrazu słychać sz, piszemy ch.",
+      "przyklady": [
+        "mu[ch]a|muszka",
+        "u[ch]o|uszy",
+        "pie[ch]ota|pieszo"
+      ]
+    },
+    {
+      "tytul": "H wymienia się na g, z albo ż",
+      "tekst": "Jeśli w rodzinie wyrazu słychać g, z albo ż, piszemy h.",
+      "przyklady": [
+        "dru[h]|drużyna",
+        "wa[h]adło|waga"
+      ]
+    }
+  ],
+  "do_zapamietania": {
+    "tytul": "Wyrazy do zapamiętania",
+    "tekst": "Tych wyrazów nie sprawdzi żadna reguła. W grze Ortopotwory pilnuje ich Chochlik z Kominów, który zjada h i podkłada ch.",
+    "wyrazy": [
+      "[ch]leb",
+      "[ch]mura",
+      "[ch]łopiec",
+      "[ch]omik",
+      "ku[ch]nia",
+      "[ch]odnik",
+      "[ch]oinka",
+      "[ch]rząszcz",
+      "[h]erbata",
+      "[h]ałas",
+      "[h]amak",
+      "[h]istoria",
+      "[h]otel",
+      "bo[h]ater",
+      "[h]ulajnoga",
+      "[h]ipopotam",
+      "[h]uśtawka"
+    ]
+  },
+  "cwiczenie": [
+    "da[ch]",
+    "s[ch]ody",
+    "[h]erbata",
+    "mu[ch]a",
+    "dru[h]",
+    "[ch]leb",
+    "zapa[ch]",
+    "[h]amak",
+    "[ch]omik",
+    "bo[h]ater"
+  ],
+  "dla_rodzica": [
+    "Zacznij od dwóch pewnych reguł: ch na końcu wyrazu i ch po s. Szybko dają dziecku poczucie sukcesu.",
+    "Wyrazy z h do zapamiętania łączcie w zabawne zdania: „Hipopotam pije herbatę na hamaku”.",
+    "Pokazuj tylko poprawny zapis. Puste miejsce na literę jest lepsze niż wyraz z błędem.",
+    "Wracajcie do trudnych wyrazów po kilku dniach, a nie tylko tego samego wieczoru."
+  ],
+  "pytania": [
+    {
+      "p": "Kiedy piszemy ch?",
+      "o": "Na końcu wyrazu (dach), po literze s (schody), gdy ch wymienia się na sz (mucha, bo muszka) i w wyrazach do zapamiętania, np. chleb, chmura."
+    },
+    {
+      "p": "Kiedy piszemy h?",
+      "o": "Gdy h wymienia się na g, z albo ż (druh, bo drużyna) oraz w wyrazach do zapamiętania, np. herbata, hamak, hipopotam."
+    },
+    {
+      "p": "Czy na końcu wyrazu może być h?",
+      "o": "Prawie nigdy. Najczęściej spotykany wyjątek to druh, bo drużyna."
+    }
+  ]
+}
