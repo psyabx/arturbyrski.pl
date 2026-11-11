@@ -10,6 +10,17 @@
     "pl": "Wyścigi w piżamach przez zwariowane sny. Także we dwoje na jednym ekranie, bez reklam i bez internetu.",
     "en": "Pajama races through crazy dreams, also for two players on one screen. No ads, works offline."
   },
+  "seo": {
+    "tytul": "Szlafmyce: Wyścig we śnie · gra dla dzieci we dwoje, bez reklam",
+    "opis": "Wesoła gra dla dzieci 5–9 lat: wyścigi w piżamach przez zwariowane sny, także we dwoje na jednym ekranie. Bez reklam, bez internetu, bez zbierania danych.",
+    "kategoria": "GameApplication",
+    "tematy": [
+      "gra dla dzieci",
+      "gra we dwoje",
+      "gra bez reklam",
+      "gra offline"
+    ]
+  },
   "opis": {
     "pl": [
       "Kiedy miasteczko zasypia, Szlafmyce ruszają w drogę. Biegną, zjeżdżają, lecą i płyną przez dziewięć zwariowanych snów.",

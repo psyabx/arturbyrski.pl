@@ -16,6 +16,13 @@ generuje z nich:
 | `api/gry.json` | wszystkie gry, najnowsze wersje, opisy i adresy zrzutów |
 | `api/wydania.json` | [JSON Feed 1.1](https://jsonfeed.org/version/1.1) z wydaniami, od najnowszego |
 | `feed.xml` | to samo jako RSS |
+| `sitemap.xml`, `robots.txt` | wyszukiwarki: lista stron do zaindeksowania |
+
+Strony gier mają też adres kanoniczny, podgląd linku (Open Graph) i dane strukturalne schema.org
+(gra, wydawca, wiek dzieci). Tytuł i opis w Google ustawia opcjonalne pole `seo` w danych gry:
+`tytul`, `opis`, `kategoria` (`EducationalApplication` dla gier do nauki, inaczej `GameApplication`)
+i `tematy` (frazy, których szukają rodzice, np. „nauka ortografii”). Bez tego pola używane są
+nazwa gry i `opis_krotki`.
 
 Plików wygenerowanych nie edytuj ręcznie. Zmień dane i uruchom `python3 narzedzia/strona.py zbuduj`
 (albo tylko wypchnij zmianę danych: workflow „Zbuduj stronę” przebuduje stronę sam).
