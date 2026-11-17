@@ -1,11 +1,12 @@
 {
   "slug": "szlafmyce",
-  "kolejnosc": 1,
+  "kolejnosc": 2,
   "nazwa": "Szlafmyce",
   "nazwa_en": "Szlafmyce: Pajama Dream Race",
   "pakiet": "com.psyabx.pizamersi",
   "okladka": "img/gry/szlafmyce/3-lot.jpg",
   "polityka": "polityka-prywatnosci.html",
+  "google_play": "wkrotce",
   "opis_krotki": {
     "pl": "Wyścigi w piżamach przez zwariowane sny. Także we dwoje na jednym ekranie, bez reklam i bez internetu.",
     "en": "Pajama races through crazy dreams, also for two players on one screen. No ads, works offline."

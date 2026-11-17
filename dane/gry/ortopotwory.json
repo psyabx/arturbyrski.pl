@@ -1,13 +1,12 @@
 {
   "slug": "ortopotwory",
-  "kolejnosc": 2,
+  "kolejnosc": 1,
   "nazwa": "Ortopotwory",
   "nazwa_en": "Ortopotwory: Spelling Detectives",
   "pakiet": "com.psyabx.ortopotwory",
   "okladka": "img/gry/ortopotwory/okladka.jpg",
   "polityka": "polityka-prywatnosci-ortopotwory.html",
   "google_play": "wkrotce",
-  "google_play_notka": "Gra czeka na zatwierdzenie przez Google. Link pojawi się tu w dniu premiery.",
   "podtytul": {
     "pl": "Detektywi ortografii",
     "en": "Spelling Detectives"
