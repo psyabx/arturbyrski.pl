@@ -162,8 +162,11 @@
   "dla_rodzicow": [
     "Bez reklam, bez zbierania danych, działa offline.",
     "Tryb na dobranoc: ustawiasz, ile czasu dziecko może grać.",
-    "Dwa pierwsze sny są za darmo, a każdy płatny sen można podejrzeć.",
-    "Pełna wersja to jednorazowy zakup, bez subskrypcji.",
     "Zakup, ustawienia i linki są za bramką dla rodziców."
+  ],
+  "cena": [
+    "Dwa pierwsze sny są za darmo, bez limitu czasu, a każdy płatny sen można podejrzeć.",
+    "Pełna wersja otwiera wszystkie dziewięć snów. To jednorazowy zakup za 11,99 zł, bez subskrypcji i bez waluty w grze.",
+    "Zakup jest tylko w strefie rodzica, za bramką, więc dziecko nie kupi niczego przypadkiem."
   ]
 }
