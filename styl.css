@@ -95,7 +95,7 @@ section + section { padding-top: 8px; }
   background: var(--tlo);
   border-radius: 50% 50% 0 0 / 100% 100% 0 0;
 }
-.niebo .lead { color: #ddd4ff; }
+.niebo .lead, .niebo .cichy { color: #ddd4ff; }
 .niebo a:not(.przycisk) { color: var(--ksiezyc); }
 .gwiazdy { position: absolute; inset: 0; pointer-events: none; }
 .gwiazdy span {
@@ -123,6 +123,8 @@ section + section { padding-top: 8px; }
 }
 .przycisk:hover { transform: translateY(-1px); }
 .przycisk.jasny { background: var(--karta); color: var(--tekst); }
+.przycisk-wkrotce { background: #8a86a3; cursor: default; opacity: 0.85; }
+.przycisk-wkrotce:hover { transform: none; }
 .przyciski { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 20px; }
 .znaczki { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 16px 0 0; list-style: none; }
 .znaczki li { background: rgba(255, 255, 255, 0.14); color: inherit; border-radius: 999px; padding: 4px 12px; font-size: 15px; }

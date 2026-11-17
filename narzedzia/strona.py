@@ -79,7 +79,11 @@ def link_sklepu(gra: dict, zrodlo: str = "strona") -> str | None:
     Parametry utm_* pozwalają w Play Console (raport pozyskania) sprawdzić,
     ile instalacji przyszło ze strony, bez żadnych narzędzi śledzących.
     """
-    if gra.get("pakiet") and any(w["sciezka"] == "production" for w in gra["wydania"]):
+    stan = gra.get("google_play")  # "wkrotce" ukrywa link, "dostepna" go wymusza
+    if stan == "wkrotce":
+        return None
+    if gra.get("pakiet") and (stan == "dostepna"
+                              or any(w["sciezka"] == "production" for w in gra["wydania"])):
         return (f"https://play.google.com/store/apps/details?id={gra['pakiet']}"
                 f"&utm_source=arturbyrski.pl&utm_medium=strona&utm_campaign={zrodlo}")
     return None
@@ -233,6 +237,10 @@ def przycisk_sklepu(gra: dict, zrodlo: str) -> str:
     sklep = link_sklepu(gra, zrodlo)
     if sklep:
         return f'<a class="przycisk" href="{e(sklep)}">Pobierz z Google Play</a>'
+    if gra.get("google_play") == "wkrotce":
+        notka = gra.get("google_play_notka", "Gra czeka na zatwierdzenie przez Google.")
+        return ('<span class="przycisk przycisk-wkrotce" aria-disabled="true">Google Play · wkrótce</span>'
+                f'<span class="cichy">{e(notka)}</span>')
     return '<span class="wkrotce">Wkrótce w Google Play. Gra jest teraz w testach.</span>'
 
 
@@ -311,14 +319,21 @@ def strona_gry(gra: dict) -> str:
         f'<div class="przyciski">{przycisk_sklepu(gra, "strona-gry")}</div>'
         f'</div><div>{okladka}</div></div></section>')
 
+    def kafelki(lista: list[dict]) -> str:
+        return "".join(
+            f'<div class="kafel"><div class="ikona {e(c.get("kolor", ""))}" aria-hidden="true">{e(c["ikona"])}</div>'
+            f'<h3>{e(c["tytul"])}</h3><p>{e(c["opis"])}</p></div>' for c in lista)
+
+    # Najpierw to, co rodzic chce wiedzieć: korzyści w skrócie.
+    if gra.get("korzysci"):
+        czesci.append(f'<section id="dlaczego"><div class="wrap"><h2>{e(gra.get("korzysci_tytul", "Dla rodzica w skrócie"))}</h2>'
+                      f'<div class="kafelki">{kafelki(gra["korzysci"])}</div></div></section>')
+
     tresc = "".join(f"<p>{e(a)}</p>" for a in gra["opis"]["pl"])
     czesci.append(f'<section><div class="wrap waski"><h2>O grze</h2>{tresc}</div></section>')
 
     if gra.get("cechy"):
-        kafle = "".join(
-            f'<div class="kafel"><div class="ikona {e(c.get("kolor", ""))}" aria-hidden="true">{e(c["ikona"])}</div>'
-            f'<h3>{e(c["tytul"])}</h3><p>{e(c["opis"])}</p></div>' for c in gra["cechy"])
-        czesci.append(f'<section><div class="wrap"><h2>Co jest w grze</h2><div class="kafelki">{kafle}</div></div></section>')
+        czesci.append(f'<section><div class="wrap"><h2>Co jest w grze</h2><div class="kafelki">{kafelki(gra["cechy"])}</div></div></section>')
 
     if gra.get("zrzuty"):
         figury = "".join(
@@ -332,6 +347,10 @@ def strona_gry(gra: dict) -> str:
                     if gra.get("polityka") else "")
         czesci.append(f'<section id="rodzice"><div class="wrap waski"><h2>Dla rodziców</h2>'
                       f'{lista_notatek(gra["dla_rodzicow"])}{polityka}</div></section>')
+
+    if gra.get("cena"):
+        czesci.append(f'<section id="cena"><div class="wrap waski"><h2>Ile to kosztuje</h2>'
+                      f'{lista_notatek(gra["cena"])}</div></section>')
 
     if gra["wydania"]:
         wyd = []
