@@ -6,6 +6,8 @@
   "pakiet": "com.psyabx.ortopotwory",
   "okladka": "img/gry/ortopotwory/okladka.jpg",
   "polityka": "polityka-prywatnosci-ortopotwory.html",
+  "google_play": "wkrotce",
+  "google_play_notka": "Gra czeka na zatwierdzenie przez Google. Link pojawi się tu w dniu premiery.",
   "podtytul": {
     "pl": "Detektywi ortografii",
     "en": "Spelling Detectives"
@@ -14,15 +16,15 @@
   "znaczki": [
     "bez reklam",
     "offline",
-    "nauka ortografii"
+    "pierwsza kraina za darmo"
   ],
   "opis_krotki": {
-    "pl": "Gra do nauki ortografii: dziecko jako detektyw łapie potworki, które pomieszały litery ó/u, rz/ż i ch/h. Bez reklam i bez internetu.",
-    "en": "A Polish spelling game: as a detective, your child catches little monsters who mixed up the letters ó/u, rz/ż and ch/h. No ads, works offline."
+    "pl": "Gra do nauki ortografii: kilka minut dziennie, a trudne wyrazy z ó/u, rz/ż, ch/h i zmiękczeniami zostają w pamięci. Bez reklam, bez zbierania danych.",
+    "en": "A Polish spelling game: a few minutes a day, and tricky words with ó/u, rz/ż, ch/h and soft consonants stick. No ads, no data collection."
   },
   "seo": {
-    "tytul": "Ortopotwory: gra do nauki ortografii dla dzieci (ó/u, rz/ż, ch/h)",
-    "opis": "Ortografia dla dzieci 7–12 lat w formie gry: dziecko jako detektyw łapie potworki, które pomieszały ó/u, rz/ż i ch/h. Codzienne misje, dyktanda i powtórki. Bez reklam, offline.",
+    "tytul": "Ortopotwory: gra do nauki ortografii dla dzieci (ó/u, rz/ż, ch/h, ś/si)",
+    "opis": "Ortografia dla dzieci 7–12 lat w formie gry: 4 krainy, 341 wyrazów i 52 zdania do dyktanda. Kilka minut dziennie, bez reklam, offline. Pierwsza kraina za darmo.",
     "kategoria": "EducationalApplication",
     "tematy": [
       "ortografia",
@@ -30,6 +32,8 @@
       "ó i u",
       "rz i ż",
       "ch i h",
+      "zmiękczenia",
+      "ś czy si",
       "dyktando",
       "język polski",
       "gra edukacyjna"
@@ -37,14 +41,15 @@
   },
   "opis": {
     "pl": [
-      "Złośliwe potworki pomieszały litery w Słowolandii. Óśmiornica z bagna, Żarłok z wulkanu i Chochlik z kominów podmieniają ó i u, rz i ż, ch i h. Dziecko jako ortodetektyw łapie je, poprawiając wyrazy.",
-      "Każdego dnia czeka krótka misja: kilka minigier na przemian i pojedynek z Królem potworów. Każda kraina zaczyna się komiksem z regułą, a wyrazy wracają w powtórkach po 1, 3, 7, 14 i 30 dniach, żeby zostały w pamięci na dłużej.",
+      "Złośliwe potworki pomieszały litery w Słowolandii. Ósemka z bagna, Żarłok i Rzepek z wulkanu, Chochlik z kominów i Śnieżek ze Śnieżnej Groty podmieniają ó i u, rz i ż, ch i h oraz ś i si, ć i ci. Dziecko jako ortodetektyw łapie je, poprawiając wyrazy.",
+      "Każdego dnia czeka krótka misja na około 8–10 minut: kilka minigier na przemian i pojedynek z Królem potworów. Każda kraina zaczyna się komiksem z regułą, a wyrazy wracają w powtórkach po 1, 3, 7, 14 i 30 dniach, żeby zostały w pamięci na dłużej.",
       "Gra nigdy nie pokazuje wyrazu z błędem. Brakująca litera to puste pole, a po odpowiedzi dziecko widzi tylko poprawną pisownię."
     ],
     "en": [
-      "Mischievous monsters have mixed up the letters in Wordland. The Octopus from the swamp, the Glutton from the volcano and the Imp from the chimneys swap ó and u, rz and ż, ch and h. As a spelling detective, your child catches them by fixing the words.",
-      "Every day brings a short mission: a few alternating mini-games and a duel with the Monster King. Each land starts with a comic that explains the rule, and words come back for review after 1, 3, 7, 14 and 30 days so they stick.",
-      "The game never shows a misspelled word. The missing letter is an empty box, and after answering the child only ever sees the correct spelling."
+      "Mischievous monsters have mixed up the letters in Wordland. The Eight from the swamp, the Glutton and Rzepek from the volcano, the Imp from the chimneys and Snowy from the Snow Cave swap ó and u, rz and ż, ch and h, and ś and si, ć and ci. As a spelling detective, your child catches them by fixing the words.",
+      "Every day brings a short mission of about 8–10 minutes: a few alternating mini-games and a duel with the Monster King. Each land starts with a comic that explains the rule, and words come back for review after 1, 3, 7, 14 and 30 days so they stick.",
+      "The game never shows a misspelled word. The missing letter is an empty box, and after answering the child only ever sees the correct spelling.",
+      "The first land is free. The full version, with all four lands, is a one-time purchase of 19.99 PLN behind a parental gate, with no subscription."
     ]
   },
   "zrzuty": [
@@ -53,8 +58,8 @@
       "szerokosc": 300,
       "wysokosc": 526,
       "opis": {
-        "pl": "Biuro detektywa i trzy krainy",
-        "en": "Detective office and three lands"
+        "pl": "Biuro detektywa i mapa krain",
+        "en": "Detective office and the map of lands"
       }
     },
     {
@@ -125,20 +130,20 @@
     {
       "ikona": "🔍",
       "kolor": "f",
-      "tytul": "3 krainy, 200 wyrazów",
-      "opis": "Bagno (ó/u), Wulkan (rz/ż) i Kominy (ch/h). Każda kraina zaczyna się komiksem z regułą."
+      "tytul": "4 krainy, 341 wyrazów",
+      "opis": "Bagno Ósemki (ó/u), Wulkan Żarłoka (rz/ż), Kominy Chochlika (ch/h) i Śnieżna Grota (ś/si, ć/ci, ź/zi, ń/ni, dź/dzi). Każda zaczyna się komiksem z regułą."
     },
     {
       "ikona": "🎮",
       "kolor": "r",
       "tytul": "Minigry na zmianę",
-      "opis": "Pułapka, Lupa, Labirynt i Dyktando potwora, a na koniec misji Król potworów."
+      "opis": "Pułapka, Lupa i Labirynt na przemian, a na koniec misji pojedynek z Królem potworów."
     },
     {
-      "ikona": "🧠",
+      "ikona": "📝",
       "kolor": "s",
-      "tytul": "Powtórki w czasie",
-      "opis": "Wyraz wraca po 1, 3, 7, 14 i 30 dniach. Po błędzie wraca jutro."
+      "tytul": "Dyktando potwora",
+      "opis": "52 zdania czytane przez lektora. Dziecko uzupełnia brakujące litery w całym zdaniu."
     },
     {
       "ikona": "✋",
@@ -160,11 +165,54 @@
     }
   ],
   "dla_rodzicow": [
-    "Bez reklam, bez zbierania danych, działa offline. Gra nie prosi o żadne uprawnienia.",
-    "Gra nigdy nie pokazuje wyrazu z błędem, więc dziecko nie utrwala złej pisowni.",
+    "Bez reklam, bez kont i bez zbierania danych. Gra działa offline i nie prosi o dostęp do zdjęć, mikrofonu, kontaktów ani lokalizacji.",
     "Strefa dla rodzica za bramką: raport postępów w każdej krainie i najtrudniejsze wyrazy. Wszystko liczone na telefonie.",
     "Gwiazdki są za dokładność, nie za szybkość. Ozdoby kupuje się za gwiazdki, bez prawdziwych pieniędzy i bez losowania.",
     "Detektyw ma tylko imię, bez nazwiska i zdjęcia. Akta sprawy dla starszych dzieci (10–12 lat) uczą uzasadniać pisownię regułą."
   ],
-  "wydania": []
+  "wydania": [],
+  "korzysci_tytul": "Dla rodzica w skrócie",
+  "korzysci": [
+    {
+      "ikona": "⏱️",
+      "kolor": "f",
+      "tytul": "Kilka minut dziennie",
+      "opis": "Jedna misja trwa około 8–10 minut. Łatwo ją zmieścić przed szkołą albo po lekcjach."
+    },
+    {
+      "ikona": "🧠",
+      "kolor": "s",
+      "tytul": "Trudne wyrazy zostają w pamięci",
+      "opis": "Wyraz wraca po 1, 3, 7, 14 i 30 dniach, a po błędzie już jutro. Gra sama pilnuje, co powtórzyć."
+    },
+    {
+      "ikona": "🚫",
+      "kolor": "r",
+      "tytul": "Bez reklam",
+      "opis": "Żadnych reklam, losowania nagród ani subskrypcji. Pełna wersja to jeden zakup."
+    },
+    {
+      "ikona": "🔒",
+      "kolor": "m",
+      "tytul": "Prywatność",
+      "opis": "Bez kont i bez zbierania danych. Postępy zostają na telefonie, a gra działa bez internetu."
+    },
+    {
+      "ikona": "📊",
+      "kolor": "f",
+      "tytul": "Widzisz postępy",
+      "opis": "Strefa rodzica pokazuje postępy w każdej krainie i wyrazy, które sprawiają dziecku kłopot."
+    },
+    {
+      "ikona": "✅",
+      "kolor": "s",
+      "tytul": "Tylko poprawna pisownia",
+      "opis": "Gra nigdy nie pokazuje wyrazu z błędem, więc dziecko nie utrwala złej pisowni."
+    }
+  ],
+  "cena": [
+    "Pierwsza kraina, Bagno Ósemki (ó/u), jest za darmo i bez limitu czasu.",
+    "Pełna wersja otwiera pozostałe krainy: Wulkan Żarłoka, Kominy Chochlika i Śnieżną Grotę. To jednorazowy zakup za 19,99 zł, bez subskrypcji i bez waluty w grze.",
+    "Zakup jest tylko w strefie rodzica, za bramką, więc dziecko nie kupi niczego przypadkiem."
+  ]
 }
