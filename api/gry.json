@@ -152,21 +152,21 @@
         }
       ],
       "najnowsze_wydanie": {
-        "id": "szlafmyce-1.0.0-139",
-        "wersja": "1.0.0",
-        "kod": 139,
-        "data": "2026-11-10",
-        "sciezka": "internal",
+        "id": "szlafmyce-1.1.0-148",
+        "wersja": "1.1.0",
+        "kod": 148,
+        "data": "2026-11-17",
+        "sciezka": "production",
         "notatki": {
           "pl": [
-            "Premiera! Szlafmyce wyruszają w drogę: dziewięć snów do przebiegnięcia, każdy z własną zabawą.",
-            "Gra we dwoje na jednym telefonie, tryb Maluch dla najmłodszych i tryb na dobranoc dla rodziców.",
-            "Bez reklam, gra działa bez internetu. Dwa sny za darmo, resztę odblokowuje jeden zakup w strefie rodzica."
+            "Zima w Sennym Miasteczku! Zimowy kalendarz z 24 okienkami, od 1 do 24 grudnia.",
+            "Za okienkami czeka 7 małych zimowych snów (sanki, śnieżne kule, lot wśród płatków, pływanie pod lodem) i 17 ozdób do pokoju Lumka.",
+            "Każde okienko ma zawsze tę samą nagrodę, a zaległe można otworzyć później. Kalendarz jest za darmo dla wszystkich."
           ],
           "en": [
-            "Launch day! The Szlafmyce set off: nine dreams to race through, each with its own kind of fun.",
-            "Two players on one phone, Little mode for the youngest and a bedtime mode for parents.",
-            "No ads, and the game works offline. Two dreams are free; one purchase in the parents' area unlocks the rest."
+            "Winter in Sleepy Town! A winter calendar with 24 windows, from 1 to 24 December.",
+            "Behind the windows: 7 small winter dreams (sledding, rolling snowballs, flying with snowflakes, swimming under the ice) and 17 decorations for Lumek's room.",
+            "Every window always holds the same gift, and missed windows can be opened later. The calendar is free for everyone."
           ]
         }
       }

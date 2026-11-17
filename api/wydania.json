@@ -6,6 +6,44 @@
   "language": "pl",
   "items": [
     {
+      "id": "szlafmyce-1.1.0-148",
+      "url": "https://arturbyrski.pl/gry/szlafmyce/#v1.1.0-148",
+      "title": "Szlafmyce 1.1.0",
+      "content_text": "• Zima w Sennym Miasteczku! Zimowy kalendarz z 24 okienkami, od 1 do 24 grudnia.\n• Za okienkami czeka 7 małych zimowych snów (sanki, śnieżne kule, lot wśród płatków, pływanie pod lodem) i 17 ozdób do pokoju Lumka.\n• Każde okienko ma zawsze tę samą nagrodę, a zaległe można otworzyć później. Kalendarz jest za darmo dla wszystkich.",
+      "date_published": "2026-11-17T12:00:00+00:00",
+      "image": "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
+      "tags": [
+        "szlafmyce",
+        "production"
+      ],
+      "_wydanie": {
+        "gra": "szlafmyce",
+        "wersja": "1.1.0",
+        "kod": 148,
+        "sciezka": "production",
+        "publiczne": true,
+        "notatki": {
+          "pl": [
+            "Zima w Sennym Miasteczku! Zimowy kalendarz z 24 okienkami, od 1 do 24 grudnia.",
+            "Za okienkami czeka 7 małych zimowych snów (sanki, śnieżne kule, lot wśród płatków, pływanie pod lodem) i 17 ozdób do pokoju Lumka.",
+            "Każde okienko ma zawsze tę samą nagrodę, a zaległe można otworzyć później. Kalendarz jest za darmo dla wszystkich."
+          ],
+          "en": [
+            "Winter in Sleepy Town! A winter calendar with 24 windows, from 1 to 24 December.",
+            "Behind the windows: 7 small winter dreams (sledding, rolling snowballs, flying with snowflakes, swimming under the ice) and 17 decorations for Lumek's room.",
+            "Every window always holds the same gift, and missed windows can be opened later. The calendar is free for everyone."
+          ]
+        },
+        "zrzuty": [
+          "https://arturbyrski.pl/img/gry/szlafmyce/1-razem.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/2-zjazd.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/4-woda.jpg"
+        ],
+        "google_play": "https://play.google.com/store/apps/details?id=com.psyabx.pizamersi&utm_source=arturbyrski.pl&utm_medium=strona&utm_campaign=wydania"
+      }
+    },
+    {
       "id": "szlafmyce-1.0.0-139",
       "url": "https://arturbyrski.pl/gry/szlafmyce/#v1.0.0-139",
       "title": "Szlafmyce 1.0.0",
