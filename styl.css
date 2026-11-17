@@ -123,20 +123,22 @@ section + section { padding-top: 8px; }
 }
 .przycisk:hover { transform: translateY(-1px); }
 .przycisk.jasny { background: var(--karta); color: var(--tekst); }
-.przycisk-wkrotce { background: #8a86a3; cursor: default; opacity: 0.85; }
+.przycisk-wkrotce { background: #6f6a8c; cursor: default; box-shadow: none; }
 .przycisk-wkrotce:hover { transform: none; }
+.notka-sklepu { font-size: 15px; color: var(--cichy); }
+.niebo .notka-sklepu { color: #ddd4ff; }
 .przyciski { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 20px; }
 .znaczki { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 16px 0 0; list-style: none; }
 .znaczki li { background: rgba(255, 255, 255, 0.14); color: inherit; border-radius: 999px; padding: 4px 12px; font-size: 15px; }
 .jasne .znaczki li { background: var(--linia); }
-.wkrotce { display: inline-block; background: rgba(255, 224, 138, 0.18); color: var(--ksiezyc); border: 1px dashed var(--ksiezyc); padding: 8px 14px; border-radius: 12px; font-size: 16px; }
-.jasne .wkrotce { color: var(--tekst); background: var(--karta); border-color: var(--sloneczny); }
 
 /* Kafelki */
 .kafelki { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; margin-top: 24px; }
 .kafel { background: var(--karta); border: 1px solid var(--linia); border-radius: 20px; padding: 20px; box-shadow: var(--cien); }
 .kafel p { margin: 0; color: var(--cichy); font-size: 16px; }
 .ikona { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; font-size: 28px; margin-bottom: 10px; background: var(--linia); }
+.ikona { color: #2a2347; }
+.ikona.tekst { font-size: 17px; font-weight: 800; }
 .ikona.r { background: #ffe1e8; } .ikona.m { background: #d8f4ee; } .ikona.s { background: #fff0d1; } .ikona.f { background: #e8e1ff; }
 
 /* Karta gry na stronie głównej */

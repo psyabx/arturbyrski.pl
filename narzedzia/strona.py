@@ -225,23 +225,15 @@ def pelna_nazwa(gra: dict, jezyk: str = "pl") -> str:
     return f"{gra['nazwa']}: {pod}" if pod else gra["nazwa"]
 
 
-def znaczek_wersji(gra: dict) -> str:
-    n = gra["wydania"][0] if gra["wydania"] else None
-    if not n:
-        return ""
-    return (f'<p class="cichy">Wersja {e(n["wersja"])} · {e(SCIEZKI[n["sciezka"]][0])} · '
-            f'{e(data_pl(n["data"]))}</p>')
-
-
 def przycisk_sklepu(gra: dict, zrodlo: str) -> str:
+    """Jeden wygląd przycisku sklepu dla wszystkich gier: prawdziwy link albo szary „wkrótce”."""
     sklep = link_sklepu(gra, zrodlo)
     if sklep:
         return f'<a class="przycisk" href="{e(sklep)}">Pobierz z Google Play</a>'
-    if gra.get("google_play") == "wkrotce":
-        notka = gra.get("google_play_notka", "Gra czeka na zatwierdzenie przez Google.")
-        return ('<span class="przycisk przycisk-wkrotce" aria-disabled="true">Google Play · wkrótce</span>'
-                f'<span class="cichy">{e(notka)}</span>')
-    return '<span class="wkrotce">Wkrótce w Google Play. Gra jest teraz w testach.</span>'
+    notka = ("Czeka na zatwierdzenie przez Google." if gra.get("google_play") == "wkrotce"
+             else "Gra jest w testach.")
+    return ('<span class="przycisk przycisk-wkrotce" aria-disabled="true">Google Play · wkrótce</span>'
+            f'<span class="notka-sklepu">{e(notka)}</span>')
 
 
 def karta_gry(gra: dict) -> str:
@@ -264,7 +256,6 @@ def karta_gry(gra: dict) -> str:
         f'      <p>{e(gra["opis_krotki"]["pl"])}</p>\n'
         f'      <ul class="znaczki">{znaczki}</ul>\n'
         f'      <div class="przyciski">{przycisk_sklepu(gra, "karta")}</div>\n'
-        f'      {znaczek_wersji(gra)}\n'
         f'      <p>{" · ".join(linki)}</p>\n'
         f'    </div>\n'
         f'  </article>'
@@ -355,8 +346,7 @@ def strona_gry(gra: dict) -> str:
     if gra["wydania"]:
         wyd = []
         for i, w in enumerate(gra["wydania"]):
-            naglowek = (f'Wersja {e(w["wersja"])} <span class="cichy">({e(data_pl(w["data"]))}, '
-                        f'{e(SCIEZKI[w["sciezka"]][0])})</span>')
+            naglowek = f'Wersja {e(w["wersja"])} <span class="cichy">({e(data_pl(w["data"]))})</span>'
             kotwica = f'v{e(w["wersja"])}-{w["kod"]}'
             if i == 0:
                 wyd.append(f'<h3 id="{kotwica}">{naglowek}</h3>{lista_notatek(w["notatki"]["pl"])}')
@@ -369,7 +359,7 @@ def strona_gry(gra: dict) -> str:
     en = [f'<h2>{e(gra.get("nazwa_en") or gra["nazwa"])} (English)</h2>']
     en += [f"<p>{e(a)}</p>" for a in gra["opis"]["en"]]
     if n:
-        en.append(f'<p class="cichy">Latest version: {e(n["wersja"])} · {e(SCIEZKI[n["sciezka"]][1])} · {e(n["data"])}</p>')
+        en.append(f'<p class="cichy">Latest version: {e(n["wersja"])} · {e(n["data"])}</p>')
     sklep = link_sklepu(gra, "strona-gry-en")
     if sklep:
         en.append(f'<p><a class="przycisk" href="{e(sklep)}">Get it on Google Play</a></p>')
@@ -556,7 +546,7 @@ def strona_ortografii(porady: list[dict]) -> str:
     g = "../"
     url = adres("ortografia/")
     karty = "".join(
-        f'<div class="kafel"><div class="ikona {"frs"[i % 3]}" aria-hidden="true">{e(p["litery"])}</div>'
+        f'<div class="kafel"><div class="ikona tekst {"frs"[i % 3]}" aria-hidden="true">{e(p["litery"])}</div>'
         f'<h3><a href="{e(p["slug"])}/">{e(p["tytul"])}</a></h3><p>{e(p["opis_krotki"])}</p></div>'
         for i, p in enumerate(porady))
     tresc = (

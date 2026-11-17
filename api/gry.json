@@ -3,85 +3,6 @@
   "strona": "https://arturbyrski.pl/",
   "gry": [
     {
-      "slug": "szlafmyce",
-      "nazwa": "Szlafmyce",
-      "podtytul": {
-        "pl": "Wyścig we śnie",
-        "en": "Pajama Dream Race"
-      },
-      "nazwa_en": "Szlafmyce: Pajama Dream Race",
-      "pakiet": "com.psyabx.pizamersi",
-      "strona": "https://arturbyrski.pl/gry/szlafmyce/",
-      "google_play": null,
-      "polityka_prywatnosci": "https://arturbyrski.pl/polityka-prywatnosci.html",
-      "opis_krotki": {
-        "pl": "Wyścigi w piżamach przez zwariowane sny. Także we dwoje na jednym ekranie, bez reklam i bez internetu.",
-        "en": "Pajama races through crazy dreams, also for two players on one screen. No ads, works offline."
-      },
-      "opis": {
-        "pl": [
-          "Kiedy miasteczko zasypia, Szlafmyce ruszają w drogę. Biegną, zjeżdżają, lecą i płyną przez dziewięć zwariowanych snów.",
-          "W połowie wyścigu sen zmienia zdanie: grawitacja słabnie jak na Księżycu, podłoga zamienia się w galaretkę albo wszyscy rosną jak olbrzymy. Upadek kończy się fikołkiem, a nie porażką.",
-          "Najwięcej śmiechu jest we dwoje: rodzeństwo albo rodzic z dzieckiem grają razem na jednym telefonie lub tablecie."
-        ],
-        "en": [
-          "When the little town falls asleep, the Szlafmyce set off. They run, slide, fly and swim through nine crazy dreams.",
-          "Halfway through the race the dream changes its mind: gravity gets weak like on the Moon, the floor turns to jelly or everyone grows into giants. A fall ends in a somersault, not a defeat.",
-          "It is most fun for two: siblings or a parent with a child play together on one phone or tablet."
-        ]
-      },
-      "okladka": "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
-      "zrzuty": [
-        {
-          "url": "https://arturbyrski.pl/img/gry/szlafmyce/1-razem.jpg",
-          "opis": {
-            "pl": "Gra we dwoje na jednym ekranie",
-            "en": "Two players on one screen"
-          }
-        },
-        {
-          "url": "https://arturbyrski.pl/img/gry/szlafmyce/2-zjazd.jpg",
-          "opis": {
-            "pl": "Zjazd na poduszce po puchowej kołdrze",
-            "en": "Pillow sledding down a duvet"
-          }
-        },
-        {
-          "url": "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
-          "opis": {
-            "pl": "Lot na balonikach nad chmurami",
-            "en": "Balloon flight above the clouds"
-          }
-        },
-        {
-          "url": "https://arturbyrski.pl/img/gry/szlafmyce/4-woda.jpg",
-          "opis": {
-            "pl": "Podwodny wyścig",
-            "en": "Underwater race"
-          }
-        }
-      ],
-      "najnowsze_wydanie": {
-        "id": "szlafmyce-1.0.0-139",
-        "wersja": "1.0.0",
-        "kod": 139,
-        "data": "2026-11-10",
-        "sciezka": "internal",
-        "notatki": {
-          "pl": [
-            "Premiera! Szlafmyce wyruszają w drogę: dziewięć snów do przebiegnięcia, każdy z własną zabawą.",
-            "Gra we dwoje na jednym telefonie, tryb Maluch dla najmłodszych i tryb na dobranoc dla rodziców.",
-            "Bez reklam, gra działa bez internetu. Dwa sny za darmo, resztę odblokowuje jeden zakup w strefie rodzica."
-          ],
-          "en": [
-            "Launch day! The Szlafmyce set off: nine dreams to race through, each with its own kind of fun.",
-            "Two players on one phone, Little mode for the youngest and a bedtime mode for parents.",
-            "No ads, and the game works offline. Two dreams are free; one purchase in the parents' area unlocks the rest."
-          ]
-        }
-      }
-    },
-    {
       "slug": "ortopotwory",
       "nazwa": "Ortopotwory",
       "podtytul": {
@@ -170,6 +91,85 @@
         }
       ],
       "najnowsze_wydanie": null
+    },
+    {
+      "slug": "szlafmyce",
+      "nazwa": "Szlafmyce",
+      "podtytul": {
+        "pl": "Wyścig we śnie",
+        "en": "Pajama Dream Race"
+      },
+      "nazwa_en": "Szlafmyce: Pajama Dream Race",
+      "pakiet": "com.psyabx.pizamersi",
+      "strona": "https://arturbyrski.pl/gry/szlafmyce/",
+      "google_play": null,
+      "polityka_prywatnosci": "https://arturbyrski.pl/polityka-prywatnosci.html",
+      "opis_krotki": {
+        "pl": "Wyścigi w piżamach przez zwariowane sny. Także we dwoje na jednym ekranie, bez reklam i bez internetu.",
+        "en": "Pajama races through crazy dreams, also for two players on one screen. No ads, works offline."
+      },
+      "opis": {
+        "pl": [
+          "Kiedy miasteczko zasypia, Szlafmyce ruszają w drogę. Biegną, zjeżdżają, lecą i płyną przez dziewięć zwariowanych snów.",
+          "W połowie wyścigu sen zmienia zdanie: grawitacja słabnie jak na Księżycu, podłoga zamienia się w galaretkę albo wszyscy rosną jak olbrzymy. Upadek kończy się fikołkiem, a nie porażką.",
+          "Najwięcej śmiechu jest we dwoje: rodzeństwo albo rodzic z dzieckiem grają razem na jednym telefonie lub tablecie."
+        ],
+        "en": [
+          "When the little town falls asleep, the Szlafmyce set off. They run, slide, fly and swim through nine crazy dreams.",
+          "Halfway through the race the dream changes its mind: gravity gets weak like on the Moon, the floor turns to jelly or everyone grows into giants. A fall ends in a somersault, not a defeat.",
+          "It is most fun for two: siblings or a parent with a child play together on one phone or tablet."
+        ]
+      },
+      "okladka": "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
+      "zrzuty": [
+        {
+          "url": "https://arturbyrski.pl/img/gry/szlafmyce/1-razem.jpg",
+          "opis": {
+            "pl": "Gra we dwoje na jednym ekranie",
+            "en": "Two players on one screen"
+          }
+        },
+        {
+          "url": "https://arturbyrski.pl/img/gry/szlafmyce/2-zjazd.jpg",
+          "opis": {
+            "pl": "Zjazd na poduszce po puchowej kołdrze",
+            "en": "Pillow sledding down a duvet"
+          }
+        },
+        {
+          "url": "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
+          "opis": {
+            "pl": "Lot na balonikach nad chmurami",
+            "en": "Balloon flight above the clouds"
+          }
+        },
+        {
+          "url": "https://arturbyrski.pl/img/gry/szlafmyce/4-woda.jpg",
+          "opis": {
+            "pl": "Podwodny wyścig",
+            "en": "Underwater race"
+          }
+        }
+      ],
+      "najnowsze_wydanie": {
+        "id": "szlafmyce-1.0.0-139",
+        "wersja": "1.0.0",
+        "kod": 139,
+        "data": "2026-11-10",
+        "sciezka": "internal",
+        "notatki": {
+          "pl": [
+            "Premiera! Szlafmyce wyruszają w drogę: dziewięć snów do przebiegnięcia, każdy z własną zabawą.",
+            "Gra we dwoje na jednym telefonie, tryb Maluch dla najmłodszych i tryb na dobranoc dla rodziców.",
+            "Bez reklam, gra działa bez internetu. Dwa sny za darmo, resztę odblokowuje jeden zakup w strefie rodzica."
+          ],
+          "en": [
+            "Launch day! The Szlafmyce set off: nine dreams to race through, each with its own kind of fun.",
+            "Two players on one phone, Little mode for the youngest and a bedtime mode for parents.",
+            "No ads, and the game works offline. Two dreams are free; one purchase in the parents' area unlocks the rest."
+          ]
+        }
+      }
     }
   ]
 }
