@@ -18,12 +18,12 @@
     "pierwsza kraina za darmo"
   ],
   "opis_krotki": {
-    "pl": "Gra do nauki ortografii: kilka minut dziennie, a trudne wyrazy z ó/u, rz/ż, ch/h i zmiękczeniami zostają w pamięci. Bez reklam, bez zbierania danych.",
-    "en": "A Polish spelling game: a few minutes a day, and tricky words with ó/u, rz/ż, ch/h and soft consonants stick. No ads, no data collection."
+    "pl": "Gra do nauki ortografii: kilka minut dziennie, a trudne wyrazy z ó/u, rz/ż, ch/h, ą/ę i zmiękczeniami zostają w pamięci. Bez reklam, bez zbierania danych.",
+    "en": "A Polish spelling game: a few minutes a day, and tricky words with ó/u, rz/ż, ch/h, ą/ę and soft consonants stick. No ads, no data collection."
   },
   "seo": {
-    "tytul": "Ortopotwory: gra do nauki ortografii dla dzieci (ó/u, rz/ż, ch/h, ś/si)",
-    "opis": "Ortografia dla dzieci 7–12 lat w formie gry: 4 krainy, 341 wyrazów i 52 zdania do dyktanda. Kilka minut dziennie, bez reklam, offline. Pierwsza kraina za darmo.",
+    "tytul": "Ortopotwory: gra do nauki ortografii dla dzieci (ó/u, rz/ż, ch/h, ą/ę)",
+    "opis": "Ortografia dla dzieci 7–12 lat w formie gry: 5 krain, 425 wyrazów i 67 zdań do dyktanda. Kilka minut dziennie, bez reklam, offline. Pierwsza kraina za darmo.",
     "kategoria": "EducationalApplication",
     "tematy": [
       "ortografia",
@@ -32,6 +32,7 @@
       "rz i ż",
       "ch i h",
       "zmiękczenia",
+      "ą czy ę",
       "ś czy si",
       "dyktando",
       "język polski",
@@ -40,88 +41,97 @@
   },
   "opis": {
     "pl": [
-      "Złośliwe potworki pomieszały litery w Słowolandii. Ósemka z bagna, Żarłok i Rzepek z wulkanu, Chochlik z kominów i Śnieżek ze Śnieżnej Groty podmieniają ó i u, rz i ż, ch i h oraz ś i si, ć i ci. Dziecko jako ortodetektyw łapie je, poprawiając wyrazy.",
+      "Złośliwe potworki pomieszały litery w Słowolandii. Ósemka z bagna, Żarłok i Rzepek z wulkanu, Chochlik z kominów, Śnieżek ze Śnieżnej Groty i Bąbel z Bąblowego Jeziora podmieniają ó i u, rz i ż, ch i h, ś i si oraz ą i ę. Dziecko jako ortodetektyw łapie je, poprawiając wyrazy.",
       "Każdego dnia czeka krótka misja na około 8–10 minut: kilka minigier na przemian i pojedynek z Królem potworów. Każda kraina zaczyna się komiksem z regułą, a wyrazy wracają w powtórkach po 1, 3, 7, 14 i 30 dniach, żeby zostały w pamięci na dłużej.",
       "Gra nigdy nie pokazuje wyrazu z błędem. Brakująca litera to puste pole, a po odpowiedzi dziecko widzi tylko poprawną pisownię."
     ],
     "en": [
-      "Mischievous monsters have mixed up the letters in Wordland. The Eight from the swamp, the Glutton and Rzepek from the volcano, the Imp from the chimneys and Snowy from the Snow Cave swap ó and u, rz and ż, ch and h, and ś and si, ć and ci. As a spelling detective, your child catches them by fixing the words.",
+      "Mischievous monsters have mixed up the letters in Wordland. The Eight from the swamp, the Glutton and Rzepek from the volcano, the Imp from the chimneys, Snowy from the Snow Cave and Bubble from Bubble Lake swap ó and u, rz and ż, ch and h, ś and si, and ą and ę. As a spelling detective, your child catches them by fixing the words.",
       "Every day brings a short mission of about 8–10 minutes: a few alternating mini-games and a duel with the Monster King. Each land starts with a comic that explains the rule, and words come back for review after 1, 3, 7, 14 and 30 days so they stick.",
       "The game never shows a misspelled word. The missing letter is an empty box, and after answering the child only ever sees the correct spelling.",
-      "The first land is free. The full version, with all four lands, is a one-time purchase of 19.99 PLN behind a parental gate, with no subscription."
+      "The first land is free. The full version, with all five lands, is a one-time purchase of 19.99 PLN behind a parental gate, with no subscription."
     ]
   },
   "zrzuty": [
     {
       "plik": "img/gry/ortopotwory/1-biuro.jpg",
       "szerokosc": 300,
-      "wysokosc": 526,
+      "wysokosc": 533,
       "opis": {
-        "pl": "Biuro detektywa i mapa krain",
-        "en": "Detective office and the map of lands"
+        "pl": "Biuro detektywa i pięć krain",
+        "en": "Detective office and five lands"
       }
     },
     {
-      "plik": "img/gry/ortopotwory/5-pulapka.jpg",
+      "plik": "img/gry/ortopotwory/2-pulapka.jpg",
       "szerokosc": 300,
-      "wysokosc": 526,
+      "wysokosc": 533,
       "opis": {
         "pl": "Pułapka: ó czy u, zanim potwór wpadnie do bagna",
         "en": "Trap: ó or u before the monster falls into the swamp"
       }
     },
     {
-      "plik": "img/gry/ortopotwory/6-labirynt.jpg",
+      "plik": "img/gry/ortopotwory/3-lupa.jpg",
       "szerokosc": 300,
-      "wysokosc": 526,
+      "wysokosc": 533,
+      "opis": {
+        "pl": "Lupa: znajdź zdrajcę z rodziny wyrazów",
+        "en": "Magnifier: find the traitor in a word family"
+      }
+    },
+    {
+      "plik": "img/gry/ortopotwory/4-labirynt.jpg",
+      "szerokosc": 300,
+      "wysokosc": 533,
       "opis": {
         "pl": "Labirynt: wybierz drzwi z dobrą literą",
         "en": "Maze: pick the door with the right letter"
       }
     },
     {
-      "plik": "img/gry/ortopotwory/7-dyktando.jpg",
+      "plik": "img/gry/ortopotwory/5-dyktando.jpg",
       "szerokosc": 300,
-      "wysokosc": 526,
+      "wysokosc": 533,
       "opis": {
         "pl": "Dyktando potwora: lektor czyta zdanie",
         "en": "Monster dictation: the narrator reads a sentence"
       }
     },
     {
-      "plik": "img/gry/ortopotwory/8-krol.jpg",
+      "plik": "img/gry/ortopotwory/6-mapa.jpg",
       "szerokosc": 300,
-      "wysokosc": 526,
+      "wysokosc": 533,
       "opis": {
-        "pl": "Pojedynek z Królem potworów",
-        "en": "Duel with the Monster King"
+        "pl": "Mapa krainy: ścieżka do zamku Króla",
+        "en": "Land map: the path to the King’s castle"
       }
     },
     {
-      "plik": "img/gry/ortopotwory/3-baza.jpg",
+      "plik": "img/gry/ortopotwory/7-krol.jpg",
       "szerokosc": 300,
-      "wysokosc": 526,
+      "wysokosc": 533,
+      "opis": {
+        "pl": "Pojedynek z Jeziornym Królem: ą czy ę",
+        "en": "Duel with the Lake King: ą or ę"
+      }
+    },
+    {
+      "plik": "img/gry/ortopotwory/8-baza.jpg",
+      "szerokosc": 300,
+      "wysokosc": 533,
       "opis": {
         "pl": "Baza potworów: kartoteka złapanych wyrazów",
         "en": "Monster base: catalogue of caught words"
       }
     },
     {
-      "plik": "img/gry/ortopotwory/2-detektyw.jpg",
+      "plik": "img/gry/ortopotwory/9-biuro-ozdoby.jpg",
       "szerokosc": 300,
-      "wysokosc": 526,
+      "wysokosc": 533,
       "opis": {
-        "pl": "Własny detektyw: wygląd i zwierzak",
-        "en": "Your own detective: looks and a pet"
-      }
-    },
-    {
-      "plik": "img/gry/ortopotwory/9-podsumowanie.jpg",
-      "szerokosc": 300,
-      "wysokosc": 526,
-      "opis": {
-        "pl": "Podsumowanie misji i drzewko serii",
-        "en": "Mission summary and streak tree"
+        "pl": "Ozdoby do biura za gwiazdki, bez prawdziwych pieniędzy",
+        "en": "Office decorations for stars, no real money"
       }
     }
   ],
@@ -129,8 +139,8 @@
     {
       "ikona": "🔍",
       "kolor": "f",
-      "tytul": "4 krainy, 341 wyrazów",
-      "opis": "Bagno Ósemki (ó/u), Wulkan Żarłoka (rz/ż), Kominy Chochlika (ch/h) i Śnieżna Grota (ś/si, ć/ci, ź/zi, ń/ni, dź/dzi). Każda zaczyna się komiksem z regułą."
+      "tytul": "5 krain, 425 wyrazów",
+      "opis": "Bagno Ósemki (ó/u), Wulkan Żarłoka (rz/ż), Kominy Chochlika (ch/h), Śnieżna Grota (ś/si, ć/ci, ź/zi, ń/ni, dź/dzi) i Bąblowe Jezioro (ą/ę, om/on/em/en). Każda zaczyna się komiksem z regułą."
     },
     {
       "ikona": "🎮",
@@ -142,7 +152,7 @@
       "ikona": "📝",
       "kolor": "s",
       "tytul": "Dyktando potwora",
-      "opis": "52 zdania czytane przez lektora. Dziecko uzupełnia brakujące litery w całym zdaniu."
+      "opis": "67 zdań czytanych przez lektora. Dziecko uzupełnia brakujące litery w całym zdaniu."
     },
     {
       "ikona": "✋",
@@ -211,7 +221,7 @@
   ],
   "cena": [
     "Pierwsza kraina, Bagno Ósemki (ó/u), jest za darmo i bez limitu czasu.",
-    "Pełna wersja otwiera pozostałe krainy: Wulkan Żarłoka, Kominy Chochlika i Śnieżną Grotę. To jednorazowy zakup za 19,99 zł, bez subskrypcji i bez waluty w grze.",
+    "Pełna wersja otwiera pozostałe krainy: Wulkan Żarłoka, Kominy Chochlika, Śnieżną Grotę i Bąblowe Jezioro. To jednorazowy zakup za 19,99 zł, bez subskrypcji i bez waluty w grze.",
     "Zakup jest tylko w strefie rodzica, za bramką, więc dziecko nie kupi niczego przypadkiem."
   ]
 }
