@@ -236,39 +236,12 @@
       }
     },
     {
-      "plik": "krotka-nimfa",
-      "ai": true,
-      "data": "2026-11-19",
-      "opis": {
-        "pl": "Krótka nimfa: wędkarz w wodzie prowadzi zestaw",
-        "en": "Short-line nymphing: the angler wades and leads the rig"
-      }
-    },
-    {
-      "plik": "san-bachlawa",
-      "ai": true,
-      "data": "2026-11-21",
-      "opis": {
-        "pl": "San, Bachlawa od ławeczki",
-        "en": "The San, Bachlawa stretch by the bench"
-      }
-    },
-    {
       "plik": "skawa-wierzby",
       "ai": true,
       "data": "2026-11-22",
       "opis": {
         "pl": "Skawa: wierzby nad brzegiem i kamienie na dnie",
         "en": "The Skawa: willows on the bank and stones on the bottom"
-      }
-    },
-    {
-      "plik": "glowacica",
-      "ai": true,
-      "data": "2026-11-21",
-      "opis": {
-        "pl": "Głowacica w podbieraku",
-        "en": "A huchen in the landing net"
       }
     },
     {
@@ -293,7 +266,7 @@
   "dziennik": [
     {
       "data": "2026-11-21",
-      "obraz": "san-bachlawa",
+      "obraz": null,
       "tytul": {
         "pl": "Drugie łowisko: San",
         "en": "A second river: the San"
@@ -317,7 +290,7 @@
     },
     {
       "data": "2026-11-19",
-      "obraz": "krotka-nimfa",
+      "obraz": null,
       "tytul": {
         "pl": "Krótka nimfa i wybór warunków",
         "en": "Short-line nymphing and conditions"
