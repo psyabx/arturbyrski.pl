@@ -23,8 +23,8 @@
   "obraz_udostepniania": "img/gry/river-fly-shop/kapsula.jpg",
   "teksty": {
     "pl": {
-      "seo_tytul": "River Fly Shop: łów na muchę, wiąż muchy, prowadź sklep (gra na PC w produkcji)",
-      "seo_opis": "Niezależna gra na PC o łowieniu na muchę, wiązaniu much i prowadzeniu sklepu muchowego nad Skawą i Sanem. W produkcji, zapisy na testy otwarte.",
+      "seo_tytul": "River Fly Shop: gra wędkarska o łowieniu na muchę na PC",
+      "seo_opis": "Spokojna gra wędkarska na PC: łowienie na muchę pstrągów i lipieni na Skawie i Sanie, wiązanie much i sklep muszkarski. W produkcji, zapisy na testy.",
       "podtytul": "Sklep muchowy nad rzeką. Gra na PC w produkcji.",
       "tytul_roboczy": "tytuł roboczy",
       "status": "W produkcji · PC (Windows) · bez daty premiery",
@@ -32,8 +32,9 @@
       "opis": [
         "Prowadzisz mały sklep muchowy nad rzeką. Rano idziesz nad wodę, w dzień doradzasz klientom, a wieczorem siadasz przy imadle i wiążesz muchy, których zabrakło w gablocie.",
         "Klienci pytają o muchy na konkretne warunki: porę roku, pogodę, stan wody i owady, które właśnie się wylęgają. Dobra rada buduje reputację sklepu, a reputacja otwiera kolejne łowiska.",
-        "Gra powstaje z myślą o muszkarzach i wszystkich, którzy lubią spokojne symulatory. Łowiska, ryby i przepisy są wzorowane na prawdziwych polskich rzekach, a postacie są inspirowane prawdziwymi wędkarzami."
+        "Gra powstaje z myślą o muszkarzach, wędkarzach łowiących innymi metodami i wszystkich, którzy lubią spokojne symulatory. Łowiska, ryby i przepisy są wzorowane na prawdziwych polskich rzekach, a postacie są inspirowane prawdziwymi wędkarzami."
       ],
+      "o_grze_tytul": "Spokojna gra wędkarska: wędkarstwo muchowe, imadło i sklep muszkarski",
       "mechaniki_tytul": "Co już działa w wersji testowej",
       "mechaniki": [
         [
@@ -73,6 +74,25 @@
       "ai_znaczek": "tymczasowa grafika AI",
       "etap_tytul": "Aktualny etap produkcji",
       "etap": "Jest grywalna wersja testowa na Windows, na razie sprawdzana w zamkniętym gronie. Data premiery nie jest jeszcze znana.",
+      "pytania_tytul": "Częste pytania",
+      "pytania": [
+        [
+          "Czy to gra tylko dla muszkarzy?",
+          "Nie. Gra powstaje z myślą o muszkarzach, ale też o wędkarzach łowiących innymi metodami i o graczach, którzy lubią spokojne symulatory. Nad wodą pomagają podpowiedzi, które można wyłączyć, a samouczek dla osób zaczynających z muchą jest jeszcze w pracy."
+        ],
+        [
+          "Na jakich rzekach się łowi i jakie ryby można złowić?",
+          "W wersji testowej są dwa łowiska wzorowane na prawdziwych rzekach: Skawa w Witanowicach i San na odcinku Bachlawa od ławeczki. Pływają tu pstrągi potokowe, lipienie, klenie i świnki, a w jednym miejscu na Sanie czasem także głowacica."
+        ],
+        [
+          "Czy w grze kręci się własne muchy?",
+          "Tak. Przy imadle wiążesz muchy według przepisów, krok po kroku, z materiałów ułożonych w szufladach. Łowisz pięcioma metodami: na suchą muchę, krótką nimfę, suchą muchę z nimfą na skoku, mokrą muchę i streamera."
+        ],
+        [
+          "Kiedy i na czym można zagrać?",
+          "Gra jest w produkcji i nie ma jeszcze daty premiery. Jest grywalna wersja testowa na komputery z Windows, na razie sprawdzana w zamkniętym gronie. Do przyszłych testów można zgłosić się jednym e-mailem."
+        ]
+      ],
       "dziennik_tytul": "Dziennik rozwoju",
       "dziennik_wstep": "Co nowego można robić w grze, od najnowszych zmian.",
       "testy_tytul": "Chcesz zagrać przed premierą?",
@@ -90,7 +110,7 @@
       "jezyk_inny": "English",
       "stopka_polityka": "Prywatność zgłoszeń",
       "haslo": "Łów na rzece. Wiąż własne muchy. Prowadź swój sklep.",
-      "lead": "Niezależna gra o łowieniu na muchę. Poznajesz rzeki, sam wiążesz muchy i prowadzisz mały sklep wędkarski. Każdy dzień przynosi nowych klientów, nowe warunki i kolejną szansę na wyjątkową rybę.",
+      "lead": "Niezależna gra wędkarska na PC o łowieniu na muchę. Poznajesz rzeki, sam wiążesz muchy i prowadzisz mały sklep wędkarski. Każdy dzień przynosi nowych klientów, nowe warunki i kolejną szansę na wyjątkową rybę.",
       "filary_tytul": "Trzy filary gry",
       "filary": [
         [
@@ -111,12 +131,13 @@
       ],
       "wideo_tytul": "Zwiastun",
       "wideo_opis": "Zwiastun z wersji roboczej gry.",
+      "wideo_nazwa": "River Fly Shop: zwiastun gry o łowieniu na muchę (wersja robocza)",
       "wideo_youtube": "Odtwórz na YouTube",
       "wideo_zgoda": "Po kliknięciu film wczyta się z YouTube (youtube-nocookie.com)."
     },
     "en": {
-      "seo_tytul": "River Fly Shop: fish the river, tie your flies, run your shop (PC game in development)",
-      "seo_opis": "An indie PC fly-fishing game: fish real Polish rivers, tie your own flies and run a small fly shop. In development, playtest sign-ups open.",
+      "seo_tytul": "River Fly Shop: fly fishing and fly tying game for PC",
+      "seo_opis": "A calm fly fishing game for PC: catch trout and grayling on Polish rivers, tie your own flies and run a fly shop. In development, playtest sign-ups open.",
       "podtytul": "A fly shop by the river. A PC game in development.",
       "tytul_roboczy": "working title",
       "status": "In development · PC (Windows) · no release date yet",
@@ -124,8 +145,9 @@
       "opis": [
         "You run a small fly shop by the river. In the morning you go fishing, during the day you advise customers, and in the evening you sit down at the vise and tie the flies missing from the display case.",
         "Customers ask what to fish with in specific conditions: the season, the weather, the water level and the insects hatching right now. Good advice builds the shop's reputation, and reputation opens up new waters.",
-        "The game is made for fly anglers and anyone who enjoys calm simulation games. The waters, fish and regulations are modelled on real Polish rivers, and the characters are inspired by real anglers."
+        "The game is made for fly anglers, anglers who fish other methods and anyone who enjoys calm simulation games. The waters, fish and regulations are modelled on real Polish rivers, and the characters are inspired by real anglers."
       ],
+      "o_grze_tytul": "A calm fishing game about fly fishing, fly tying and running a fly shop",
       "mechaniki_tytul": "What already works in the test build",
       "mechaniki": [
         [
@@ -165,6 +187,25 @@
       "ai_znaczek": "temporary AI art",
       "etap_tytul": "Current stage",
       "etap": "There is a playable test build for Windows, currently tested by a small closed group. The release date is not known yet.",
+      "pytania_tytul": "Frequently asked questions",
+      "pytania": [
+        [
+          "Is this game only for fly anglers?",
+          "No. It is made for fly anglers, but also for anglers who fish other methods and for players who enjoy calm simulation games. By the water you get hints that can be turned off, and a tutorial for people new to fly fishing is still in the works."
+        ],
+        [
+          "Which rivers can you fish and what can you catch?",
+          "The test build has two waters modelled on real rivers in Poland: the Skawa at Witanowice and the San on the Bachlawa stretch by the bench. They hold brown trout, grayling, chub and nase, and in one spot on the San, sometimes, a huchen."
+        ],
+        [
+          "Do you tie your own flies in the game?",
+          "Yes. At the vise you tie flies from recipes, step by step, using materials stored in drawers. There are five fishing methods: dry fly, short-line nymphing, dry-dropper, wet fly and streamer."
+        ],
+        [
+          "When and on what can I play?",
+          "The game is in development and has no release date yet. There is a playable test build for Windows PCs, currently tested by a small closed group. You can sign up for future playtests with one email."
+        ]
+      ],
       "dziennik_tytul": "Development log",
       "dziennik_wstep": "What's new in the game, latest changes first.",
       "testy_tytul": "Want to play before release?",
@@ -182,7 +223,7 @@
       "jezyk_inny": "Polski",
       "stopka_polityka": "Sign-up privacy",
       "haslo": "Fish the river. Tie your flies. Run your shop.",
-      "lead": "An indie fly-fishing game where you explore rivers, tie your own flies and run a small tackle shop. Every day brings new customers, new conditions and another chance to catch something special.",
+      "lead": "An indie fly fishing game for PC where you explore rivers, tie your own flies and run a small tackle shop. Every day brings new customers, new conditions and another chance to catch something special.",
       "filary_tytul": "Three pillars of the game",
       "filary": [
         [
@@ -203,6 +244,7 @@
       ],
       "wideo_tytul": "Trailer",
       "wideo_opis": "Trailer from the work-in-progress build.",
+      "wideo_nazwa": "River Fly Shop: fly fishing game trailer (work-in-progress build)",
       "wideo_youtube": "Play on YouTube",
       "wideo_zgoda": "Clicking loads the video from YouTube (youtube-nocookie.com)."
     }
@@ -215,6 +257,10 @@
       "opis": {
         "pl": "Skawa: wędkarz brodzi przy kamieniu, w wodzie odbijają się drzewa",
         "en": "The Skawa: the angler wades beside a boulder, trees mirrored in the water"
+      },
+      "alt": {
+        "pl": "Zrzut z gry: wędkarz w spodniobutach stoi z wędką muchową w Skawie obok dużego kamienia, w wodzie odbijają się drzewa",
+        "en": "Game screenshot: an angler in waders stands in the Skawa river with a fly rod beside a boulder, trees mirrored in the water"
       }
     },
     {
@@ -224,6 +270,10 @@
       "opis": {
         "pl": "Zdjęcie pstrąga do notatnika",
         "en": "A trout photo for the notebook"
+      },
+      "alt": {
+        "pl": "Zrzut z gry: pstrąg potokowy w podbieraku zanurzonym w płytkiej wodzie nad kamienistym dnem",
+        "en": "Game screenshot: a brown trout in a landing net held in shallow water over a stony riverbed"
       }
     },
     {
@@ -233,6 +283,10 @@
       "opis": {
         "pl": "Sklep: klient pyta o muchę, towar w działach",
         "en": "The shop: a customer asks for a fly, stock sorted into sections"
+      },
+      "alt": {
+        "pl": "Zrzut z gry: ekran sklepu muszkarskiego z portretem klienta, jego pytaniem o muchę i listą much do polecenia",
+        "en": "Game screenshot: the fly shop screen with a customer portrait, his question about a fly and a list of flies to recommend"
       }
     },
     {
@@ -242,6 +296,10 @@
       "opis": {
         "pl": "Imadło: przepis krok po kroku i materiały w szufladach",
         "en": "The vise: a step-by-step recipe and materials in drawers"
+      },
+      "alt": {
+        "pl": "Zrzut z gry: ekran wiązania much z listą materiałów i krokami przepisu przy imadle",
+        "en": "Game screenshot: the fly tying screen with a list of materials and the recipe steps at the vise"
       }
     },
     {
@@ -251,6 +309,10 @@
       "opis": {
         "pl": "Kamienie w nurcie: woda opływa je i odsłania dno z otoczaków",
         "en": "Boulders in the current: water wraps around them over a cobbled riverbed"
+      },
+      "alt": {
+        "pl": "Zrzut z gry: przejrzysta woda opływa kamienie w nurcie rzeki, pod powierzchnią widać dno z otoczaków",
+        "en": "Game screenshot: clear water flows around boulders in the river current, with a cobbled riverbed visible below the surface"
       }
     },
     {
@@ -260,6 +322,10 @@
       "opis": {
         "pl": "San, Bachlawa od ławeczki: rzut na tle gór",
         "en": "The San, Bachlawa stretch by the bench: a cast against the hills"
+      },
+      "alt": {
+        "pl": "Zrzut z gry: wędkarz brodzi w Sanie i wykonuje rzut wędką muchową, w tle zalesione brzegi i góry",
+        "en": "Game screenshot: an angler wades the San river and casts a fly rod, with wooded banks and hills behind"
       }
     },
     {
@@ -269,6 +335,10 @@
       "opis": {
         "pl": "Skawa w Witanowicach: sucha mucha po rzucie",
         "en": "The Skawa at Witanowice: a dry fly after the cast"
+      },
+      "alt": {
+        "pl": "Zrzut z gry: widok zza pleców wędkarza na Skawę, sznur muchowy leży łukiem na wodzie po rzucie",
+        "en": "Game screenshot: a view over the angler's shoulder on the Skawa river, the fly line lying in a curve on the water after the cast"
       }
     },
     {
@@ -278,6 +348,10 @@
       "opis": {
         "pl": "San: hol pstrąga",
         "en": "The San: playing a trout"
+      },
+      "alt": {
+        "pl": "Zrzut z gry: wędkarz stoi w Sanie z uniesioną wędką muchową podczas holu pstrąga, w tle góry",
+        "en": "Game screenshot: an angler stands in the San river with a raised fly rod while playing a trout, hills in the background"
       }
     },
     {
@@ -287,6 +361,10 @@
       "opis": {
         "pl": "Skawa: pętla sznura w locie",
         "en": "The Skawa: the fly line loop in the air"
+      },
+      "alt": {
+        "pl": "Zrzut z gry: wędkarz stoi w Skawie przy brzegu, sznur muchowy leci w powietrzu nad wodą, w tle góry",
+        "en": "Game screenshot: an angler stands in the Skawa river near the bank, the fly line travelling through the air above the water, hills in the background"
       }
     },
     {
@@ -296,6 +374,10 @@
       "opis": {
         "pl": "San: brodzenie na szerokiej wodzie",
         "en": "The San: wading wide water"
+      },
+      "alt": {
+        "pl": "Zrzut z gry: wędkarz w spodniobutach brodzi z wędką muchową na szerokim, spokojnym odcinku Sanu",
+        "en": "Game screenshot: an angler in waders wades a wide, calm stretch of the San river with a fly rod"
       }
     },
     {
@@ -305,6 +387,10 @@
       "opis": {
         "pl": "Głowacica w podbieraku",
         "en": "A huchen in the landing net"
+      },
+      "alt": {
+        "pl": "Zrzut z gry: duża głowacica leży w podbieraku na płyciźnie, wokół otoczaki",
+        "en": "Game screenshot: a large huchen lies in a landing net in the shallows, surrounded by cobbles"
       }
     },
     {
@@ -314,6 +400,10 @@
       "opis": {
         "pl": "Bilans dnia w sklepie",
         "en": "The day's balance in the shop"
+      },
+      "alt": {
+        "pl": "Zrzut z gry: tablica z bilansem dnia w sklepie, czyli przychody, koszty i zmiana reputacji",
+        "en": "Game screenshot: the day's balance board in the shop, showing income, costs and the change in reputation"
       }
     }
   ],
@@ -418,6 +508,7 @@
   "trailer": {
     "mp4": "img/gry/river-fly-shop/zwiastun.mp4",
     "plakat": "img/gry/river-fly-shop/zwiastun.jpg",
-    "ai": true
+    "ai": true,
+    "data": "2026-11-22"
   }
 }

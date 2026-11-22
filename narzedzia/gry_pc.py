@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import html
 import json
+import struct
 from email.utils import format_datetime
 import datetime as dt
 from pathlib import Path
@@ -116,7 +117,7 @@ def sekcja_trailera(gra: dict, jezyk: str) -> str:
     plakat = "/" + tr["plakat"]
     znaczek = f' <span class="znaczek-ai">{e(t["ai_znaczek"])}</span>' if tr.get("ai", True) else ""
     if tr.get("mp4"):
-        film = (f'<video class="wideo" controls preload="none" poster="{e(plakat)}" width="1280" height="720">'
+        film = (f'<video class="wideo" controls preload="none" aria-label="{e(t.get("wideo_nazwa") or t["wideo_tytul"])}" poster="{e(plakat)}" width="1280" height="720">'
                 f'<source src="/{e(tr["mp4"])}" type="video/mp4"></video>')
     else:
         yt = e(tr["youtube"])
@@ -146,7 +147,7 @@ def filary(gra: dict, jezyk: str) -> str:
     for tytul, nazwa, tekst in t["filary"]:
         z = gal[nazwa]
         karty.append(
-            f'<li><img src="/{obraz(nazwa, gra, maly=True)}" alt="{e(z["opis"][jezyk])}" width="800" height="450">'
+            f'<li><img src="/{obraz(nazwa, gra, maly=True)}" alt="{e(alt(z, jezyk))}" width="800" height="450">'
             f'<div><h3>{e(tytul)}</h3><p>{e(tekst)}</p>'
             f'{znaczek if z.get("ai") and not wspolny else ""}</div></li>')
     return (f'<section id="filary" class="filary"><div class="wrap">\n'
@@ -160,6 +161,44 @@ def wszystkie_ai(gra: dict) -> bool:
     """Gdy każdy zrzut ma tymczasową grafikę AI, strona pokazuje jeden wspólny znaczek przy filarach i uwagę
     nad galerią, zamiast znaczka pod każdym obrazem. W galerii mieszanej znaczek dostaje każdy zrzut z AI."""
     return all(z.get("ai") for z in gra["galeria"])
+
+
+def alt(zrzut: dict, jezyk: str) -> str:
+    """Tekst zastępczy zrzutu: pole alt opisuje, co widać na obrazie; bez niego zostaje krótki podpis z galerii."""
+    return (zrzut.get("alt") or {}).get(jezyk) or zrzut["opis"][jezyk]
+
+
+def czas_mp4(plik: Path) -> int | None:
+    """Długość filmu MP4 w sekundach, odczytana z nagłówka mvhd. Dzięki temu czas w danych strukturalnych
+    zawsze zgadza się z plikiem, także po podmianie zwiastuna."""
+    with plik.open("rb") as f:
+        koniec = plik.stat().st_size
+        while f.tell() < koniec:
+            naglowek = f.read(8)
+            if len(naglowek) < 8:
+                return None
+            rozmiar, typ = struct.unpack(">I4s", naglowek)
+            poczatek = f.tell() - 8
+            if rozmiar == 1:
+                rozmiar = struct.unpack(">Q", f.read(8))[0]
+            elif rozmiar == 0:
+                rozmiar = koniec - poczatek
+            if typ == b"moov":
+                koniec = poczatek + rozmiar      # mvhd leży wewnątrz moov: czytamy dalej jego zawartość
+                continue
+            if typ == b"mvhd":
+                wersja = f.read(4)[0]
+                if wersja == 1:
+                    f.read(16)
+                    skala, czas = struct.unpack(">IQ", f.read(12))
+                else:
+                    f.read(8)
+                    skala, czas = struct.unpack(">II", f.read(8))
+                return round(czas / skala) if skala else None
+            if rozmiar < 8:
+                return None
+            f.seek(poczatek + rozmiar)
+    return None
 
 
 def obraz(nazwa: str, gra: dict, maly: bool = False) -> str:
@@ -269,24 +308,75 @@ def stopka(gra: dict, jezyk: str) -> str:
             f'<a href="/{sc(jezyk, "feed", gra)}">{rss}</a></span></div></footer>')
 
 
-def dane_gry(gra: dict, jezyk: str) -> dict:
+def dane_filmu(gra: dict, jezyk: str) -> dict | None:
+    """Zwiastun jako VideoObject. Tylko fakty z danych i z pliku: data z pola trailer.data, czas z nagłówka MP4."""
+    tr = gra.get("trailer")
+    if not tr or not tr.get("data"):
+        return None
     t = gra["teksty"][jezyk]
-    return {
-        "@context": "https://schema.org",
+    film = {
+        "@type": "VideoObject",
+        "name": t.get("wideo_nazwa") or f'{gra["nazwa"]}: {t["wideo_tytul"]}',
+        "description": t["wideo_opis"],
+        "thumbnailUrl": url(tr["plakat"]),
+        "uploadDate": tr["data"],
+    }
+    if tr.get("mp4"):
+        film["contentUrl"] = url(tr["mp4"])
+        sekundy = czas_mp4(KORZEN / tr["mp4"])
+        if sekundy:
+            film["duration"] = f"PT{sekundy // 60}M{sekundy % 60}S" if sekundy >= 60 else f"PT{sekundy}S"
+    else:
+        film["embedUrl"] = f'https://www.youtube-nocookie.com/embed/{tr["youtube"]}'
+    return film
+
+
+def dane_gry(gra: dict, jezyk: str) -> dict:
+    """Dane strukturalne strony gry: gra (VideoGame ze zwiastunem), ścieżka nawigacji i częste pytania.
+    Bez ocen, ceny i daty premiery, bo gra jest w produkcji."""
+    t = gra["teksty"][jezyk]
+    strona = url(sc(jezyk, "gra", gra))
+    firma = {"@type": "Organization", "@id": ADRES + "/#firma", "name": FIRMA, "url": ADRES + "/"}
+    gra_ld = {
         "@type": "VideoGame",
+        "@id": strona + "#gra",
         "name": gra["nazwa"],
-        "url": url(sc(jezyk, "gra", gra)),
+        "url": strona,
         "description": t["seo_opis"],
-        "inLanguage": jezyk,
+        "inLanguage": ["pl", "en"],
         "image": url(gra["obraz_udostepniania"]),
         "screenshot": [url(obraz(z["plik"], gra)) for z in gra["galeria"]],
         "gamePlatform": "PC",
         "operatingSystem": "Windows",
-        "genre": ["Simulation", "Fishing"] if jezyk == "en" else ["Symulator", "Wędkarstwo"],
+        "applicationCategory": "Game",
+        "genre": (["Simulation", "Fishing", "Fly fishing"] if jezyk == "en"
+                  else ["Symulator", "Wędkarstwo", "Wędkarstwo muchowe"]),
         "creativeWorkStatus": "In development" if jezyk == "en" else "W produkcji",
-        "author": {"@type": "Organization", "@id": ADRES + "/#firma", "name": FIRMA, "url": ADRES + "/"},
-        "publisher": {"@type": "Organization", "@id": ADRES + "/#firma", "name": FIRMA, "url": ADRES + "/"},
+        "author": firma,
+        "publisher": firma,
     }
+    film = dane_filmu(gra, jezyk)
+    if film:
+        gra_ld["trailer"] = film
+    okruszki = [(FIRMA, ADRES + "/")]
+    if jezyk == "pl":
+        okruszki.append(("Gry", url("gry/")))
+    okruszki.append((gra["nazwa"], strona))
+    graf = [gra_ld, {
+        "@type": "BreadcrumbList",
+        "itemListElement": [{"@type": "ListItem", "position": i, "name": nazwa, "item": adres_}
+                            for i, (nazwa, adres_) in enumerate(okruszki, 1)],
+    }]
+    if t.get("pytania"):
+        graf.append({
+            "@type": "FAQPage",
+            "@id": strona + "#pytania",
+            "inLanguage": jezyk,
+            "mainEntity": [{"@type": "Question", "name": pytanie,
+                            "acceptedAnswer": {"@type": "Answer", "text": odpowiedz}}
+                           for pytanie, odpowiedz in t["pytania"]],
+        })
+    return {"@context": "https://schema.org", "@graph": graf}
 
 
 def alternatywy(gra: dict, rodzaj: str) -> dict:
@@ -313,7 +403,7 @@ def strona_gry(gra: dict, jezyk: str, blok_stat: str, kampania: str | None = Non
                    if z.get("ai") and not wszystkie_ai(gra) else "")
         kafle.append(
             f'<figure><a href="/{obraz(z["plik"], gra)}">'
-            f'<img src="/{obraz(z["plik"], gra, maly=True)}" alt="{e(z["opis"][jezyk])}" '
+            f'<img src="/{obraz(z["plik"], gra, maly=True)}" alt="{e(alt(z, jezyk))}" '
             f'width="800" height="450" loading="lazy"></a>'
             f'<figcaption>{e(z["opis"][jezyk])}<br><span class="cichy">{e(data(z["data"], jezyk))}'
             f'</span> {znaczek}</figcaption></figure>')
@@ -325,13 +415,18 @@ def strona_gry(gra: dict, jezyk: str, blok_stat: str, kampania: str | None = Non
         if w.get("obraz"):
             z = gal[w["obraz"]]
             ilustracja = (f'<a class="wpis-obraz" href="/{obraz(z["plik"], gra)}">'
-                          f'<img src="/{obraz(z["plik"], gra, maly=True)}" alt="{e(z["opis"][jezyk])}" '
+                          f'<img src="/{obraz(z["plik"], gra, maly=True)}" alt="{e(alt(z, jezyk))}" '
                           f'width="800" height="450" loading="lazy"></a>')
         wpisy.append(
             f'<article class="wpis" id="d-{e(w["data"])}">{ilustracja}<div>'
             f'<time datetime="{e(w["data"])}">{e(data(w["data"], jezyk))}</time>'
             f'<h3>{e(w["tytul"][jezyk])}</h3><p>{e(w["tekst"][jezyk])}</p></div></article>')
     dziennik = "".join(wpisy)
+    pytania = ""
+    if t.get("pytania"):
+        pary = "".join(f'<div class="pytanie"><h3>{e(a)}</h3><p>{e(b)}</p></div>' for a, b in t["pytania"])
+        pytania = (f'\n<section id="pytania"><div class="wrap waski">\n  <h2>{e(t["pytania_tytul"])}</h2>\n'
+                   f'  {pary}\n</div></section>\n')
     testy = "/" + sc(jezyk, "testy", gra)
     steam = przycisk_steam(gra, jezyk)
     rss_napis = "Dziennik jako RSS" if jezyk == "pl" else "Log as RSS"
@@ -359,6 +454,7 @@ def strona_gry(gra: dict, jezyk: str, blok_stat: str, kampania: str | None = Non
 </section>
 {filary(gra, jezyk)}{sekcja_trailera(gra, jezyk)}
 <section id="o-grze"><div class="wrap waski">
+  {f'<h2>{e(t["o_grze_tytul"])}</h2>' if t.get("o_grze_tytul") else ""}
   {opis}
   <p class="cichy">{e(t["nazwa_uwaga"])}</p>
 </div></section>
@@ -381,7 +477,7 @@ def strona_gry(gra: dict, jezyk: str, blok_stat: str, kampania: str | None = Non
   <h2>{e(t["etap_tytul"])}</h2>
   <p>{e(t["etap"])}</p>
 </div></section>
-
+{pytania}
 <section id="dziennik"><div class="wrap">
   <h2>{e(t["dziennik_tytul"])}</h2>
   <p>{e(t["dziennik_wstep"])} <a href="/{sc(jezyk, "feed", gra)}">{rss_napis}</a></p>

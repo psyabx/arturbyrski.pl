@@ -105,6 +105,13 @@ grafiką AI mają w danych `"ai": true`. Gdy mają to wszystkie zrzuty, strona p
 (co nowego można robić w grze), nie dla programisty. Postacie opisujemy tylko jako inspirowane prawdziwymi
 wędkarzami, bez imion i danych osobowych.
 
+**Wyszukiwarki:** `seo_tytul` (do około 60 znaków) i `seo_opis` (do około 155 znaków) trafiają do `<title>`, opisu strony
+i podglądu przy udostępnianiu. `o_grze_tytul` to nagłówek sekcji „O grze”, a `pytania` (pary pytanie i odpowiedź) tworzą
+sekcję „Częste pytania”. Każdy zrzut w galerii ma krótki podpis `opis` i dłuższy tekst zastępczy `alt`, który opisuje to,
+co naprawdę widać na obrazie; bez pola `alt` strona używa podpisu. Dane strukturalne (gra, zwiastun, ścieżka nawigacji
+i częste pytania) generator składa sam z tych samych pól. Zwiastun trafia do nich, gdy `trailer` ma pole `data`
+(dzień publikacji filmu); długość filmu generator odczytuje z pliku MP4. Przy podmianie zwiastuna popraw `data`.
+
 **Steam:** gdy gra będzie miała stronę w sklepie, wpisz numer aplikacji w `steam_app_id`. Przycisk pojawi
 się wtedy sam, z UTM `utm_campaign=rfs-strona-gry` (EN: `rfs-strona-gry-en`). Przy `null` nie ma żadnego przycisku.
 
