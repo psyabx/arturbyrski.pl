@@ -84,6 +84,48 @@ Generator wstawia skrypt między `<!-- statystyki:start -->` a `<!-- statystyki:
 na każdej stronie, także w `index.html` i politykach prywatności. Po zmianie tokenu na `main`
 workflow „Zbuduj stronę” przebuduje strony sam. Wyniki: dash.cloudflare.com → Analytics & Logs → Web Analytics.
 
+## Gry na PC dla dorosłych (River Fly Shop)
+
+Osobna ścieżka od gier dla dzieci. Dane: `dane/gry-pc/<slug>.json` (opisy PL/EN, mechaniki, galeria,
+dziennik rozwoju). Generator: `narzedzia/gry_pc.py`, uruchamiany przez `python3 narzedzia/strona.py zbuduj`.
+Te gry nie trafiają do kart na stronie głównej, do `api/*.json` ani do `feed.xml`.
+
+| Adres (PL) | Adres (EN) | Co to jest |
+| --- | --- | --- |
+| `/gry/river-fly-shop/` | `/en/games/river-fly-shop/` | strona gry, `hreflang` pl/en, `x-default` = EN |
+| `/gry/river-fly-shop/testy/` | `/en/games/river-fly-shop/playtest/` | zgłoszenie do testów przez e-mail (noindex) |
+| `/gry/river-fly-shop/prywatnosc/` | `/en/games/river-fly-shop/privacy/` | prywatność zgłoszeń i statystyk |
+| `/gry/river-fly-shop/feed.xml` | `/en/games/river-fly-shop/feed.xml` | dziennik rozwoju jako RSS |
+| `/gry/river-fly-shop/z/<źródło>/` | `/en/games/river-fly-shop/from/<źródło>/` | kopia strony gry dla kampanii (noindex, kanoniczny = strona gry) |
+| `/gry/` | | wszystkie gry: dla dzieci i na PC |
+
+Zasady treści: tylko to, co działa w wersji testowej; plany w osobnej liście „W pracy”. Zrzuty z tymczasową
+grafiką AI mają w danych `"ai": true` i na stronie znaczek „tymczasowa grafika AI”. Dziennik piszemy dla gracza
+(co nowego można robić w grze), nie dla programisty. Postacie opisujemy tylko jako inspirowane prawdziwymi
+wędkarzami, bez imion i danych osobowych.
+
+**Steam:** gdy gra będzie miała stronę w sklepie, wpisz numer aplikacji w `steam_app_id`. Przycisk pojawi
+się wtedy sam, z UTM `utm_campaign=rfs-strona-gry` (EN: `rfs-strona-gry-en`). Przy `null` nie ma żadnego przycisku.
+
+**Zgłoszenia:** przycisk otwiera e-mail z tematem „River Fly Shop – testy” (EN: „River Fly Shop – playtest”).
+W Gmailu warto ustawić filtr na oba tematy z jedną etykietą, żeby policzyć zgłoszenia.
+
+### Źródła ruchu w Cloudflare Web Analytics
+
+Cloudflare Web Analytics nie zapisuje parametrów UTM ani własnych zdarzeń
+([FAQ](https://developers.cloudflare.com/web-analytics/faq/)). Dlatego:
+
+- **Strony** widać osobno w panelu (filtr „Path”), np. `/gry/river-fly-shop/` i `/en/games/river-fly-shop/`.
+- **Źródło** pokazuje „Referer”, ale aplikacje (Messenger, Reddit, YouTube na telefonie) i kody QR często go
+  nie przekazują. W linkach publikowanych na zewnątrz używaj więc ścieżek kampanii, np.
+  `https://arturbyrski.pl/gry/river-fly-shop/z/reddit/` albo `https://arturbyrski.pl/en/games/river-fly-shop/from/reddit/`.
+  Wejścia widać w panelu jako osobną ścieżkę. Lista źródeł jest w polu `kampanie` (teraz: facebook, reddit,
+  youtube, forum, qr); nowe źródło to nowy wpis i przebudowa strony.
+- **Zainteresowanie testami** to wejścia na `/testy/` i `/playtest/`. To przybliżenie, nie liczba zgłoszeń:
+  faktyczne zgłoszenia liczymy w Gmailu po temacie.
+
+Czcionki stron PC: Alegreya (SIL Open Font License 1.1), pliki `fonty/Alegreya*.woff2` (podzbiór znaków PL/EN).
+
 ## Czcionka
 
 `fonty/Grandstander.ttf` (licencja SIL Open Font License 1.1) jest serwowana z tej domeny,

@@ -1,0 +1,137 @@
+/* Strony gier na PC dla dorosłych (River Fly Shop): spokojne, leśno-rzeczne kolory.
+   Osobny wygląd od stron dla dzieci. Czcionka Alegreya (SIL OFL 1.1) z tej domeny. */
+@font-face {
+  font-family: "Alegreya";
+  src: url("fonty/Alegreya-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Alegreya";
+  src: url("fonty/Alegreya-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Alegreya SC";
+  src: url("fonty/AlegreyaSC-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --tlo: #f6f1e6;
+  --tekst: #23281f;
+  --cichy: #5b6152;
+  --akcent: #2f5d46;
+  --akcent-tekst: #ffffff;
+  --karta: #fffdf7;
+  --linia: #ddd3bd;
+  --ciemne: #1b241d;
+  --ciemne-tekst: #f3eee0;
+  --miedz: #a85a2a;
+  --cien: 0 6px 24px rgba(30, 40, 25, 0.1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --tlo: #141a15;
+    --tekst: #ece6d6;
+    --cichy: #aeb3a3;
+    --akcent: #8fc5a4;
+    --akcent-tekst: #10170f;
+    --karta: #1d251e;
+    --linia: #344034;
+    --ciemne: #0d120e;
+    --miedz: #e09a63;
+    --cien: 0 6px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+:root[data-theme="dark"] {
+  --tlo: #141a15;
+  --tekst: #ece6d6;
+  --cichy: #aeb3a3;
+  --akcent: #8fc5a4;
+  --akcent-tekst: #10170f;
+  --karta: #1d251e;
+  --linia: #344034;
+  --ciemne: #0d120e;
+  --miedz: #e09a63;
+  --cien: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--tlo);
+  color: var(--tekst);
+  font: 400 1.125rem/1.6 "Alegreya", Georgia, "Times New Roman", serif;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--akcent); text-underline-offset: 3px; }
+h1, h2, h3 { line-height: 1.2; }
+h2 { font-family: "Alegreya SC", "Alegreya", Georgia, serif; font-size: 1.9rem; margin: 0 0 .6rem; }
+h3 { font-size: 1.25rem; margin: 0 0 .3rem; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+.waski { max-width: 760px; }
+.cichy { color: var(--cichy); }
+section { padding: 48px 0; }
+section + section { border-top: 1px solid var(--linia); }
+
+.pasek { background: var(--ciemne); color: var(--ciemne-tekst); position: sticky; top: 0; z-index: 5; }
+.pasek .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 20px; padding-top: 10px; padding-bottom: 10px; }
+.logo { color: var(--ciemne-tekst); text-decoration: none; font: 700 1.3rem "Alegreya SC", Georgia, serif; }
+.menu { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 1rem; }
+.menu a { color: var(--ciemne-tekst); text-decoration: none; opacity: .9; }
+.menu a:hover { opacity: 1; text-decoration: underline; }
+
+.naglowek { padding: 0 0 40px; background: var(--ciemne); color: var(--ciemne-tekst); border-top: 0; }
+.naglowek img { width: 100%; max-height: 460px; object-fit: cover; object-position: center 85%; }
+.naglowek h1 { font: 700 clamp(2.2rem, 7vw, 3.6rem)/1.1 "Alegreya SC", Georgia, serif; margin: 28px 0 8px; }
+.roboczy { font: 400 1rem "Alegreya", Georgia, serif; opacity: .8; white-space: nowrap; }
+.podtytul { font-size: 1.35rem; margin: 0 0 6px; }
+.status { color: #c9c2ae; margin: 0 0 20px; }
+.przyciski { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.przycisk {
+  display: inline-block; padding: 12px 22px; border-radius: 6px; text-decoration: none; font-weight: 700;
+  background: var(--miedz); color: #fff;
+}
+.naglowek .przycisk, .testy .przycisk { background: var(--miedz); }
+.przycisk:hover { filter: brightness(1.08); }
+.przycisk-drugi { background: transparent; border: 2px solid currentColor; color: inherit; }
+
+.mechaniki { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.mechaniki li { background: var(--karta); border: 1px solid var(--linia); border-radius: 8px; padding: 18px 20px; box-shadow: var(--cien); }
+.mechaniki p { margin: 0; }
+.w-pracy-tytul { margin-top: 32px; }
+.w-pracy { padding-left: 1.2em; }
+
+.uwaga-ai { border-left: 4px solid var(--miedz); background: var(--karta); padding: 12px 16px; border-radius: 0 6px 6px 0; }
+.galeria { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+.galeria figure { margin: 0; }
+.galeria img { border-radius: 6px; aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
+.galeria figcaption { font-size: 1rem; margin-top: 6px; }
+.znaczek-ai {
+  display: inline-block; font-size: .8rem; padding: 1px 8px; border-radius: 999px;
+  border: 1px solid var(--miedz); color: var(--miedz); white-space: nowrap;
+}
+
+.wpis { display: grid; grid-template-columns: 260px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--linia); }
+.wpis:last-child { border-bottom: 0; }
+.wpis > div:only-child { grid-column: 1 / -1; }
+.wpis img { border-radius: 6px; }
+.wpis time { color: var(--cichy); font-size: 1rem; }
+.wpis p { margin: .3rem 0 0; }
+@media (max-width: 640px) {
+  .wpis { grid-template-columns: 1fr; }
+  h2 { font-size: 1.6rem; }
+}
+
+.testy { background: var(--karta); }
+.kroki li { margin-bottom: 6px; }
+.ramka { background: var(--karta); border: 1px solid var(--linia); border-radius: 8px; padding: 4px 20px 8px; margin: 24px 0; }
+.ramka h2 { font-size: 1.4rem; margin-top: 16px; }
+
+footer { background: var(--ciemne); color: var(--ciemne-tekst); padding: 20px 0; font-size: 1rem; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; }
+footer a { color: var(--ciemne-tekst); }

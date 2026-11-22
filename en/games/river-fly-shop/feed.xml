@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>River Fly Shop: Development log</title>
+    <link>https://arturbyrski.pl/en/games/river-fly-shop/</link>
+    <description>What's new in the game, latest changes first.</description>
+    <language>en</language>
+    <item>
+      <title>A second river: the San</title>
+      <link>https://arturbyrski.pl/en/games/river-fly-shop/#d-2026-11-21</link>
+      <guid isPermaLink="false">river-fly-shop-en-2026-11-21</guid>
+      <pubDate>Sat, 21 Nov 2026 12:00:00 +0000</pubDate>
+      <description>Once the shop has a reputation, you can travel to the San, to the Bachlawa stretch by the bench: a run under the trees, small channels across from the bench, a hole under a tree and riffles. A huchen sometimes holds in the hole under the tree. It only takes a streamer and fights very hard. The game also got sound: the river, birds, wind and rain, plus calm music in the shop and at the vise.</description>
+    </item>
+    <item>
+      <title>Shop sections and a vise with drawers</title>
+      <link>https://arturbyrski.pl/en/games/river-fly-shop/#d-2026-11-20</link>
+      <guid isPermaLink="false">river-fly-shop-en-2026-11-20</guid>
+      <pubDate>Fri, 20 Nov 2026 12:00:00 +0000</pubDate>
+      <description>Shop stock is now sorted into sections, and customers ask more often about specific methods, such as wet flies or streamers. At the vise, materials sit in drawers, so it is quicker to find what a recipe needs.</description>
+    </item>
+    <item>
+      <title>Short-line nymphing and conditions</title>
+      <link>https://arturbyrski.pl/en/games/river-fly-shop/#d-2026-11-19</link>
+      <guid isPermaLink="false">river-fly-shop-en-2026-11-19</guid>
+      <pubDate>Thu, 19 Nov 2026 12:00:00 +0000</pubDate>
+      <description>A new method: short-line nymphing. You lead the rod tip after the nymph. Too fast and the nymph rises, too slow and slack hides the takes. Before going out you can also set the time of day, weather and water level.</description>
+    </item>
+    <item>
+      <title>Fish photos and willows on the bank</title>
+      <link>https://arturbyrski.pl/en/games/river-fly-shop/#d-2026-11-18</link>
+      <guid isPermaLink="false">river-fly-shop-en-2026-11-18</guid>
+      <pubDate>Wed, 18 Nov 2026 12:00:00 +0000</pubDate>
+      <description>After landing a fish you take its photo in the net, and the photo goes into your notebook. Willows now line the banks, and the camera stays close to the angler after the cast.</description>
+    </item>
+    <item>
+      <title>The Skawa, wading and playing fish</title>
+      <link>https://arturbyrski.pl/en/games/river-fly-shop/#d-2026-11-17</link>
+      <guid isPermaLink="false">river-fly-shop-en-2026-11-17</guid>
+      <pubDate>Tue, 17 Nov 2026 12:00:00 +0000</pubDate>
+      <description>The first water is the Skawa at Witanowice, with a real layout of the bottom and depths. You can step into the water and wade, and sneaking lets you get closer to fish. Playing and landing fish were added too.</description>
+    </item>
+    <item>
+      <title>Daily rhythm and regulars</title>
+      <link>https://arturbyrski.pl/en/games/river-fly-shop/#d-2026-11-16</link>
+      <guid isPermaLink="false">river-fly-shop-en-2026-11-16</guid>
+      <pubDate>Mon, 16 Nov 2026 12:00:00 +0000</pubDate>
+      <description>Each day has a rhythm: the river in the morning, the shop during the day, the vise in the evening. Regulars with their own stories visit the shop, and in the evening you see the day's balance. The notebook collects fly recipes and notes from the river.</description>
+    </item>
+    <item>
+      <title>First playable build</title>
+      <link>https://arturbyrski.pl/en/games/river-fly-shop/#d-2026-11-12</link>
+      <guid isPermaLink="false">river-fly-shop-en-2026-11-12</guid>
+      <pubDate>Thu, 12 Nov 2026 12:00:00 +0000</pubDate>
+      <description>The first playable build is here, with the three parts of the game: the shop, the vise and fishing one run of the river.</description>
+    </item>
+  </channel>
+</rss>
