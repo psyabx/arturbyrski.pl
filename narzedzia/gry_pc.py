@@ -69,7 +69,7 @@ def wczytaj_gry_pc() -> list[dict]:
     gry = []
     for plik in sorted(DANE_PC.glob("*.json")):
         g = json.loads(plik.read_text(encoding="utf-8"))
-        g["_plik"] = str(plik.relative_to(KORZEN))
+        g["_plik"] = plik.relative_to(KORZEN).as_posix()   # ukośniki także na Windows: plik wynikowy ma być taki sam w każdym systemie
         gry.append(g)
     return gry
 
