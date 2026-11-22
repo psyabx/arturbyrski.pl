@@ -43,7 +43,8 @@ jest od razu produkcją (domena z `CNAME`). Szczegóły generatora i danych: `RE
 - Tylko to, co naprawdę działa w wersji testowej. Plany idą do listy „W pracy”.
 - Nazwa zawsze jako „tytuł roboczy” (EUIPO niesprawdzone).
 - Postacie tylko „inspirowane prawdziwymi wędkarzami”, bez imion i danych osobowych.
-- Zrzuty z tymczasową grafiką AI mają `"ai": true` (znaczek na stronie). Zrzuty mają pochodzić
+- Zrzuty z tymczasową grafiką AI mają `"ai": true`. Gdy mają to wszystkie zrzuty, strona pokazuje jeden
+  wspólny znaczek przy filarach i uwagę nad galerią; w galerii mieszanej znaczek dostaje każdy zrzut z AI. Zrzuty mają pochodzić
   z gry na PC Artura (pełna grafika, bez interfejsu), nie z renderu w chmurze.
 - Dziennik rozwoju piszemy dla gracza: co nowego można robić w grze.
 - Przycisk Steam i sekcja zwiastuna pojawiają się dopiero po wpisaniu `steam_app_id` /

@@ -46,7 +46,7 @@
         ],
         [
           "Łowienie w 3D",
-          "Sucha mucha z mendingiem i zacięciem oraz krótka nimfa, w której prowadzisz szczytówkę za muchą. Brodzisz po rzece i skradasz się, bo ryby widzą wędkarza i jego cień."
+          "Pięć metod: sucha mucha z mendingiem, krótka nimfa, sucha mucha z nimfą na skoku, mokra mucha i streamer. Gdy za plecami masz drzewa, rzucasz rzutem rolowanym. Brodzisz po rzece i skradasz się, bo ryby widzą wędkarza i jego cień."
         ],
         [
           "Hol i podbieranie",
@@ -58,18 +58,18 @@
         ],
         [
           "Realia i dźwięk",
-          "Obowiązują okresy ochronne i wymiary. Pomoce można wyłączyć, żeby widzieć tylko to, co widziałby wędkarz. Nad wodą słychać rzekę, ptaki zależne od pory dnia i roku, wiatr i deszcz."
+          "Obowiązują okresy ochronne i wymiary. Pomoce można wyłączyć, żeby widzieć tylko to, co widziałby wędkarz. Nad wodą słychać rzekę, ptaki zależne od pory dnia i roku, wiatr i deszcz. Gra jest po polsku i po angielsku."
         ]
       ],
       "w_pracy_tytul": "Nad czym trwa praca",
       "w_pracy": [
-        "Postać wędkarza i animacja rzutu: jest pierwsza wersja, będzie bardziej naturalna.",
-        "Interfejs i samouczek dla osób, które dopiero zaczynają z muchą.",
-        "Angielska wersja gry (gra jest na razie po polsku)."
+        "Animacja rzutu i postać wędkarza: jest nowy model, ruch będzie bardziej naturalny.",
+        "Wędka, kołowrotek i modele ryb: obecne są tymczasowe.",
+        "Interfejs i samouczek dla osób, które dopiero zaczynają z muchą."
       ],
       "galeria_tytul": "Galeria",
       "galeria_wstep": "Zrzuty ekranu z wersji roboczej gry. Wszystko może się jeszcze zmienić.",
-      "ai_uwaga": "Grafiki w grze są tymczasowe. Część z nich (np. drzewa, modele ryb, tła sklepu, portrety klientów, ikony materiałów) powstała w generatorze obrazów AI i przed premierą zostanie zastąpiona lub dopracowana. Zdjęcie na górze strony jest prawdziwe.",
+      "ai_uwaga": "Grafiki w grze są tymczasowe. Część z nich (np. modele ryb, tła sklepu, portrety klientów, ikony materiałów) powstała w generatorze obrazów AI i przed premierą zostanie zastąpiona lub dopracowana. Zdjęcie na górze strony jest prawdziwe.",
       "ai_znaczek": "tymczasowa grafika AI",
       "etap_tytul": "Aktualny etap produkcji",
       "etap": "Jest grywalna wersja testowa na Windows, na razie sprawdzana w zamkniętym gronie. Data premiery nie jest jeszcze znana.",
@@ -96,7 +96,7 @@
         [
           "Łowienie na muchę",
           "wedkarz-w-rzece",
-          "Sucha mucha i krótka nimfa na odcinkach wzorowanych na prawdziwej Skawie i Sanie. Brodzisz, czytasz wodę i holujesz ryby, które widzą wędkarza i jego cień."
+          "Sucha mucha, nimfa, mokra mucha i streamer na odcinkach wzorowanych na prawdziwej Skawie i Sanie. Brodzisz, czytasz wodę i holujesz ryby, które widzą wędkarza i jego cień."
         ],
         [
           "Wiązanie much",
@@ -138,7 +138,7 @@
         ],
         [
           "3D fishing",
-          "Dry fly with mending and the strike, and short-line nymphing where you lead the rod tip after the fly. You wade the river and sneak, because fish can see the angler and their shadow."
+          "Five methods: dry fly with mending, short-line nymphing, dry-dropper, wet fly and streamer. With trees behind you, you make a roll cast. You wade the river and sneak, because fish can see the angler and their shadow."
         ],
         [
           "Playing and landing",
@@ -150,18 +150,18 @@
         ],
         [
           "Real rules and sound",
-          "Closed seasons and size limits apply. Hints can be turned off so you only see what an angler would see. By the water you hear the river, birds that change with the time of day and season, wind and rain."
+          "Closed seasons and size limits apply. Hints can be turned off so you only see what an angler would see. By the water you hear the river, birds that change with the time of day and season, wind and rain. The game is available in Polish and English."
         ]
       ],
       "w_pracy_tytul": "Work in progress",
       "w_pracy": [
-        "The angler character and casting animation: a first version is in, it will become more natural.",
-        "Interface and a tutorial for people new to fly fishing.",
-        "English version of the game (the game is in Polish for now)."
+        "The casting animation and the angler character: a new model is in, the motion will become more natural.",
+        "The rod, the reel and the fish models: the current ones are temporary.",
+        "Interface and a tutorial for people new to fly fishing."
       ],
       "galeria_tytul": "Gallery",
       "galeria_wstep": "Screenshots from the work-in-progress build. Everything may still change.",
-      "ai_uwaga": "The game's art is temporary. Some of it (e.g. trees, fish models, shop backgrounds, customer portraits, material icons) was made with an AI image generator and will be replaced or reworked before release. The photo at the top of the page is real.",
+      "ai_uwaga": "The game's art is temporary. Some of it (e.g. fish models, shop backgrounds, customer portraits, material icons) was made with an AI image generator and will be replaced or reworked before release. The photo at the top of the page is real.",
       "ai_znaczek": "temporary AI art",
       "etap_tytul": "Current stage",
       "etap": "There is a playable test build for Windows, currently tested by a small closed group. The release date is not known yet.",
@@ -188,7 +188,7 @@
         [
           "Fly Fishing",
           "wedkarz-w-rzece",
-          "Dry flies and short-line nymphing on waters modelled on the real Skawa and San rivers. Wade, read the water and play fish that can see the angler and their shadow."
+          "Dry fly, nymph, wet fly and streamer on waters modelled on the real Skawa and San rivers. Wade, read the water and play fish that can see the angler and their shadow."
         ],
         [
           "Fly Tying",
@@ -318,6 +318,18 @@
     }
   ],
   "dziennik": [
+    {
+      "data": "2026-11-22",
+      "obraz": "kamienie-w-nurcie",
+      "tytul": {
+        "pl": "Nowe metody, rzut rolowany i żywsza rzeka",
+        "en": "New methods, the roll cast and a livelier river"
+      },
+      "tekst": {
+        "pl": "Możesz łowić na mokrą muchę i na streamera, a do suchej muchy dowiązać nimfę na skoku. Gdy za plecami masz drzewa albo skarpę, rzucasz rzutem rolowanym: sznur nie leci do tyłu, tylko toczy się pętlą po wodzie. Owady nad wodą łapiesz siatką, żeby sprawdzić, co właśnie się roi. Rzeka wygląda inaczej: w wodzie odbijają się drzewa, za kamieniami widać zaburzenia nurtu i pianę, a nad wodą stoi nowy wędkarz. Grę można przełączyć na angielski i wybrać jakość grafiki do swojego komputera.",
+        "en": "You can now fish a wet fly and a streamer, and tie a nymph on a dropper under a dry fly. With trees or a high bank behind you, you make a roll cast: the line does not travel backwards, it rolls out across the water. You can catch insects over the water with a net to see what is hatching. The river looks different: trees are mirrored in the water, the current breaks and foams behind boulders, and there is a new angler model. The game can be switched to English and the graphics quality set to match your computer."
+      }
+    },
     {
       "data": "2026-11-21",
       "obraz": "san-bachlawa",
