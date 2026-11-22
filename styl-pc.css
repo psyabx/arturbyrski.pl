@@ -131,6 +131,8 @@ section + section { border-top: 1px solid var(--linia); }
 .kroki li { margin-bottom: 6px; }
 .ramka { background: var(--karta); border: 1px solid var(--linia); border-radius: 8px; padding: 4px 20px 8px; margin: 24px 0; }
 .ramka h2 { font-size: 1.4rem; margin-top: 16px; }
+.pytanie { margin-top: 22px; }
+.pytanie p { margin: 0; }
 
 footer { background: var(--ciemne); color: var(--ciemne-tekst); padding: 20px 0; font-size: 1rem; }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; }
