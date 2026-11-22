@@ -95,7 +95,7 @@
       "filary": [
         [
           "Łowienie na muchę",
-          "skawa-po-rzucie",
+          "skawa-sznur",
           "Sucha mucha i krótka nimfa na odcinkach wzorowanych na prawdziwej Skawie i Sanie. Brodzisz, czytasz wodę i holujesz ryby, które widzą wędkarza i jego cień."
         ],
         [
@@ -187,7 +187,7 @@
       "filary": [
         [
           "Fly Fishing",
-          "skawa-po-rzucie",
+          "skawa-sznur",
           "Dry flies and short-line nymphing on waters modelled on the real Skawa and San rivers. Wade, read the water and play fish that can see the angler and their shadow."
         ],
         [
@@ -227,12 +227,12 @@
       }
     },
     {
-      "plik": "skawa-po-rzucie",
+      "plik": "skawa-sznur",
       "ai": true,
-      "data": "2026-11-19",
+      "data": "2026-11-22",
       "opis": {
-        "pl": "Skawa w Witanowicach: sucha mucha po rzucie",
-        "en": "The Skawa at Witanowice: a dry fly after the cast"
+        "pl": "Skawa w Witanowicach: sznur na wodzie po rzucie",
+        "en": "The Skawa at Witanowice: fly line on the water after the cast"
       }
     },
     {
@@ -254,12 +254,12 @@
       }
     },
     {
-      "plik": "wierzby",
+      "plik": "skawa-wierzby",
       "ai": true,
-      "data": "2026-11-18",
+      "data": "2026-11-22",
       "opis": {
-        "pl": "Wierzby nad brzegiem i brodzenie",
-        "en": "Willows on the bank and wading"
+        "pl": "Skawa: wierzby nad brzegiem i kamienie na dnie",
+        "en": "The Skawa: willows on the bank and stones on the bottom"
       }
     },
     {
@@ -272,12 +272,12 @@
       }
     },
     {
-      "plik": "zdjecie-ryby",
+      "plik": "zdjecie-klenia",
       "ai": true,
-      "data": "2026-11-18",
+      "data": "2026-11-22",
       "opis": {
-        "pl": "Zdjęcie pstrąga do notatnika",
-        "en": "A trout photo for the notebook"
+        "pl": "Zdjęcie klenia do notatnika",
+        "en": "A chub photo for the notebook"
       }
     },
     {
@@ -329,7 +329,7 @@
     },
     {
       "data": "2026-11-18",
-      "obraz": "zdjecie-ryby",
+      "obraz": "zdjecie-klenia",
       "tytul": {
         "pl": "Zdjęcie ryby i wierzby nad brzegiem",
         "en": "Fish photos and willows on the bank"
@@ -341,7 +341,7 @@
     },
     {
       "data": "2026-11-17",
-      "obraz": "skawa-po-rzucie",
+      "obraz": "skawa-sznur",
       "tytul": {
         "pl": "Skawa, brodzenie i hol",
         "en": "The Skawa, wading and playing fish"
