@@ -1,0 +1,72 @@
+{
+  "_opis": "Strona /gry/ortopotwory/dla-nauczycieli/. Generuje ją narzedzia/strona.py zbuduj. Pole formularz_url to adres wdrożonego skryptu Google Apps Script (narzedzia/apps-script/formularze.gs); pusty = formularze wyłączone, strona pokazuje kontakt e-mail.",
+  "gra": "ortopotwory",
+  "sciezka": "gry/ortopotwory/dla-nauczycieli/",
+  "formularz_url": "",
+  "wideo": "",
+  "kontakt": "art.byrski@gmail.com",
+  "tytul": "Ortopotwory dla nauczycieli i terapeutów pedagogicznych",
+  "podtytul": "Pomóż nam sprawdzić, jak gra wspierająca ćwiczenie polskiej ortografii sprawdza się w pracy z dziećmi.",
+  "seo": {
+    "tytul": "Ortopotwory dla nauczycieli i terapeutów: bezpłatne testy gry do ortografii",
+    "opis": "Gra do ćwiczenia polskiej ortografii dla dzieci 7–12 lat (ó/u, rz/ż, ch/h, ą/ę, zmiękczenia). Nauczycielom i terapeutom pedagogicznym bezpłatnie udostępniamy pełną wersję w zamian za szczerą opinię."
+  },
+  "wstep": "Ortopotwory to gra na Androida dla dzieci w wieku 7–12 lat. Dziecko jako detektyw łapie potwory, które pomieszały litery, i w krótkich misjach ćwiczy pisownię trudnych wyrazów. Gra działa bez internetu, nie ma reklam i nie zbiera danych.",
+  "znaczki": ["dla dzieci 7–12 lat", "Android", "bez reklam", "offline"],
+  "zakres_tytul": "Zakres ćwiczeń",
+  "zakres_wstep": "Każda kraina to jedna trudność ortograficzna. Razem 425 wyrazów i 67 zdań do dyktanda czytanych przez lektora.",
+  "zakres": [
+    {"ikona": "ó/u", "kolor": "f", "tytul": "ó czy u", "opis": "Bagno Ósemki: wymiana ó na o, e, a oraz zakończenia -ów, -ówka, -ówna. W wersji bezpłatnej."},
+    {"ikona": "rz/ż", "kolor": "r", "tytul": "rz czy ż", "opis": "Wulkan Żarłoka: rz wymienne na r, ż wymienne na g, dz, h, s, z i wyrazy do zapamiętania."},
+    {"ikona": "ch/h", "kolor": "s", "tytul": "ch czy h", "opis": "Kominy Chochlika: h wymienne na g, ż, z, ch na końcu wyrazów i wyrazy do zapamiętania."},
+    {"ikona": "ą/ę", "kolor": "m", "tytul": "ą czy ę", "opis": "Bąblowe Jezioro: ą i ę oraz om, on, em, en przed spółgłoskami."},
+    {"ikona": "ś/si", "kolor": "f", "tytul": "Zmiękczenia", "opis": "Śnieżna Grota: ś czy si, ć czy ci, ź czy zi, ń czy ni, dź czy dzi."}
+  ],
+  "wyjasnienia": "Po każdej odpowiedzi dziecko widzi poprawną pisownię i krótkie wyjaśnienie: regułę albo wyraz z tej samej rodziny, np. „stół, bo stoły”. Po błędnej odpowiedzi obrysowuje wyraz palcem, a lektor go czyta. Gra nigdy nie pokazuje wyrazu z błędem.",
+  "zastosowania_tytul": "Dla kogo?",
+  "zastosowania": [
+    {"ikona": "🏠", "kolor": "s", "tytul": "Samodzielne ćwiczenia w domu", "opis": "Jedna misja trwa około 8–10 minut. Dziecko może grać samo, a rodzic widzi postępy w strefie rodzica."},
+    {"ikona": "🔁", "kolor": "f", "tytul": "Dodatkowe utrwalanie ortografii", "opis": "Wyrazy wracają w powtórkach po 1, 3, 7, 14 i 30 dniach, a wyraz z błędem już następnego dnia."},
+    {"ikona": "⏱️", "kolor": "m", "tytul": "Krótkie aktywności edukacyjne", "opis": "Pojedyncza minigra albo dyktando zajmuje kilka minut, więc łatwo ją wpleść w zajęcia."},
+    {"ikona": "🧩", "kolor": "r", "tytul": "Materiał uzupełniający", "opis": "Jako dodatek do pracy pedagogicznej, gdy dziecko potrzebuje więcej ćwiczeń z konkretną trudnością."}
+  ],
+  "zastrzezenie": "Ortopotwory to gra do ćwiczenia ortografii, a nie certyfikowane narzędzie terapeutyczne. Nie diagnozuje i nie leczy dysleksji ani dysortografii, a jej skuteczność nie została zbadana. Właśnie dlatego prosimy specjalistów o opinie.",
+  "prywatnosc_tytul": "Bezpieczeństwo i prywatność",
+  "prywatnosc": [
+    {"ikona": "🚫", "kolor": "r", "tytul": "Brak reklam", "opis": "W grze nie ma reklam, losowania nagród ani subskrypcji."},
+    {"ikona": "📴", "kolor": "f", "tytul": "Działa bez internetu", "opis": "Do grania nie potrzeba połączenia z internetem. Gra nie prosi o dostęp do mikrofonu, kamery, kontaktów ani lokalizacji."},
+    {"ikona": "🔒", "kolor": "m", "tytul": "Gra nie zbiera danych", "opis": "Bez kont i bez wysyłania danych. Postępy i imię detektywa zostają w pamięci telefonu. Ewentualny zakup obsługuje Google Play."},
+    {"ikona": "📊", "kolor": "s", "tytul": "Raport postępów dla rodzica", "opis": "Strefa rodzica za bramką pokazuje postępy w każdej krainie i najtrudniejsze wyrazy. Raport liczy się na telefonie i nigdzie nie jest wysyłany."}
+  ],
+  "testy_tytul": "Pomóż nam rozwijać Ortopotwory",
+  "testy_tekst": "Szukamy nauczycieli i terapeutów pedagogicznych, którzy zechcą przetestować grę i podzielić się szczerą opinią. Zainteresowanym specjalistom bezpłatnie udostępniamy pełną wersję. Zależy nam również na uwagach krytycznych.",
+  "testy_czas": "Orientacyjny czas pierwszego testu to około 10 minut.",
+  "testy_kroki": [
+    "Wypełnij krótkie zgłoszenie poniżej.",
+    "Odpiszemy e-mailem z kodem do pełnej wersji w Google Play.",
+    "Zagraj około 10 minut, najlepiej jedną misję w wybranej krainie.",
+    "Wypełnij krótką ankietę na dole tej strony."
+  ],
+  "role": ["nauczyciel", "terapeuta pedagogiczny", "pedagog", "rodzic", "inna"],
+  "rodo": {
+    "administrator": "Artur Byrski Link Technologies, ul. Kościelna 49, 34-100 Witanowice, NIP 5512278698",
+    "zgloszenie": [
+      "Cel: kontakt w sprawie testów gry Ortopotwory, w tym wysłanie kodu do pełnej wersji i prośby o opinię.",
+      "Podstawa prawna: Twoja zgoda (art. 6 ust. 1 lit. a RODO). Możesz ją cofnąć w każdej chwili, pisząc na adres poniżej. Cofnięcie zgody nie wpływa na zgodność z prawem wcześniejszego kontaktu.",
+      "Zakres: imię, adres e-mail, rola, treść wiadomości oraz oznaczenie kampanii, z której pochodzi wejście na stronę (parametry utm), jeśli było w adresie.",
+      "Okres przechowywania: do 12 miesięcy od zgłoszenia albo krócej, jeśli cofniesz zgodę.",
+      "Odbiorcy: zgłoszenia zapisujemy w arkuszu Google i dostajemy powiadomienie w Gmailu. Dostawcą tych usług jest Google, który może przetwarzać dane także poza EOG na podstawie standardowych klauzul umownych lub decyzji Komisji Europejskiej (EU-US Data Privacy Framework).",
+      "Nie dodajemy Cię do newslettera i nie wysyłamy reklam."
+    ],
+    "prawa": "Masz prawo dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania i przeniesienia oraz prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych. Podanie danych jest dobrowolne, ale bez imienia i adresu e-mail nie możemy się z Tobą skontaktować.",
+    "opinia": "Ankieta nie wymaga podawania imienia ani adresu e-mail. Odpowiedzi służą do rozwijania gry i są przechowywane do 24 miesięcy. Prosimy nie wpisywać danych dzieci ani innych osób."
+  },
+  "opinia_tytul": "Opinia po teście",
+  "opinia_wstep": "Po przetestowaniu gry daj nam znać, co myślisz. Trzy krótkie pytania, około 2 minut.",
+  "pytania": [
+    {"pole": "zrozumiale", "tekst": "Czy ćwiczenia są zrozumiałe dla dzieci w wieku 7–12 lat?", "odpowiedzi": ["Tak", "Raczej tak", "Raczej nie", "Nie", "Trudno powiedzieć"]},
+    {"pole": "wykorzystanie", "tekst": "Czy widzisz możliwość wykorzystania gry w pracy edukacyjnej?", "odpowiedzi": ["Tak", "Raczej tak", "Raczej nie", "Nie", "Trudno powiedzieć"]}
+  ],
+  "pytanie_poprawki": "Co należy poprawić w pierwszej kolejności?",
+  "pytanie_uwagi": "Dodatkowe uwagi (opcjonalnie)"
+}
