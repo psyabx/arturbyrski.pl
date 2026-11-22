@@ -83,10 +83,73 @@ def sprawdz(gra: dict) -> list[str]:
         if not (KORZEN / p).is_file():
             bledy.append(f"{gra['slug']}: brak pliku {p}")
     nazwy = {z["plik"] for z in gra["galeria"]}
+    for j in ("pl", "en"):
+        for _, nazwa, _ in gra["teksty"][j].get("filary", []):
+            if nazwa not in nazwy:
+                bledy.append(f"{gra['slug']}: filar ({j}) ma obraz spoza galerii: {nazwa}")
+    tr = gra.get("trailer")
+    if tr:
+        if not (tr.get("mp4") or tr.get("youtube")):
+            bledy.append(f"{gra['slug']}: trailer potrzebuje pola mp4 albo youtube")
+        if not tr.get("plakat"):
+            bledy.append(f"{gra['slug']}: trailer potrzebuje pola plakat (lokalny obraz)")
+        for pole in ("mp4", "plakat"):
+            if tr.get(pole) and not (KORZEN / tr[pole]).is_file():
+                bledy.append(f"{gra['slug']}: brak pliku trailera {tr[pole]}")
     for w in gra["dziennik"]:
         if w.get("obraz") and w["obraz"] not in nazwy:
             bledy.append(f"{gra['slug']}: wpis {w['data']} ma obraz spoza galerii: {w['obraz']}")
     return bledy
+
+
+def sekcja_trailera(gra: dict, jezyk: str) -> str:
+    """Miejsce na zwiastun: sekcja pojawia się dopiero, gdy w danych jest pole trailer.
+
+    {"mp4": "img/gry/<slug>/zwiastun.mp4", "plakat": "img/gry/<slug>/zwiastun.jpg", "ai": true}  plik z tej domeny, albo
+    {"youtube": "<id filmu>", "plakat": "img/gry/<slug>/zwiastun.jpg"}  YouTube wczytywany dopiero po kliknięciu
+    (youtube-nocookie.com), więc samo wejście na stronę nie łączy się z Google.
+    """
+    tr = gra.get("trailer")
+    if not tr:
+        return ""
+    t = gra["teksty"][jezyk]
+    plakat = "/" + tr["plakat"]
+    znaczek = f' <span class="znaczek-ai">{e(t["ai_znaczek"])}</span>' if tr.get("ai", True) else ""
+    if tr.get("mp4"):
+        film = (f'<video class="wideo" controls preload="none" poster="{e(plakat)}" width="1280" height="720">'
+                f'<source src="/{e(tr["mp4"])}" type="video/mp4"></video>')
+    else:
+        yt = e(tr["youtube"])
+        film = (f'<a class="wideo wideo-yt" href="https://www.youtube.com/watch?v={yt}" data-yt="{yt}">'
+                f'<img src="{e(plakat)}" alt="{e(t["wideo_tytul"])}" width="1280" height="720" loading="lazy">'
+                f'<span class="wideo-play">▶ {e(t["wideo_youtube"])}</span></a>'
+                f'<p class="cichy">{e(t["wideo_zgoda"])}</p>'
+                '<script>document.querySelectorAll(".wideo-yt").forEach(function(a){a.addEventListener("click",'
+                'function(ev){ev.preventDefault();var f=document.createElement("iframe");'
+                'f.src="https://www.youtube-nocookie.com/embed/"+encodeURIComponent(a.dataset.yt)+"?autoplay=1&rel=0";'
+                'f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";f.allowFullscreen=true;'
+                'f.title=a.querySelector("img").alt;f.className="wideo";a.replaceWith(f);});});</script>')
+    return (f'<section id="zwiastun"><div class="wrap">\n  <h2>{e(t["wideo_tytul"])}</h2>\n'
+            f'  <p>{e(t["wideo_opis"])}{znaczek}</p>\n'
+            f'  {film}\n</div></section>\n')
+
+
+def filary(gra: dict, jezyk: str) -> str:
+    t = gra["teksty"][jezyk]
+    if not t.get("filary"):
+        return ""
+    gal = {z["plik"]: z for z in gra["galeria"]}
+    karty = []
+    for tytul, nazwa, tekst in t["filary"]:
+        z = gal[nazwa]
+        karty.append(
+            f'<li><img src="/{obraz(nazwa, gra, maly=True)}" alt="{e(z["opis"][jezyk])}" width="800" height="450">'
+            f'<div><h3>{e(tytul)}</h3><p>{e(tekst)}</p>'
+            f'<span class="znaczek-ai">{e(t["ai_znaczek"])}</span></div></li>')
+    return (f'<section id="filary" class="filary"><div class="wrap">\n'
+            f'  <h2 class="ukryty">{e(t["filary_tytul"])}</h2>\n'
+            f'  <ol>{"".join(karty)}</ol>\n'
+            f'</div></section>\n')
 
 
 def obraz(nazwa: str, gra: dict, maly: bool = False) -> str:
@@ -174,7 +237,10 @@ def pasek(gra: dict, jezyk: str, druga: str, kotwice: bool = True) -> str:
     t = gra["teksty"][jezyk]
     glowna = "/" + sc(jezyk, "gra", gra)
     ids = ["o-grze", "mechaniki", "galeria", "etap", "dziennik", "testy"]
-    pozycje = "".join(f'<a href="{"" if kotwice else glowna}#{i}">{e(n)}</a>' for i, n in zip(ids, t["menu"]))
+    menu = list(zip(ids, t["menu"]))
+    if gra.get("trailer"):
+        menu.insert(1, ("zwiastun", t["wideo_tytul"]))
+    pozycje = "".join(f'<a href="{"" if kotwice else glowna}#{i}">{e(n)}</a>' for i, n in menu)
     wszystkie = "/gry/"
     return (f'<header class="pasek"><div class="wrap">'
             f'<a class="logo" href="{glowna}">{e(gra["nazwa"])}</a>'
@@ -274,12 +340,13 @@ def strona_gry(gra: dict, jezyk: str, blok_stat: str, kampania: str | None = Non
   <img src="/{e(n["plik"])}" alt="{e(n["opis"][jezyk])}" width="{n["szerokosc"]}" height="{n["wysokosc"]}">
   <div class="wrap">
     <h1>{e(gra["nazwa"])}{tytul_roboczy}</h1>
-    <p class="podtytul">{e(t["podtytul"])}</p>
+    <p class="haslo">{e(t.get("haslo") or t["podtytul"])}</p>
+    {f'<p class="lead">{e(t["lead"])}</p>' if t.get("lead") else ""}
     <p class="status">{e(t["status"])}</p>
     <div class="przyciski"><a class="przycisk" href="{testy}">{e(t["zgloszenie_przycisk"])}</a>{steam}</div>
   </div>
 </section>
-
+{filary(gra, jezyk)}{sekcja_trailera(gra, jezyk)}
 <section id="o-grze"><div class="wrap waski">
   {opis}
   <p class="cichy">{e(t["nazwa_uwaga"])}</p>
