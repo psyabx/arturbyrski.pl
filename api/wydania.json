@@ -6,6 +6,44 @@
   "language": "pl",
   "items": [
     {
+      "id": "szlafmyce-1.2.0-151",
+      "url": "https://arturbyrski.pl/gry/szlafmyce/#v1.2.0-151",
+      "title": "Szlafmyce 1.2.0",
+      "content_text": "• Gra we dwoje: każdy gracz ma swój kolor i duży numer 1 albo 2 nad głową, świecącą obręcz i ramkę swojej połowy ekranu. Nikt się już nie zgubi w tłumie.\n• Nowy sen: Sen Misia, czyli zjazd na sankach. Im dłużej jedziesz bez zderzenia, tym szybciej, a bramki z chorągiewek dodają rozpędu. Uwaga na choinki!\n• Nowy sen: Sen Zeszytu, czyli wyścig papierowych samolotów. Palcem w górę i w dół wybierasz wysokość i lecisz przez świecące obręcze.",
+      "date_published": "2026-11-22T12:00:00+00:00",
+      "image": "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
+      "tags": [
+        "szlafmyce",
+        "production"
+      ],
+      "_wydanie": {
+        "gra": "szlafmyce",
+        "wersja": "1.2.0",
+        "kod": 151,
+        "sciezka": "production",
+        "publiczne": true,
+        "notatki": {
+          "pl": [
+            "Gra we dwoje: każdy gracz ma swój kolor i duży numer 1 albo 2 nad głową, świecącą obręcz i ramkę swojej połowy ekranu. Nikt się już nie zgubi w tłumie.",
+            "Nowy sen: Sen Misia, czyli zjazd na sankach. Im dłużej jedziesz bez zderzenia, tym szybciej, a bramki z chorągiewek dodają rozpędu. Uwaga na choinki!",
+            "Nowy sen: Sen Zeszytu, czyli wyścig papierowych samolotów. Palcem w górę i w dół wybierasz wysokość i lecisz przez świecące obręcze."
+          ],
+          "en": [
+            "Playing together: each player has their own colour and a big number 1 or 2 above their head, a glowing ring and a frame around their half of the screen. Nobody gets lost in the crowd any more.",
+            "New dream: The Bear's Dream, a sledding race. The longer you ride without bumping into anything, the faster you go, and flag gates give you a boost. Watch out for the trees!",
+            "New dream: The Notebook's Dream, a paper plane race. Slide your finger up and down to choose your height and fly through glowing rings."
+          ]
+        },
+        "zrzuty": [
+          "https://arturbyrski.pl/img/gry/szlafmyce/1-razem.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/2-zjazd.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/3-lot.jpg",
+          "https://arturbyrski.pl/img/gry/szlafmyce/4-woda.jpg"
+        ],
+        "google_play": "https://play.google.com/store/apps/details?id=com.psyabx.pizamersi&utm_source=arturbyrski.pl&utm_medium=strona&utm_campaign=wydania"
+      }
+    },
+    {
       "id": "szlafmyce-1.1.0-148",
       "url": "https://arturbyrski.pl/gry/szlafmyce/#v1.1.0-148",
       "title": "Szlafmyce 1.1.0",

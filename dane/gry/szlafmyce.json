@@ -66,6 +66,24 @@
   ],
   "wydania": [
     {
+      "wersja": "1.2.0",
+      "kod": 151,
+      "data": "2026-11-22",
+      "sciezka": "production",
+      "notatki": {
+        "pl": [
+          "Gra we dwoje: każdy gracz ma swój kolor i duży numer 1 albo 2 nad głową, świecącą obręcz i ramkę swojej połowy ekranu. Nikt się już nie zgubi w tłumie.",
+          "Nowy sen: Sen Misia, czyli zjazd na sankach. Im dłużej jedziesz bez zderzenia, tym szybciej, a bramki z chorągiewek dodają rozpędu. Uwaga na choinki!",
+          "Nowy sen: Sen Zeszytu, czyli wyścig papierowych samolotów. Palcem w górę i w dół wybierasz wysokość i lecisz przez świecące obręcze."
+        ],
+        "en": [
+          "Playing together: each player has their own colour and a big number 1 or 2 above their head, a glowing ring and a frame around their half of the screen. Nobody gets lost in the crowd any more.",
+          "New dream: The Bear's Dream, a sledding race. The longer you ride without bumping into anything, the faster you go, and flag gates give you a boost. Watch out for the trees!",
+          "New dream: The Notebook's Dream, a paper plane race. Slide your finger up and down to choose your height and fly through glowing rings."
+        ]
+      }
+    },
+    {
       "wersja": "1.1.0",
       "kod": 148,
       "data": "2026-11-17",
