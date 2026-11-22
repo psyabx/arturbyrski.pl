@@ -95,7 +95,7 @@
       "filary": [
         [
           "Łowienie na muchę",
-          "skawa-po-rzucie",
+          "wedkarz-w-rzece",
           "Sucha mucha i krótka nimfa na odcinkach wzorowanych na prawdziwej Skawie i Sanie. Brodzisz, czytasz wodę i holujesz ryby, które widzą wędkarza i jego cień."
         ],
         [
@@ -187,7 +187,7 @@
       "filary": [
         [
           "Fly Fishing",
-          "skawa-po-rzucie",
+          "wedkarz-w-rzece",
           "Dry flies and short-line nymphing on waters modelled on the real Skawa and San rivers. Wade, read the water and play fish that can see the angler and their shadow."
         ],
         [
@@ -209,9 +209,27 @@
   },
   "galeria": [
     {
+      "plik": "wedkarz-w-rzece",
+      "ai": true,
+      "data": "2026-11-22",
+      "opis": {
+        "pl": "Skawa: wędkarz brodzi przy kamieniu, w wodzie odbijają się drzewa",
+        "en": "The Skawa: the angler wades beside a boulder, trees mirrored in the water"
+      }
+    },
+    {
+      "plik": "zdjecie-ryby",
+      "ai": true,
+      "data": "2026-11-22",
+      "opis": {
+        "pl": "Zdjęcie pstrąga do notatnika",
+        "en": "A trout photo for the notebook"
+      }
+    },
+    {
       "plik": "sklep",
       "ai": true,
-      "data": "2026-11-20",
+      "data": "2026-11-22",
       "opis": {
         "pl": "Sklep: klient pyta o muchę, towar w działach",
         "en": "The shop: a customer asks for a fly, stock sorted into sections"
@@ -227,39 +245,57 @@
       }
     },
     {
+      "plik": "kamienie-w-nurcie",
+      "ai": true,
+      "data": "2026-11-22",
+      "opis": {
+        "pl": "Kamienie w nurcie: woda opływa je i odsłania dno z otoczaków",
+        "en": "Boulders in the current: water wraps around them over a cobbled riverbed"
+      }
+    },
+    {
+      "plik": "san-bachlawa",
+      "ai": true,
+      "data": "2026-11-22",
+      "opis": {
+        "pl": "San, Bachlawa od ławeczki: rzut na tle gór",
+        "en": "The San, Bachlawa stretch by the bench: a cast against the hills"
+      }
+    },
+    {
       "plik": "skawa-po-rzucie",
       "ai": true,
-      "data": "2026-11-19",
+      "data": "2026-11-22",
       "opis": {
         "pl": "Skawa w Witanowicach: sucha mucha po rzucie",
         "en": "The Skawa at Witanowice: a dry fly after the cast"
       }
     },
     {
-      "plik": "krotka-nimfa",
+      "plik": "hol",
       "ai": true,
-      "data": "2026-11-19",
+      "data": "2026-11-22",
       "opis": {
-        "pl": "Krótka nimfa: wędkarz w wodzie prowadzi zestaw",
-        "en": "Short-line nymphing: the angler wades and leads the rig"
+        "pl": "San: hol pstrąga",
+        "en": "The San: playing a trout"
       }
     },
     {
-      "plik": "san-bachlawa",
+      "plik": "rzut-petla",
       "ai": true,
-      "data": "2026-11-21",
+      "data": "2026-11-22",
       "opis": {
-        "pl": "San, Bachlawa od ławeczki",
-        "en": "The San, Bachlawa stretch by the bench"
+        "pl": "Skawa: pętla sznura w locie",
+        "en": "The Skawa: the fly line loop in the air"
       }
     },
     {
-      "plik": "wierzby",
+      "plik": "san-brodzenie",
       "ai": true,
-      "data": "2026-11-18",
+      "data": "2026-11-22",
       "opis": {
-        "pl": "Wierzby nad brzegiem i brodzenie",
-        "en": "Willows on the bank and wading"
+        "pl": "San: brodzenie na szerokiej wodzie",
+        "en": "The San: wading wide water"
       }
     },
     {
@@ -269,15 +305,6 @@
       "opis": {
         "pl": "Głowacica w podbieraku",
         "en": "A huchen in the landing net"
-      }
-    },
-    {
-      "plik": "zdjecie-ryby",
-      "ai": true,
-      "data": "2026-11-18",
-      "opis": {
-        "pl": "Zdjęcie pstrąga do notatnika",
-        "en": "A trout photo for the notebook"
       }
     },
     {
@@ -317,7 +344,7 @@
     },
     {
       "data": "2026-11-19",
-      "obraz": "krotka-nimfa",
+      "obraz": "wedkarz-w-rzece",
       "tytul": {
         "pl": "Krótka nimfa i wybór warunków",
         "en": "Short-line nymphing and conditions"
