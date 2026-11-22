@@ -148,6 +148,7 @@ footer a { color: var(--ciemne-tekst); }
 .filary h3 { font: 700 1.4rem "Alegreya SC", "Alegreya", Georgia, serif; margin: 0 0 6px; }
 .filary p { margin: 0 0 10px; }
 .filary .znaczek-ai { border-color: #e09a63; color: #e09a63; }
+.filary-ai { margin: 14px 0 0; }
 section.naglowek + section.filary { border-top: 0; }
 
 /* Zwiastun: pojawia się dopiero po dodaniu filmu w danych. */

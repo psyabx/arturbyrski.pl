@@ -69,7 +69,7 @@ def wczytaj_gry_pc() -> list[dict]:
     gry = []
     for plik in sorted(DANE_PC.glob("*.json")):
         g = json.loads(plik.read_text(encoding="utf-8"))
-        g["_plik"] = str(plik.relative_to(KORZEN))
+        g["_plik"] = plik.relative_to(KORZEN).as_posix()   # ukośniki także na Windows: plik wynikowy ma być taki sam w każdym systemie
         gry.append(g)
     return gry
 
@@ -139,17 +139,27 @@ def filary(gra: dict, jezyk: str) -> str:
     if not t.get("filary"):
         return ""
     gal = {z["plik"]: z for z in gra["galeria"]}
+    wspolny = wszystkie_ai(gra)
+    znaczek = f'<span class="znaczek-ai">{e(t["ai_znaczek"])}</span>'
+    wspolny_znaczek = f'  <p class="filary-ai">{znaczek}</p>\n' if wspolny else ""
     karty = []
     for tytul, nazwa, tekst in t["filary"]:
         z = gal[nazwa]
         karty.append(
             f'<li><img src="/{obraz(nazwa, gra, maly=True)}" alt="{e(z["opis"][jezyk])}" width="800" height="450">'
             f'<div><h3>{e(tytul)}</h3><p>{e(tekst)}</p>'
-            f'<span class="znaczek-ai">{e(t["ai_znaczek"])}</span></div></li>')
+            f'{znaczek if z.get("ai") and not wspolny else ""}</div></li>')
     return (f'<section id="filary" class="filary"><div class="wrap">\n'
             f'  <h2 class="ukryty">{e(t["filary_tytul"])}</h2>\n'
             f'  <ol>{"".join(karty)}</ol>\n'
+            f'{wspolny_znaczek}'
             f'</div></section>\n')
+
+
+def wszystkie_ai(gra: dict) -> bool:
+    """Gdy każdy zrzut ma tymczasową grafikę AI, strona pokazuje jeden wspólny znaczek przy filarach i uwagę
+    nad galerią, zamiast znaczka pod każdym obrazem. W galerii mieszanej znaczek dostaje każdy zrzut z AI."""
+    return all(z.get("ai") for z in gra["galeria"])
 
 
 def obraz(nazwa: str, gra: dict, maly: bool = False) -> str:
@@ -299,7 +309,8 @@ def strona_gry(gra: dict, jezyk: str, blok_stat: str, kampania: str | None = Non
     w_pracy = "".join(f"<li>{e(x)}</li>" for x in t["w_pracy"])
     kafle = []
     for z in gra["galeria"]:
-        znaczek = f'<span class="znaczek-ai">{e(t["ai_znaczek"])}</span>' if z.get("ai") else ""
+        znaczek = (f'<span class="znaczek-ai">{e(t["ai_znaczek"])}</span>'
+                   if z.get("ai") and not wszystkie_ai(gra) else "")
         kafle.append(
             f'<figure><a href="/{obraz(z["plik"], gra)}">'
             f'<img src="/{obraz(z["plik"], gra, maly=True)}" alt="{e(z["opis"][jezyk])}" '

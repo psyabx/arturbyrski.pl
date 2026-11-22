@@ -100,7 +100,8 @@ Te gry nie trafiają do kart na stronie głównej, do `api/*.json` ani do `feed.
 | `/gry/` | | wszystkie gry: dla dzieci i na PC |
 
 Zasady treści: tylko to, co działa w wersji testowej; plany w osobnej liście „W pracy”. Zrzuty z tymczasową
-grafiką AI mają w danych `"ai": true` i na stronie znaczek „tymczasowa grafika AI”. Dziennik piszemy dla gracza
+grafiką AI mają w danych `"ai": true`. Gdy mają to wszystkie zrzuty, strona pokazuje jeden znaczek
+„tymczasowa grafika AI” przy filarach i uwagę nad galerią; w galerii mieszanej znaczek dostaje każdy zrzut z AI. Dziennik piszemy dla gracza
 (co nowego można robić w grze), nie dla programisty. Postacie opisujemy tylko jako inspirowane prawdziwymi
 wędkarzami, bez imion i danych osobowych.
 
