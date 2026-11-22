@@ -107,6 +107,12 @@ wędkarzami, bez imion i danych osobowych.
 **Steam:** gdy gra będzie miała stronę w sklepie, wpisz numer aplikacji w `steam_app_id`. Przycisk pojawi
 się wtedy sam, z UTM `utm_campaign=rfs-strona-gry` (EN: `rfs-strona-gry-en`). Przy `null` nie ma żadnego przycisku.
 
+**Zwiastun:** sekcja „Zwiastun / Trailer” pojawia się (razem z pozycją w menu) dopiero po wpisaniu pola `trailer`:
+`{"mp4": "img/gry/river-fly-shop/zwiastun.mp4", "plakat": "img/gry/river-fly-shop/zwiastun.jpg"}` (plik z tej domeny,
+GitHub Pages przyjmuje pliki do 100 MB) albo `{"youtube": "<id filmu>", "plakat": "img/gry/river-fly-shop/zwiastun.jpg"}`.
+YouTube wczytuje się dopiero po kliknięciu, z youtube-nocookie.com, więc samo wejście na stronę nie łączy się z Google.
+Plakat jest obowiązkowy i lokalny. Film ze zrzutami gry ma domyślnie znaczek „tymczasowa grafika AI” (`"ai": false` go wyłącza).
+
 **Zgłoszenia:** przycisk otwiera e-mail z tematem „River Fly Shop – testy” (EN: „River Fly Shop – playtest”).
 W Gmailu warto ustawić filtr na oba tematy z jedną etykietą, żeby policzyć zgłoszenia.
 
