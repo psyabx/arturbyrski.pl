@@ -227,6 +227,51 @@ ol.cwiczenie li::before { content: counter(nr) ". "; color: var(--cichy); font-s
   details[open] summary ~ * { display: block; }
 }
 
+/* Strona dla nauczycieli (gry/ortopotwory/dla-nauczycieli/) */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.sr-only-focus:focus { position: fixed; left: 12px; top: 12px; width: auto; height: auto; margin: 0; clip: auto; z-index: 10; background: var(--karta); color: var(--tekst); padding: 8px 14px; border-radius: 10px; }
+.niebo .okruszki, .niebo .okruszki a { color: #ddd4ff; }
+.media { margin: 0; }
+.media video, .media img { width: 100%; height: auto; border-radius: 18px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35); display: block; background: #000; }
+.media figcaption { font-size: 15px; color: #ddd4ff; margin-top: 10px; }
+.zrzuty-male { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 760px) { .zrzuty-male { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ramka-info { background: var(--karta); border: 1px solid var(--linia); border-left: 6px solid var(--akcent); border-radius: 16px; padding: 14px 18px; margin: 20px 0 0; box-shadow: var(--cien); }
+ol.kroki { padding-left: 24px; margin: 8px 0 0; }
+ol.kroki li { margin: 6px 0; color: #ddd4ff; }
+.kontakt h2 { color: var(--noc-tekst); }
+.formularz { background: var(--karta); border: 1px solid var(--linia); border-radius: 24px; padding: 24px; box-shadow: var(--cien); margin-top: 16px; }
+.formularz > fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.formularz > fieldset[disabled] { opacity: 0.55; }
+.pole { margin: 0 0 18px; border: 0; padding: 0; }
+.pole > label, .pole > legend { display: block; font-weight: 600; margin-bottom: 6px; }
+.pole input[type="text"], .pole input[type="email"], .pole select, .pole textarea {
+  width: 100%; font: inherit; font-size: 17px; color: var(--tekst); background: var(--tlo);
+  border: 2px solid var(--linia); border-radius: 12px; padding: 10px 12px;
+}
+.pole textarea { resize: vertical; }
+.pole input:focus-visible, .pole select:focus-visible, .pole textarea:focus-visible, .wybor input:focus-visible, .pole-zgoda input:focus-visible { outline: 3px solid var(--akcent); outline-offset: 2px; }
+.pole [aria-invalid="true"] { border-color: var(--roz); }
+.pomoc { margin: 0 0 6px; font-size: 15px; color: var(--cichy); }
+.wymagane { font-weight: 400; font-size: 15px; color: var(--roz); }
+.blad-pola { margin: 6px 0 0; font-size: 15px; color: var(--roz); font-weight: 600; }
+.pole-zgoda { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; }
+.pole-zgoda input { width: 22px; height: 22px; margin-top: 4px; }
+.pole-zgoda label { font-weight: 400; }
+.pole-zgoda .blad-pola { grid-column: 1 / -1; }
+.wybory { display: flex; flex-wrap: wrap; gap: 8px; }
+.wybor { display: inline-flex; align-items: center; gap: 6px; background: var(--tlo); border: 2px solid var(--linia); border-radius: 999px; padding: 6px 14px; cursor: pointer; font-size: 16px; font-weight: 400; }
+.wybor:has(input:checked) { border-color: var(--akcent); }
+.pulapka { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.komunikat { margin: 14px 0 0; font-weight: 600; }
+.komunikat:empty { display: none; }
+.komunikat.ok { background: #d8f4ee; color: #0f4d42; border-radius: 12px; padding: 12px 16px; }
+.komunikat.blad, .komunikat.blad-lokalny { background: #ffe1e8; color: #7a1030; border-radius: 12px; padding: 12px 16px; }
+details.rodo { margin: 0 0 18px; font-size: 16px; }
+details.rodo li, details.rodo p { color: var(--cichy); }
+.maly { font-size: 15px; }
+button.przycisk[disabled] { opacity: 0.6; cursor: wait; }
+
 /* Karta gry dla dorosłych (River Fly Shop) pod grami dla dzieci: wyraźnie oddzielona, bez obrazka. */
 .inny-projekt {
   margin-top: 28px;

@@ -179,6 +179,12 @@
     "Gwiazdki są za dokładność, nie za szybkość. Ozdoby kupuje się za gwiazdki, bez prawdziwych pieniędzy i bez losowania.",
     "Detektyw ma tylko imię, bez nazwiska i zdjęcia. Akta sprawy dla starszych dzieci (10–12 lat) uczą uzasadniać pisownię regułą."
   ],
+  "wspolpraca": {
+    "tytul": "Dla nauczycieli i terapeutów",
+    "tekst": "Pracujesz z dziećmi w szkole albo w gabinecie? Bezpłatnie udostępniamy pełną wersję nauczycielom i terapeutom pedagogicznym, którzy zechcą przetestować grę i podzielić się szczerą opinią.",
+    "link": "dla-nauczycieli/",
+    "przycisk": "Zobacz stronę dla nauczycieli"
+  },
   "wydania": [],
   "korzysci_tytul": "Dla rodzica w skrócie",
   "korzysci": [

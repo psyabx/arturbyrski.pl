@@ -28,6 +28,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Testy skryptu formularzy
+        run: node narzedzia/apps-script/test_formularze.js
+
       - name: Wygeneruj stronę
         run: python3 narzedzia/strona.py zbuduj
 

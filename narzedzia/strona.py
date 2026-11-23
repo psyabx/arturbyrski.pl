@@ -336,13 +336,20 @@ def strona_gry(gra: dict) -> str:
             f'<figure><img src="{g}{e(z["plik"])}" alt="{e(z["opis"]["pl"])}" '
             f'width="{z.get("szerokosc", 1280)}" height="{z.get("wysokosc", 720)}" loading="lazy">'
             f'<figcaption>{e(z["opis"]["pl"])}</figcaption></figure>' for z in gra["zrzuty"])
-        czesci.append(f'<section><div class="wrap"><h2>Tak to wygląda</h2><div class="zrzuty">{figury}</div></div></section>')
+        czesci.append(f'<section id="ekrany"><div class="wrap"><h2>Tak to wygląda</h2><div class="zrzuty">{figury}</div></div></section>')
 
     if gra.get("dla_rodzicow"):
         polityka = (f'<p><a href="{g}{e(gra["polityka"])}">Polityka prywatności gry {e(gra["nazwa"])}</a></p>'
                     if gra.get("polityka") else "")
         czesci.append(f'<section id="rodzice"><div class="wrap waski"><h2>Dla rodziców</h2>'
                       f'{lista_notatek(gra["dla_rodzicow"])}{polityka}</div></section>')
+
+    w = gra.get("wspolpraca")
+    if w:
+        czesci.append(f'<section id="wspolpraca"><div class="wrap waski"><div class="kontakt">'
+                      f'<h2>{e(w["tytul"])}</h2><p>{e(w["tekst"])}</p>'
+                      f'<div class="przyciski"><a class="przycisk" href="{e(w["link"])}">{e(w["przycisk"])}</a></div>'
+                      f'</div></div></section>')
 
     if gra.get("cena"):
         czesci.append(f'<section id="cena"><div class="wrap waski"><h2>Ile to kosztuje</h2>'
@@ -624,6 +631,239 @@ def strona_szkielet(g: str, url: str, tytul: str, opis: str, tytul_og: str, dane
 """
 
 
+# ---------- strona dla nauczycieli i terapeutów ----------
+
+PLIK_NAUCZYCIELE = KORZEN / "dane" / "nauczyciele.json"
+ADRES_FORMULARZA = re.compile(r"^https://script\.google\.com/macros/s/[A-Za-z0-9_-]+/exec$")
+
+
+def wczytaj_nauczycieli() -> dict | None:
+    if not PLIK_NAUCZYCIELE.exists():
+        return None
+    n = json.loads(PLIK_NAUCZYCIELE.read_text(encoding="utf-8"))
+    url = n.get("formularz_url", "")
+    if url and not ADRES_FORMULARZA.match(url):
+        sys.exit("dane/nauczyciele.json: formularz_url musi mieć postać "
+                 "https://script.google.com/macros/s/<id>/exec (albo być pusty)")
+    if n.get("wideo") and not (KORZEN / n["wideo"]).is_file():
+        sys.exit(f"dane/nauczyciele.json: brak pliku wideo {n['wideo']}")
+    return n
+
+
+def kafelki_html(lista: list[dict]) -> str:
+    wynik = []
+    for c in lista:
+        ikona = c["ikona"]
+        klasa = " tekst" if re.fullmatch(r"[a-ząćęłńóśźż/]+", ikona) else ""
+        wynik.append(f'<div class="kafel"><div class="ikona {e(c.get("kolor", ""))}{klasa}" aria-hidden="true">{e(ikona)}</div>'
+                     f'<h3>{e(c["tytul"])}</h3><p>{e(c["opis"])}</p></div>')
+    return "".join(wynik)
+
+
+def pole(id_: str, etykieta: str, kontrolka: str, wymagane: bool = False, pomoc: str = "") -> str:
+    """Pole formularza: etykieta, kontrolka, opcjonalna pomoc i miejsce na komunikat błędu."""
+    gw = ' <span class="wymagane">(wymagane)</span>' if wymagane else ' <span class="cichy">(opcjonalnie)</span>'
+    pom = f'<p class="pomoc" id="{id_}-pomoc">{e(pomoc)}</p>' if pomoc else ""
+    return (f'<div class="pole"><label for="{id_}">{e(etykieta)}{gw}</label>{pom}{kontrolka}'
+            f'<p class="blad-pola" id="{id_}-blad" hidden></p></div>')
+
+
+def ukryte_pola(typ: str) -> str:
+    """Pola wspólne: typ formularza, źródło (UTM) i pułapka na boty (ukryta przed ludźmi)."""
+    utm = "".join(f'<input type="hidden" name="{k}" value="">' for k in
+                  ("utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "odsylacz"))
+    return (f'<input type="hidden" name="typ" value="{typ}">{utm}'
+            '<div class="pulapka" aria-hidden="true"><label>Strona www (zostaw puste)'
+            '<input type="text" name="strona_www" tabindex="-1" autocomplete="off"></label></div>')
+
+
+def strona_nauczycieli(n: dict, gra: dict) -> str:
+    g = "../../../"
+    url = adres(n["sciezka"])
+    aktywny = bool(n.get("formularz_url"))
+    kontakt = n["kontakt"]
+    sklep = link_sklepu(gra, "nauczyciele")
+    play = (f'<a class="przycisk jasny" href="{e(sklep)}" data-zdarzenie="klik_play">Zobacz w Google Play</a>'
+            if sklep else "")
+    czesci = []
+
+    # A. Prezentacja gry
+    if n.get("wideo"):
+        media = (f'<video controls preload="none" playsinline poster="{g}{e(gra["okladka"])}" '
+                 f'width="1280" height="720"><source src="{g}{e(n["wideo"])}" type="video/mp4">'
+                 f'</video>')
+        podpis = "Nagranie rozgrywki"
+    else:
+        media = (f'<img src="{g}{e(gra["okladka"])}" alt="{e(pelna_nazwa(gra))}: grafika gry" '
+                 f'width="1280" height="720">')
+        podpis = "Nagranie rozgrywki pojawi się tu wkrótce. Do tego czasu poniżej prawdziwe ekrany z gry."
+    znaczki = "".join(f"<li>{e(t)}</li>" for t in n["znaczki"])
+    czesci.append(
+        f'<section class="niebo"><div class="gwiazdy" aria-hidden="true">{GWIAZDY}</div>'
+        f'<div class="ksiezyc" aria-hidden="true"></div>'
+        f'<div class="wrap niebo-tresc"><div>'
+        f'<p class="okruszki"><a href="{g}index.html">Senne gry Artura</a> › <a href="../">{e(gra["nazwa"])}</a></p>'
+        f'<h1>{e(n["tytul"])}</h1>'
+        f'<p class="lead">{e(n["podtytul"])}</p>'
+        f'<p>{e(n["wstep"])}</p>'
+        f'<ul class="znaczki">{znaczki}</ul>'
+        f'<div class="przyciski"><a class="przycisk" href="#zgloszenie" data-zdarzenie="klik_zglos">'
+        f'Zgłoś się do bezpłatnych testów</a>{play}</div>'
+        f'</div><figure class="media">{media}<figcaption>{e(podpis)}</figcaption></figure></div></section>')
+
+    if gra.get("zrzuty"):
+        wybrane = gra["zrzuty"][:4]
+        figury = "".join(
+            f'<figure><img src="{g}{e(z["plik"])}" alt="{e(z["opis"]["pl"])}" '
+            f'width="{z.get("szerokosc", 300)}" height="{z.get("wysokosc", 533)}" loading="lazy">'
+            f'<figcaption>{e(z["opis"]["pl"])}</figcaption></figure>' for z in wybrane)
+        czesci.append(f'<section aria-labelledby="ekrany"><div class="wrap"><h2 id="ekrany">Ekrany z gry</h2>'
+                      f'<div class="zrzuty zrzuty-male">{figury}</div>'
+                      f'<p><a href="../#ekrany">Więcej ekranów na stronie gry</a></p></div></section>')
+
+    # B. Zakres ćwiczeń
+    czesci.append(
+        f'<section id="zakres"><div class="wrap"><h2>{e(n["zakres_tytul"])}</h2>'
+        f'<p class="lead">{e(n["zakres_wstep"])}</p>'
+        f'<div class="kafelki">{kafelki_html(n["zakres"])}</div>'
+        f'<p class="ramka-info"><strong>Wyjaśnienia po odpowiedzi.</strong> {e(n["wyjasnienia"])}</p>'
+        f'</div></section>')
+
+    # C. Dla kogo
+    czesci.append(
+        f'<section id="dla-kogo"><div class="wrap"><h2>{e(n["zastosowania_tytul"])}</h2>'
+        f'<div class="kafelki">{kafelki_html(n["zastosowania"])}</div>'
+        f'<p class="ramka-info"><strong>Ważne.</strong> {e(n["zastrzezenie"])}</p>'
+        f'</div></section>')
+
+    # D. Prywatność
+    polityka = (f'<p><a href="{g}{e(gra["polityka"])}">Polityka prywatności gry {e(gra["nazwa"])}</a></p>'
+                if gra.get("polityka") else "")
+    czesci.append(
+        f'<section id="prywatnosc"><div class="wrap"><h2>{e(n["prywatnosc_tytul"])}</h2>'
+        f'<div class="kafelki">{kafelki_html(n["prywatnosc"])}</div>{polityka}</div></section>')
+
+    # E. Zaproszenie
+    kroki = "".join(f"<li>{e(k)}</li>" for k in n["testy_kroki"])
+    czesci.append(
+        f'<section id="testy"><div class="wrap waski"><div class="kontakt">'
+        f'<h2>{e(n["testy_tytul"])}</h2><p>{e(n["testy_tekst"])}</p>'
+        f'<p><strong>{e(n["testy_czas"])}</strong></p><ol class="kroki">{kroki}</ol>'
+        f'</div></div></section>')
+
+    # F. Zgłoszenie
+    rodo = n["rodo"]
+    mail = f'<a href="mailto:{e(kontakt)}">{e(kontakt)}</a>'
+    informacja = (f'<details class="rodo"><summary>Informacja o przetwarzaniu danych</summary>'
+                  f'<p>Administrator danych: {e(rodo["administrator"])}. Kontakt w sprawie danych: {mail}.</p>'
+                  f'<ul class="lista">{"".join(f"<li>{e(x)}</li>" for x in rodo["zgloszenie"])}</ul>'
+                  f'<p>{e(rodo["prawa"])}</p></details>')
+    role = "".join(f'<option value="{e(r)}">{e(r[0].upper() + r[1:])}</option>' for r in n["role"])
+    wylaczony = "" if aktywny else " disabled"
+    brak = ("" if aktywny else
+            f'<p class="komunikat blad" role="status">Formularz jeszcze nie działa. '
+            f'Do czasu uruchomienia napisz, proszę, na {mail}.</p>')
+    zgl = (
+        f'<form class="formularz" id="formularz-zgloszenie" novalidate data-formularz="zgloszenie"'
+        f' data-sukces="Dziękujemy! Zgłoszenie dotarło. Odpiszemy e-mailem z kodem do pełnej wersji.">'
+        f'<fieldset{wylaczony}>'
+        f'<legend class="sr-only">Zgłoszenie do testów</legend>'
+        + pole("zg-imie", "Imię", '<input id="zg-imie" name="imie" type="text" autocomplete="given-name" maxlength="60" required aria-describedby="zg-imie-blad">', True)
+        + pole("zg-email", "Adres e-mail", '<input id="zg-email" name="email" type="email" autocomplete="email" maxlength="120" required aria-describedby="zg-email-blad">', True)
+        + pole("zg-rola", "Rola", f'<select id="zg-rola" name="rola" aria-describedby="zg-rola-blad"><option value="">Wybierz…</option>{role}</select>')
+        + pole("zg-wiadomosc", "Wiadomość", '<textarea id="zg-wiadomosc" name="wiadomosc" rows="4" maxlength="2000" aria-describedby="zg-wiadomosc-pomoc zg-wiadomosc-blad"></textarea>',
+               pomoc="Np. z jakimi dziećmi pracujesz. Nie podawaj danych dzieci.")
+        + f'<div class="pole pole-zgoda"><input id="zg-zgoda" name="zgoda" type="checkbox" value="tak" required aria-describedby="zg-zgoda-blad">'
+          f'<label for="zg-zgoda">Zgadzam się na kontakt e-mailowy w sprawie testów gry Ortopotwory. <span class="wymagane">(wymagane)</span></label>'
+          f'<p class="blad-pola" id="zg-zgoda-blad" hidden></p></div>'
+        + ukryte_pola("zgloszenie")
+        + informacja
+        + '<div class="przyciski"><button class="przycisk" type="submit">Wyślij zgłoszenie</button></div>'
+        + '<p class="komunikat" role="status" aria-live="polite" tabindex="-1"></p>'
+        + f'</fieldset>{brak}</form>')
+    czesci.append(
+        f'<section id="zgloszenie"><div class="wrap waski"><h2>Zgłoszenie do testów</h2>'
+        f'<p>Wystarczy imię i e-mail. Nie pytamy o telefon, nazwisko, szkołę ani o dane dzieci.</p>'
+        f'{zgl}</div></section>')
+
+    # G. Opinia
+    pytania = []
+    for p in n["pytania"]:
+        opcje = "".join(
+            f'<label class="wybor"><input type="radio" name="{e(p["pole"])}" value="{e(o)}" required> {e(o)}</label>'
+            for o in p["odpowiedzi"])
+        pytania.append(f'<fieldset class="pole pytanie" id="op-{e(p["pole"])}" aria-describedby="op-{e(p["pole"])}-blad">'
+                       f'<legend>{e(p["tekst"])} <span class="wymagane">(wymagane)</span></legend>'
+                       f'<div class="wybory">{opcje}</div>'
+                       f'<p class="blad-pola" id="op-{e(p["pole"])}-blad" hidden></p></fieldset>')
+    op = (
+        f'<form class="formularz" id="formularz-opinia" novalidate data-formularz="opinia"'
+        f' data-sukces="Dziękujemy za opinię! Przeczytamy ją uważnie.">'
+        f'<fieldset{wylaczony}><legend class="sr-only">Opinia po teście</legend>'
+        + pole("op-rola", "Twoja rola", f'<select id="op-rola" name="rola"><option value="">Wybierz…</option>{role}</select>')
+        + "".join(pytania)
+        + pole("op-poprawki", n["pytanie_poprawki"], '<textarea id="op-poprawki" name="poprawki" rows="4" maxlength="3000" required aria-describedby="op-poprawki-blad"></textarea>', True)
+        + pole("op-uwagi", n["pytanie_uwagi"].replace(" (opcjonalnie)", ""), '<textarea id="op-uwagi" name="uwagi" rows="3" maxlength="3000" aria-describedby="op-uwagi-pomoc op-uwagi-blad"></textarea>',
+               pomoc="Nie wpisuj danych dzieci ani innych osób.")
+        + ukryte_pola("opinia")
+        + f'<p class="cichy maly">{e(rodo["opinia"])}</p>'
+        + '<div class="przyciski"><button class="przycisk" type="submit">Wyślij opinię</button></div>'
+        + '<p class="komunikat" role="status" aria-live="polite" tabindex="-1"></p>'
+        + f'</fieldset>{brak}</form>')
+    czesci.append(
+        f'<section id="opinia"><div class="wrap waski"><h2>{e(n["opinia_tytul"])}</h2>'
+        f'<p>{e(n["opinia_wstep"])}</p>{op}</div></section>')
+
+    tresc = "\n".join(czesci)
+    s = n["seo"]
+    dane = [{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": url + "#strona",
+        "url": url,
+        "name": n["tytul"],
+        "description": s["opis"],
+        "inLanguage": "pl",
+        "about": {"@id": adres(f"gry/{gra['slug']}/") + "#gra"},
+        "audience": {"@type": "EducationalAudience", "educationalRole": "teacher"},
+        "publisher": wydawca(),
+    }, {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Senne gry Artura", "item": ADRES + "/"},
+            {"@type": "ListItem", "position": 2, "name": pelna_nazwa(gra), "item": adres(f"gry/{gra['slug']}/")},
+            {"@type": "ListItem", "position": 3, "name": "Dla nauczycieli i terapeutów", "item": url},
+        ],
+    }]
+    endpoint = e(n.get("formularz_url", ""))
+    return f"""<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{e(s["tytul"])}</title>
+<meta name="description" content="{e(s["opis"])}">
+{meta_udostepniania(url, n["tytul"], s["opis"], adres(gra["okladka"]) if gra.get("okladka") else "")}
+{jsonld(dane)}
+<link rel="icon" href="{g}ikona.svg" type="image/svg+xml">
+<link rel="stylesheet" href="{g}styl.css">
+<script defer src="{g}skrypty/formularze.js"></script>
+</head>
+<body data-formularz-url="{endpoint}">
+<!-- Plik wygenerowany przez narzedzia/strona.py z dane/nauczyciele.json. Nie edytuj ręcznie. -->
+<a class="sr-only sr-only-focus" href="#tresc">Przejdź do treści</a>
+{pasek(g, en=False)}
+<main id="tresc">
+{tresc}
+</main>
+{stopka(rok(gra), g, gra.get("polityka") or "polityka-prywatnosci.html")}
+{statystyki()}
+</body>
+</html>
+"""
+
+
 # ---------- dane dla automatów ----------
 
 def wpisy_wydan(gry: list[dict]) -> list[tuple[dict, dict]]:
@@ -763,6 +1003,14 @@ def zbuduj() -> None:
             (orto / p["slug"]).mkdir(parents=True, exist_ok=True)
             (orto / p["slug"] / "index.html").write_text(strona_porady(p, porady, gra_orto), encoding="utf-8")
         (orto / "index.html").write_text(strona_ortografii(porady), encoding="utf-8")
+    nauczyciele = wczytaj_nauczycieli()
+    if nauczyciele:
+        gra_n = next((x for x in gry if x["slug"] == nauczyciele["gra"]), None)
+        if not gra_n:
+            sys.exit(f"dane/nauczyciele.json: nie ma gry {nauczyciele['gra']}")
+        katalog = KORZEN / nauczyciele["sciezka"]
+        katalog.mkdir(parents=True, exist_ok=True)
+        (katalog / "index.html").write_text(strona_nauczycieli(nauczyciele, gra_n), encoding="utf-8")
     blok = statystyki()
     for nazwa in STRONY_RECZNE:
         plik = KORZEN / nazwa
@@ -776,7 +1024,8 @@ def zbuduj() -> None:
     (KORZEN / "feed.xml").write_text(rss(gry), encoding="utf-8")
     # Gry na PC dla dorosłych: osobne strony PL/EN i /gry/ (narzedzia/gry_pc.py), poza feedami gier dla dzieci.
     wpisy_pc = gry_pc.zbuduj_pc(gry, blok, pasek("../", en=False), stopka(2026, "../"))
-    (KORZEN / "sitemap.xml").write_text(mapa_strony(gry, porady, wpisy_pc), encoding="utf-8")
+    wpisy_nauczyciele = [(adres(nauczyciele["sciezka"]), None, "0.7")] if nauczyciele else []
+    (KORZEN / "sitemap.xml").write_text(mapa_strony(gry, porady, wpisy_nauczyciele + wpisy_pc), encoding="utf-8")
     (KORZEN / "robots.txt").write_text(robots(), encoding="utf-8")
     print(f"Zbudowano strony dla gier: {', '.join(g['slug'] for g in gry)}")
 

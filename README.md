@@ -76,6 +76,15 @@ Stałe adresy do odpytywania:
 Zasada: posty publiczne tylko o wydaniach z `publiczne: true`, bez danych dzieci i bez reklam
 skierowanych do dzieci.
 
+## Strona dla nauczycieli i formularze
+
+`/gry/ortopotwory/dla-nauczycieli/` generuje się z `dane/nauczyciele.json`. Zgłoszenia do testów
+i opinie odbiera skrypt Google Apps Script zapisujący je w Arkuszu Google właściciela
+(`narzedzia/apps-script/`, instrukcja wdrożenia w tamtejszym README). Adres skryptu wpisuje się
+w `formularz_url`; pusty adres wyłącza formularze i strona pokazuje kontakt e-mail. Parametry
+`utm_*` z adresu strony trafiają do arkusza razem ze zgłoszeniem, bez ciasteczek. Wideo z rozgrywką:
+wrzuć plik MP4 do repozytorium i wpisz jego ścieżkę w polu `wideo`.
+
 ## Statystyki odwiedzin
 
 Strona liczy odwiedziny przez Cloudflare Web Analytics (bez ciasteczek i danych osobowych).
