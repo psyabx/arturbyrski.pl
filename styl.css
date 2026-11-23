@@ -271,3 +271,15 @@ details.rodo { margin: 0 0 18px; font-size: 16px; }
 details.rodo li, details.rodo p { color: var(--cichy); }
 .maly { font-size: 15px; }
 button.przycisk[disabled] { opacity: 0.6; cursor: wait; }
+
+/* Karta gry dla dorosłych (River Fly Shop) pod grami dla dzieci: wyraźnie oddzielona, bez obrazka. */
+.inny-projekt {
+  margin-top: 28px;
+  padding: 16px 20px;
+  border: 1px dashed var(--linia);
+  border-radius: 14px;
+}
+.inny-projekt h3 { margin: 0 0 4px; }
+.inny-projekt p { margin: 4px 0; }
+.grupa-gier { margin-top: 48px; }
+.roboczy { font-size: .55em; font-weight: 400; white-space: nowrap; }

@@ -32,6 +32,9 @@ import sys
 from email.utils import format_datetime
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import gry_pc  # noqa: E402  (strony gier na PC, np. River Fly Shop)
+
 KORZEN = Path(__file__).resolve().parent.parent
 DANE = KORZEN / "dane" / "gry"
 DANE_ORTO = KORZEN / "dane" / "ortografia"
@@ -191,16 +194,17 @@ def meta_udostepniania(url: str, tytul: str, opis: str, obraz: str) -> str:
     return "\n".join(wiersze)
 
 
-def mapa_strony(gry: list[dict], porady: list[dict] | None = None, dodatkowe: list[str] | None = None) -> str:
+def mapa_strony(gry: list[dict], porady: list[dict] | None = None,
+                dodatkowe: list[tuple[str, str | None, str]] | None = None) -> str:
     wpisy = [(adres("" if n == "index.html" else n), None, "1.0" if n == "index.html" else "0.3")
              for n in STRONY_RECZNE if (KORZEN / n).exists()]
     for g in gry:
         data = g["wydania"][0]["data"] if g["wydania"] else None
         wpisy.append((adres(f"gry/{g['slug']}/"), data, "0.9"))
-    wpisy += [(adres(s), None, "0.7") for s in (dodatkowe or [])]
     if porady:
         wpisy.append((adres("ortografia/"), None, "0.8"))
         wpisy += [(adres(f"ortografia/{p['slug']}/"), None, "0.8") for p in porady]
+    wpisy += dodatkowe or []
     linie = []
     for url, data, pr in wpisy:
         mod = f"<lastmod>{data}</lastmod>" if data else ""
@@ -1018,8 +1022,10 @@ def zbuduj() -> None:
     (KORZEN / "api" / "wydania.json").write_text(
         json.dumps(json_feed(gry), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (KORZEN / "feed.xml").write_text(rss(gry), encoding="utf-8")
-    (KORZEN / "sitemap.xml").write_text(
-        mapa_strony(gry, porady, [nauczyciele["sciezka"]] if nauczyciele else []), encoding="utf-8")
+    # Gry na PC dla dorosłych: osobne strony PL/EN i /gry/ (narzedzia/gry_pc.py), poza feedami gier dla dzieci.
+    wpisy_pc = gry_pc.zbuduj_pc(gry, blok, pasek("../", en=False), stopka(2026, "../"))
+    wpisy_nauczyciele = [(adres(nauczyciele["sciezka"]), None, "0.7")] if nauczyciele else []
+    (KORZEN / "sitemap.xml").write_text(mapa_strony(gry, porady, wpisy_nauczyciele + wpisy_pc), encoding="utf-8")
     (KORZEN / "robots.txt").write_text(robots(), encoding="utf-8")
     print(f"Zbudowano strony dla gier: {', '.join(g['slug'] for g in gry)}")
 

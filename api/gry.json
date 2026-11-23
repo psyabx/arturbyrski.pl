@@ -159,21 +159,21 @@
         }
       ],
       "najnowsze_wydanie": {
-        "id": "szlafmyce-1.1.0-148",
-        "wersja": "1.1.0",
-        "kod": 148,
-        "data": "2026-11-17",
+        "id": "szlafmyce-1.2.0-151",
+        "wersja": "1.2.0",
+        "kod": 151,
+        "data": "2026-11-22",
         "sciezka": "production",
         "notatki": {
           "pl": [
-            "Zima w Sennym Miasteczku! Zimowy kalendarz z 24 okienkami, od 1 do 24 grudnia.",
-            "Za okienkami czeka 7 małych zimowych snów (sanki, śnieżne kule, lot wśród płatków, pływanie pod lodem) i 17 ozdób do pokoju Lumka.",
-            "Każde okienko ma zawsze tę samą nagrodę, a zaległe można otworzyć później. Kalendarz jest za darmo dla wszystkich."
+            "Gra we dwoje: każdy gracz ma swój kolor i duży numer 1 albo 2 nad głową, świecącą obręcz i ramkę swojej połowy ekranu. Nikt się już nie zgubi w tłumie.",
+            "Nowy sen: Sen Misia, czyli zjazd na sankach. Im dłużej jedziesz bez zderzenia, tym szybciej, a bramki z chorągiewek dodają rozpędu. Uwaga na choinki!",
+            "Nowy sen: Sen Zeszytu, czyli wyścig papierowych samolotów. Palcem w górę i w dół wybierasz wysokość i lecisz przez świecące obręcze."
           ],
           "en": [
-            "Winter in Sleepy Town! A winter calendar with 24 windows, from 1 to 24 December.",
-            "Behind the windows: 7 small winter dreams (sledding, rolling snowballs, flying with snowflakes, swimming under the ice) and 17 decorations for Lumek's room.",
-            "Every window always holds the same gift, and missed windows can be opened later. The calendar is free for everyone."
+            "Playing together: each player has their own colour and a big number 1 or 2 above their head, a glowing ring and a frame around their half of the screen. Nobody gets lost in the crowd any more.",
+            "New dream: The Bear's Dream, a sledding race. The longer you ride without bumping into anything, the faster you go, and flag gates give you a boost. Watch out for the trees!",
+            "New dream: The Notebook's Dream, a paper plane race. Slide your finger up and down to choose your height and fly through glowing rings."
           ]
         }
       }
