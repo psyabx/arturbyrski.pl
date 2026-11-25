@@ -4,9 +4,9 @@
 
 ## River Fly Shop (gra na PC)
 
-- [River Fly Shop: gra wędkarska o łowieniu na muchę na PC](https://arturbyrski.pl/gry/river-fly-shop/): Spokojna gra wędkarska na PC: łowienie na muchę pstrągów i lipieni na Skawie i Sanie, wiązanie much i sklep muszkarski. W produkcji, zapisy na testy.
+- [River Fly Shop: symulator wędkarstwa muchowego na PC](https://arturbyrski.pl/gry/river-fly-shop/): Spokojny symulator wędkarstwa muchowego na PC: pstrągi i lipienie na Skawie i Sanie, wiązanie much i sklep muszkarski. W produkcji, zapisy na testy.
 - [Prywatność: zgłoszenia do testów River Fly Shop](https://arturbyrski.pl/gry/river-fly-shop/prywatnosc/): Jak traktujemy adresy e-mail osób zgłaszających się do testów River Fly Shop i jak liczymy odwiedziny strony.
-- [River Fly Shop: fly fishing and fly tying game for PC](https://arturbyrski.pl/en/games/river-fly-shop/): A calm fly fishing game for PC: catch trout and grayling on Polish rivers, tie your own flies and run a fly shop. In development, playtest sign-ups open.
+- [River Fly Shop: fly fishing simulator and fly shop game (PC)](https://arturbyrski.pl/en/games/river-fly-shop/): Calm fly fishing simulator for PC: dry fly, euro nymphing and streamer on Polish rivers, fly tying and a fly shop. In development, playtest sign-ups open.
 - [Privacy: River Fly Shop playtest sign-ups](https://arturbyrski.pl/en/games/river-fly-shop/privacy/): How we handle email addresses of people who sign up for the River Fly Shop playtest, and how we count visits.
 
 ## Gry dla dzieci

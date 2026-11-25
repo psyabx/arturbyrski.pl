@@ -37,10 +37,14 @@ EMAIL = "art.byrski@gmail.com"
 # Ścieżki stron w obu językach.
 SCIEZKI = {
     "pl": {"gra": "gry/{s}/", "testy": "gry/{s}/testy/", "prywatnosc": "gry/{s}/prywatnosc/",
-           "feed": "gry/{s}/feed.xml", "kampania": "gry/{s}/z/{k}/"},
+           "feed": "gry/{s}/feed.xml", "kampania": "gry/{s}/z/{k}/",
+           "artykuly": "gry/{s}/artykuly/", "artykul": "gry/{s}/artykuly/{k}/"},
     "en": {"gra": "en/games/{s}/", "testy": "en/games/{s}/playtest/", "prywatnosc": "en/games/{s}/privacy/",
-           "feed": "en/games/{s}/feed.xml", "kampania": "en/games/{s}/from/{k}/"},
+           "feed": "en/games/{s}/feed.xml", "kampania": "en/games/{s}/from/{k}/",
+           "artykuly": "en/games/{s}/articles/", "artykul": "en/games/{s}/articles/{k}/"},
 }
+# Artykuły o grze: dane/gry-pc/<slug>/artykuly/*.json (jeden plik = jeden artykuł w jednym języku).
+POLA_ARTYKULU = ("slug", "jezyk", "opublikowano", "tytul", "opis", "tresc")
 MIESIACE_PL = ["stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca", "lipca", "sierpnia",
                "września", "października", "listopada", "grudnia"]
 MIESIACE_EN = ["January", "February", "March", "April", "May", "June", "July", "August",
@@ -71,8 +75,59 @@ def wczytaj_gry_pc() -> list[dict]:
     for plik in sorted(DANE_PC.glob("*.json")):
         g = json.loads(plik.read_text(encoding="utf-8"))
         g["_plik"] = plik.relative_to(KORZEN).as_posix()   # ukośniki także na Windows: plik wynikowy ma być taki sam w każdym systemie
+        g["_artykuly"] = wczytaj_artykuly(g["slug"])
         gry.append(g)
     return gry
+
+
+def wczytaj_artykuly(slug: str) -> list[dict]:
+    """Wszystkie artykuły gry, także szkice (szkice sprawdzamy, ale nie publikujemy)."""
+    artykuly = []
+    for plik in sorted((DANE_PC / slug / "artykuly").glob("*.json")):
+        a = json.loads(plik.read_text(encoding="utf-8"))
+        a["_plik"] = plik.relative_to(KORZEN).as_posix()
+        artykuly.append(a)
+    return artykuly
+
+
+def opublikowane(gra: dict, jezyk: str) -> list[dict]:
+    """Opublikowane artykuły w danym języku, od najnowszego."""
+    lista = [a for a in gra.get("_artykuly", []) if a.get("jezyk") == jezyk and not a.get("szkic")]
+    return sorted(lista, key=lambda a: (a["opublikowano"], a["slug"]), reverse=True)
+
+
+def sprawdz_artykuly(gra: dict) -> list[str]:
+    bledy = []
+    nazwy = {z["plik"] for z in gra["galeria"]}
+    klucze = set()
+    for a in gra.get("_artykuly", []):
+        p = a["_plik"]
+        brak = [k for k in POLA_ARTYKULU if not a.get(k)]
+        if brak:
+            bledy.append(f"{p}: brak pól {', '.join(brak)}")
+            continue
+        if a["jezyk"] not in ("pl", "en"):
+            bledy.append(f"{p}: jezyk musi być pl albo en")
+        try:
+            dt.date.fromisoformat(a["opublikowano"])
+            if a.get("zaktualizowano"):
+                dt.date.fromisoformat(a["zaktualizowano"])
+        except ValueError:
+            bledy.append(f"{p}: data ma mieć postać RRRR-MM-DD")
+        if (a["jezyk"], a["slug"]) in klucze:
+            bledy.append(f"{p}: powtórzony slug {a['slug']} ({a['jezyk']})")
+        klucze.add((a["jezyk"], a["slug"]))
+        for blok in a["tresc"]:
+            if len(blok) != 1 or next(iter(blok)) not in ("h2", "p", "lista", "obraz"):
+                bledy.append(f"{p}: blok treści ma mieć jedno pole: h2, p, lista albo obraz")
+            elif "obraz" in blok and blok["obraz"] not in nazwy:
+                bledy.append(f"{p}: obraz spoza galerii gry: {blok['obraz']}")
+    for a in gra.get("_artykuly", []):
+        if a.get("para") and a.get("jezyk") in ("pl", "en"):
+            drugi = "en" if a["jezyk"] == "pl" else "pl"
+            if (drugi, a["para"]) not in klucze:
+                bledy.append(f"{a['_plik']}: para {a['para']} nie istnieje w języku {drugi}")
+    return bledy
 
 
 def sprawdz(gra: dict) -> list[str]:
@@ -100,7 +155,7 @@ def sprawdz(gra: dict) -> list[str]:
     for w in gra["dziennik"]:
         if w.get("obraz") and w["obraz"] not in nazwy:
             bledy.append(f"{gra['slug']}: wpis {w['data']} ma obraz spoza galerii: {w['obraz']}")
-    return bledy
+    return bledy + sprawdz_artykuly(gra)
 
 
 def sekcja_trailera(gra: dict, jezyk: str) -> str:
@@ -331,12 +386,35 @@ def dane_filmu(gra: dict, jezyk: str) -> dict | None:
     return film
 
 
+def firma_ld() -> dict:
+    return {"@type": "Organization", "@id": ADRES + "/#firma", "name": FIRMA, "url": ADRES + "/"}
+
+
+def tworca_ld(gra: dict, jezyk: str) -> dict | None:
+    """Twórca gry jako Person. Opis tylko z danych (pole tworca), zatwierdzony przez Artura."""
+    tw = gra.get("tworca")
+    if not tw:
+        return None
+    return {"@type": "Person", "@id": ADRES + "/#tworca", "name": tw["imie"],
+            "description": tw["opis"][jezyk], "url": ADRES + "/", "worksFor": {"@id": ADRES + "/#firma"}}
+
+
+def zdanie_o_tworcy(gra: dict, jezyk: str) -> str:
+    tw = gra.get("tworca")
+    if not tw:
+        return ""
+    if jezyk == "pl":
+        return f"Grę tworzy {tw['imie']}, {tw['opis']['pl']}."
+    return f"Made by {tw['imie']}, {tw['opis']['en']}."
+
+
 def dane_gry(gra: dict, jezyk: str) -> dict:
     """Dane strukturalne strony gry: gra (VideoGame ze zwiastunem), ścieżka nawigacji i częste pytania.
     Bez ocen, ceny i daty premiery, bo gra jest w produkcji."""
     t = gra["teksty"][jezyk]
     strona = url(sc(jezyk, "gra", gra))
-    firma = {"@type": "Organization", "@id": ADRES + "/#firma", "name": FIRMA, "url": ADRES + "/"}
+    firma = firma_ld()
+    tworca = tworca_ld(gra, jezyk)
     gra_ld = {
         "@type": "VideoGame",
         "@id": strona + "#gra",
@@ -352,9 +430,13 @@ def dane_gry(gra: dict, jezyk: str) -> dict:
         "genre": (["Simulation", "Fishing", "Fly fishing"] if jezyk == "en"
                   else ["Symulator", "Wędkarstwo", "Wędkarstwo muchowe"]),
         "creativeWorkStatus": "In development" if jezyk == "en" else "W produkcji",
-        "author": firma,
+        "author": [tworca, firma] if tworca else firma,
         "publisher": firma,
     }
+    if gra.get("slowa_kluczowe", {}).get(jezyk):
+        gra_ld["keywords"] = ", ".join(gra["slowa_kluczowe"][jezyk])
+    if gra.get("profile"):
+        gra_ld["sameAs"] = list(gra["profile"])
     film = dane_filmu(gra, jezyk)
     if film:
         gra_ld["trailer"] = film
@@ -456,6 +538,7 @@ def strona_gry(gra: dict, jezyk: str, blok_stat: str, kampania: str | None = Non
 <section id="o-grze"><div class="wrap waski">
   {f'<h2>{e(t["o_grze_tytul"])}</h2>' if t.get("o_grze_tytul") else ""}
   {opis}
+  {f'<p>{e(zdanie_o_tworcy(gra, jezyk))}</p>' if gra.get("tworca") else ""}
   <p class="cichy">{e(t["nazwa_uwaga"])}</p>
 </div></section>
 
@@ -477,7 +560,7 @@ def strona_gry(gra: dict, jezyk: str, blok_stat: str, kampania: str | None = Non
   <h2>{e(t["etap_tytul"])}</h2>
   <p>{e(t["etap"])}</p>
 </div></section>
-{pytania}
+{pytania}{sekcja_artykulow(gra, jezyk)}
 <section id="dziennik"><div class="wrap">
   <h2>{e(t["dziennik_tytul"])}</h2>
   <p>{e(t["dziennik_wstep"])} <a href="/{sc(jezyk, "feed", gra)}">{rss_napis}</a></p>
@@ -618,6 +701,165 @@ def strona_prywatnosci(gra: dict, jezyk: str, blok_stat: str) -> str:
 """
 
 
+# ---------- artykuły o grze ----------
+
+NAPISY_ARTYKULOW = {
+    "pl": {"tytul": "Artykuły", "wszystkie": "Wszystkie artykuły", "opublikowano": "Opublikowano",
+           "zaktualizowano": "zaktualizowano", "wroc": "← Wróć do strony gry",
+           "lista_opis": "Artykuły o grze {n}: jak powstaje, jak działa i skąd biorą się jej realia."},
+    "en": {"tytul": "Articles", "wszystkie": "All articles", "opublikowano": "Published",
+           "zaktualizowano": "updated", "wroc": "← Back to the game page",
+           "lista_opis": "Articles about {n}: how it is made, how it works and where its details come from."},
+}
+
+
+def adres_artykulu(gra: dict, a: dict) -> str:
+    return sc(a["jezyk"], "artykul", gra, a["slug"])
+
+
+def para_artykulu(gra: dict, a: dict) -> dict | None:
+    if not a.get("para"):
+        return None
+    drugi = "en" if a["jezyk"] == "pl" else "pl"
+    return next((b for b in opublikowane(gra, drugi) if b["slug"] == a["para"]), None)
+
+
+def data_artykulu(a: dict, jezyk: str) -> str:
+    n = NAPISY_ARTYKULOW[jezyk]
+    tekst = (f'{n["opublikowano"]} <time datetime="{e(a["opublikowano"])}">'
+             f'{e(data(a["opublikowano"], jezyk))}</time>')
+    if a.get("zaktualizowano"):
+        tekst += (f', {n["zaktualizowano"]} <time datetime="{e(a["zaktualizowano"])}">'
+                  f'{e(data(a["zaktualizowano"], jezyk))}</time>')
+    return tekst
+
+
+def sekcja_artykulow(gra: dict, jezyk: str) -> str:
+    """Lista najnowszych artykułów na stronie gry. Pusta, dopóki nie ma żadnego artykułu."""
+    lista = opublikowane(gra, jezyk)
+    if not lista:
+        return ""
+    n = NAPISY_ARTYKULOW[jezyk]
+    pozycje = "".join(
+        f'<li><a href="/{adres_artykulu(gra, a)}">{e(a["tytul"])}</a><br><span class="cichy">{e(a["opis"])}</span></li>'
+        for a in lista[:5])
+    return (f'\n<section id="artykuly"><div class="wrap waski">\n  <h2>{n["tytul"]}</h2>\n'
+            f'  <ul class="artykuly">{pozycje}</ul>\n'
+            f'  <p><a href="/{sc(jezyk, "artykuly", gra)}">{n["wszystkie"]}</a></p>\n</div></section>\n')
+
+
+def tresc_artykulu(gra: dict, a: dict) -> str:
+    gal = {z["plik"]: z for z in gra["galeria"]}
+    czesci = []
+    for blok in a["tresc"]:
+        if "h2" in blok:
+            czesci.append(f"<h2>{e(blok['h2'])}</h2>")
+        elif "p" in blok:
+            czesci.append(f"<p>{e(blok['p'])}</p>")
+        elif "lista" in blok:
+            czesci.append("<ul>" + "".join(f"<li>{e(x)}</li>" for x in blok["lista"]) + "</ul>")
+        elif "obraz" in blok:
+            z = gal[blok["obraz"]]
+            czesci.append(f'<figure><a href="/{obraz(z["plik"], gra)}"><img src="/{obraz(z["plik"], gra, maly=True)}" '
+                          f'alt="{e(alt(z, a["jezyk"]))}" width="800" height="450" loading="lazy"></a>'
+                          f'<figcaption>{e(z["opis"][a["jezyk"]])}</figcaption></figure>')
+    return "\n  ".join(czesci)
+
+
+def dane_artykulu(gra: dict, a: dict) -> dict:
+    jezyk = a["jezyk"]
+    strona = url(adres_artykulu(gra, a))
+    tworca = tworca_ld(gra, jezyk)
+    art = {
+        "@type": "Article",
+        "@id": strona + "#artykul",
+        "headline": a["tytul"],
+        "description": a["opis"],
+        "inLanguage": jezyk,
+        "datePublished": a["opublikowano"],
+        "dateModified": a.get("zaktualizowano") or a["opublikowano"],
+        "author": tworca or firma_ld(),
+        "publisher": firma_ld(),
+        "mainEntityOfPage": strona,
+        "about": {"@id": url(sc(jezyk, "gra", gra)) + "#gra", "@type": "VideoGame", "name": gra["nazwa"]},
+        "image": url(gra["obraz_udostepniania"]),
+    }
+    okruszki = [(FIRMA, ADRES + "/"), (gra["nazwa"], url(sc(jezyk, "gra", gra))),
+                (NAPISY_ARTYKULOW[jezyk]["tytul"], url(sc(jezyk, "artykuly", gra))), (a["tytul"], strona)]
+    return {"@context": "https://schema.org", "@graph": [art, {
+        "@type": "BreadcrumbList",
+        "itemListElement": [{"@type": "ListItem", "position": i, "name": nazwa, "item": adres_}
+                            for i, (nazwa, adres_) in enumerate(okruszki, 1)],
+    }]}
+
+
+def strona_artykulu(gra: dict, a: dict, blok_stat: str) -> str:
+    jezyk = a["jezyk"]
+    druga_j = "en" if jezyk == "pl" else "pl"
+    kanoniczny = url(adres_artykulu(gra, a))
+    para = para_artykulu(gra, a)
+    alternatywy_ = None
+    druga = sc(druga_j, "gra", gra)
+    if para:
+        druga = adres_artykulu(gra, para)
+        pl, en = (a, para) if jezyk == "pl" else (para, a)
+        alternatywy_ = {"pl": url(adres_artykulu(gra, pl)), "en": url(adres_artykulu(gra, en)),
+                        "x-default": url(adres_artykulu(gra, en))}
+    glowa = head(gra, jezyk, f'{a["tytul"]} · {gra["nazwa"]}', a["opis"], kanoniczny, alternatywy_,
+                 dane=dane_artykulu(gra, a))
+    podpis = f'<p>{e(zdanie_o_tworcy(gra, jezyk))}</p>' if gra.get("tworca") else ""
+    return f"""{glowa}
+<body>
+<!-- Plik wygenerowany przez narzedzia/strona.py z {e(a["_plik"])}. Nie edytuj ręcznie. -->
+{pasek(gra, jezyk, druga, kotwice=False)}
+<main><article class="artykul"><div class="wrap waski">
+  <h1>{e(a["tytul"])}</h1>
+  <p class="cichy">{data_artykulu(a, jezyk)}</p>
+  <p class="lead">{e(a["opis"])}</p>
+  {tresc_artykulu(gra, a)}
+  {podpis}
+  <p><a href="/{sc(jezyk, "artykuly", gra)}">{NAPISY_ARTYKULOW[jezyk]["wszystkie"]}</a> · <a href="/{sc(jezyk, "gra", gra)}">{NAPISY_ARTYKULOW[jezyk]["wroc"]}</a></p>
+</div></article></main>
+{stopka(gra, jezyk)}
+{blok_stat}
+</body>
+</html>
+"""
+
+
+def strona_listy_artykulow(gra: dict, jezyk: str, blok_stat: str) -> str:
+    n = NAPISY_ARTYKULOW[jezyk]
+    druga_j = "en" if jezyk == "pl" else "pl"
+    kanoniczny = url(sc(jezyk, "artykuly", gra))
+    oba = bool(opublikowane(gra, druga_j))
+    alternatywy_ = alternatywy(gra, "artykuly") if oba else None
+    druga = sc(druga_j, "artykuly" if oba else "gra", gra)
+    tytul = f'{n["tytul"]} · {gra["nazwa"]}'
+    opis = n["lista_opis"].format(n=gra["nazwa"])
+    pozycje = "".join(
+        f'<article class="wpis"><div><p class="cichy">{data_artykulu(a, jezyk)}</p>'
+        f'<h2><a href="/{adres_artykulu(gra, a)}">{e(a["tytul"])}</a></h2><p>{e(a["opis"])}</p></div></article>'
+        for a in opublikowane(gra, jezyk))
+    dane = {"@context": "https://schema.org", "@type": "CollectionPage", "name": tytul, "url": kanoniczny,
+            "inLanguage": jezyk, "about": {"@id": url(sc(jezyk, "gra", gra)) + "#gra"}, "publisher": firma_ld()}
+    glowa = head(gra, jezyk, tytul, opis, kanoniczny, alternatywy_, dane=dane)
+    return f"""{glowa}
+<body>
+<!-- Plik wygenerowany przez narzedzia/strona.py z {e(gra["slug"])}/artykuly/*.json. Nie edytuj ręcznie. -->
+{pasek(gra, jezyk, druga, kotwice=False)}
+<main><section><div class="wrap waski">
+  <h1>{e(n["tytul"])}: {e(gra["nazwa"])}</h1>
+  <p>{e(opis)}</p>
+  {pozycje}
+  <p><a href="/{sc(jezyk, "gra", gra)}">{n["wroc"]}</a></p>
+</div></section></main>
+{stopka(gra, jezyk)}
+{blok_stat}
+</body>
+</html>
+"""
+
+
 def rss(gra: dict, jezyk: str) -> str:
     t = gra["teksty"][jezyk]
 
@@ -748,5 +990,12 @@ def zbuduj_pc(gry_dzieci: list[dict], blok_stat: str, pasek_html: str, stopka_ht
                 zapisz(sc(j, "kampania", g, k), strona_gry(g, j, blok_stat, kampania=k))
             wpisy.append((url(sc(j, "gra", g)), ostatni, "0.9"))
             wpisy.append((url(sc(j, "prywatnosc", g)), None, "0.3"))
+            artykuly = opublikowane(g, j)
+            if artykuly:
+                zapisz(sc(j, "artykuly", g), strona_listy_artykulow(g, j, blok_stat))
+                wpisy.append((url(sc(j, "artykuly", g)), artykuly[0]["opublikowano"], "0.7"))
+                for a in artykuly:
+                    zapisz(adres_artykulu(g, a), strona_artykulu(g, a, blok_stat))
+                    wpisy.append((url(adres_artykulu(g, a)), a.get("zaktualizowano") or a["opublikowano"], "0.8"))
     zapisz("gry/", strona_wszystkich_gier(gry_dzieci, gry_pc, pasek_html, stopka_html, blok_stat))
     return wpisy

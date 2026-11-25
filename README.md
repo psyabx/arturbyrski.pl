@@ -130,6 +130,43 @@ co naprawdę widać na obrazie; bez pola `alt` strona używa podpisu. Dane struk
 i częste pytania) generator składa sam z tych samych pól. Zwiastun trafia do nich, gdy `trailer` ma pole `data`
 (dzień publikacji filmu); długość filmu generator odczytuje z pliku MP4. Przy podmianie zwiastuna popraw `data`.
 
+**Twórca, hasła i profile:** pole `tworca` (`imie` i `opis` PL/EN) trafia do danych strukturalnych jako autor gry
+(osoba obok firmy) i jako jedno zdanie w sekcji „O grze”. Opis zatwierdza Artur, nie dopisujemy faktów o nim samodzielnie.
+`slowa_kluczowe` (PL/EN) trafiają do pola `keywords` gry: tylko hasła, które gra naprawdę spełnia. `profile` to lista
+adresów oficjalnych stron gry w innych serwisach (Steam, itch.io, YouTube, IndieDB); trafiają do `sameAs`.
+Dopisuj je dopiero, gdy strona istnieje.
+
+**Artykuły:** jeden plik `dane/gry-pc/<slug>/artykuly/<nazwa>.json` to jeden artykuł w jednym języku. Strony:
+`/gry/<slug>/artykuly/<slug-artykułu>/` (PL) i `/en/games/<slug>/articles/<slug-artykułu>/` (EN), lista artykułów
+pod `/artykuly/` i `/articles/`, a pięć najnowszych na stronie gry w sekcji „Artykuły”. Dopóki nie ma żadnego
+opublikowanego artykułu, nic z tego nie powstaje. Artykuły trafiają do `sitemap.xml` i `llms.txt`, mają dane
+strukturalne `Article` z autorem z pola `tworca`. Treść pisze Artur: artykuł ma mieć prawdziwą wartość dla gracza
+lub wędkarza i opisywać tylko to, co działa w grze.
+
+```json
+{
+  "slug": "jak-dziala-wiazanie-much",
+  "jezyk": "pl",
+  "para": "how-fly-tying-works",
+  "opublikowano": "2026-12-01",
+  "zaktualizowano": "2026-12-05",
+  "szkic": false,
+  "tytul": "Jak działa wiązanie much w River Fly Shop",
+  "opis": "Jedno lub dwa zdania do wyników wyszukiwania i listy artykułów.",
+  "tresc": [
+    {"h2": "Śródtytuł"},
+    {"p": "Akapit."},
+    {"lista": ["punkt", "punkt"]},
+    {"obraz": "imadlo"}
+  ]
+}
+```
+
+`para` (opcjonalne) to slug tego samego artykułu w drugim języku: strony dostają wtedy wzajemne `hreflang`.
+`zaktualizowano` jest opcjonalne. `"szkic": true` sprawdza plik przy budowaniu, ale nie publikuje strony;
+pamiętaj, że repo jest publiczne, więc szkic i tak widać na GitHubie. `obraz` to nazwa zrzutu z galerii gry.
+Generator zatrzymuje budowanie przy brakujących polach, złej dacie, obrazie spoza galerii albo nieistniejącej parze.
+
 **Steam:** gdy gra będzie miała stronę w sklepie, wpisz numer aplikacji w `steam_app_id`. Przycisk pojawi
 się wtedy sam, z UTM `utm_campaign=rfs-strona-gry` (EN: `rfs-strona-gry-en`). Przy `null` nie ma żadnego przycisku.
 
