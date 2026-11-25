@@ -17,7 +17,16 @@ generuje z nich:
 | `api/wydania.json` | [JSON Feed 1.1](https://jsonfeed.org/version/1.1) z wydaniami, od najnowszego |
 | `feed.xml` | to samo jako RSS |
 | `ortografia/<slug>/index.html`, `ortografia/index.html` | zasady pisowni (ó/u, rz/ż, ch/h) z `dane/ortografia/<slug>.json` |
-| `sitemap.xml`, `robots.txt` | wyszukiwarki: lista stron do zaindeksowania |
+| `sitemap.xml`, `robots.txt` | wyszukiwarki: lista stron do zaindeksowania; `robots.txt` jawnie wpuszcza roboty czatów AI (ChatGPT, Claude, Perplexity, Gemini) |
+| `llms.txt` | czaty AI: opis serwisu i lista stron z ich tytułami i opisami ([llmstxt.org](https://llmstxt.org/)) |
+
+## Wyszukiwarki i czaty AI
+
+- Strona jest zweryfikowana w Google Search Console (domena, rekord TXT w DNS OVH) i w Bing Webmaster Tools
+  (plik `BingSiteAuth.xml`). Bing zasila wyszukiwanie w ChatGPT i Copilocie. Plików weryfikacji nie usuwaj.
+- Plik `750996d55b19827dda883a485b7a8196.txt` to publiczny klucz IndexNow. Po scaleniu zmian do `main`
+  i odświeżeniu strony uruchom `python3 narzedzia/indexnow.py --od RRRR-MM-DD` (albo bez `--od` dla
+  wszystkich stron), żeby Bing i inne wyszukiwarki od razu zobaczyły zmienione strony.
 
 Strony gier mają też adres kanoniczny, podgląd linku (Open Graph) i dane strukturalne schema.org
 (gra, wydawca, wiek dzieci). Tytuł i opis w Google ustawia opcjonalne pole `seo` w danych gry:
