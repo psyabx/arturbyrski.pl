@@ -329,19 +329,6 @@
       }
     },
     {
-      "plik": "san-otoczaki",
-      "ai": true,
-      "data": "2026-11-25",
-      "opis": {
-        "pl": "San: brodzenie wzdłuż brzegu z otoczaków",
-        "en": "The San: wading along a cobble bank"
-      },
-      "alt": {
-        "pl": "Zrzut z gry: wędkarz w spodniobutach brodzi w Sanie wzdłuż niskiego brzegu usypanego z kolorowych otoczaków, za nim drzewa i świerki",
-        "en": "Game screenshot: an angler in waders wades the San river along a low bank of colourful cobbles, with trees and spruces behind him"
-      }
-    },
-    {
       "plik": "skawa-po-rzucie",
       "ai": true,
       "data": "2026-11-22",
