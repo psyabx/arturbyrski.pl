@@ -28,6 +28,77 @@ generuje z nich:
   i odświeżeniu strony uruchom `python3 narzedzia/indexnow.py --od RRRR-MM-DD` (albo bez `--od` dla
   wszystkich stron), żeby Bing i inne wyszukiwarki od razu zobaczyły zmienione strony.
 
+### Widoczność w czatach AI: cotygodniowy pomiar
+
+Po co: żeby co tydzień sprawdzić, czy czaty AI z wyszukiwaniem w sieci (Claude, ChatGPT, Gemini, Perplexity)
+wymieniają River Fly Shop i podają arturbyrski.pl jako źródło, oraz czy zmiany na stronie coś w tym poprawiają.
+
+Narzędzie `narzedzia/widocznosc_ai.py` (sam Python, bez bibliotek) zadaje każdemu czatowi pytania z pliku
+`dane/widocznosc-ai.json`, każde bez kontekstu i domyślnie 3 razy, bo odpowiedzi za każdym razem są trochę inne.
+W tym pliku są też pytania z błędną nazwą („River Fly Fishing”), zapisy nazwy gry do wykrywania, modele i ceny.
+Pytania można dopisywać; plik jest publiczny jak całe repozytorium.
+
+**Wyniki nigdy nie trafiają do repozytorium**, bo całe repozytorium jest publiczną stroną. Skrypt zapisuje je
+w katalogu domowym, w `~/.rfs-widocznosc/<data_godzina>/` (w Windows `C:\Users\<użytkownik>\.rfs-widocznosc\`),
+a inny katalog można podać w `--wyniki`. Katalog wewnątrz repozytorium skrypt odrzuca, a `.gitignore` dodatkowo
+pomija pliki wyników. Każdy przebieg zawiera:
+
+| Plik | Co zawiera |
+| --- | --- |
+| `widocznosc-odpowiedzi.jsonl` | surowe odpowiedzi: data, dostawca, model, pytanie, tekst, cytowane adresy, koszt |
+| `widocznosc-raport.md` | raport: wzmianki o grze, cytowania arturbyrski.pl, średnia pozycja na liście, błędna nazwa, porównanie z poprzednim tygodniem |
+| `widocznosc-ocena.csv` | odpowiedzi z nazwą gry i puste kolumny „rekomendacja” i „poprawność” do ręcznej oceny (otwiera się w Excelu) |
+| `widocznosc-podsumowanie.json` | liczby z raportu, z którymi porównuje się następny przebieg |
+
+Wskaźniki „czy czat poleca grę” i „czy pisze o niej prawdę” wymagają oceny człowieka, więc program ich nie liczy.
+Przykład: odpowiedź „River Fly Shop to gra w produkcji, ale nie ma jeszcze daty premiery” liczy się automatycznie
+jako wzmianka; to, czy jest to rekomendacja, wpisuje Artur w arkuszu.
+
+**Klucze API** są tylko w zmiennych środowiskowych komputera Artura, nigdy w plikach repozytorium ani w sekretach GitHuba.
+Dostawca bez klucza jest pomijany, więc można zacząć od jednego.
+
+| Dostawca | Zmienna | Skąd klucz | Model (listopad 2026) |
+| --- | --- | --- | --- |
+| Anthropic | `ANTHROPIC_API_KEY` | platform.claude.com → API keys | `claude-opus-5-5` z wyszukiwaniem w sieci |
+| OpenAI | `OPENAI_API_KEY` | platform.openai.com → API keys | `gpt-6.2-astra` z wyszukiwaniem w sieci |
+| Google Gemini | `GEMINI_API_KEY` | aistudio.google.com → Get API key (projekt z płatnościami) | `gemini-4-hydrogen` z wyszukiwarką Google |
+| Perplexity | `PERPLEXITY_API_KEY` | perplexity.ai → Settings → API | `perplexity/sonar` (Agent API) z wyszukiwaniem |
+
+Zmienną ustawia się raz, w PowerShell: `setx ANTHROPIC_API_KEY "sk-..."` (działa w nowych oknach i w Harmonogramie
+zadań). U każdego dostawcy warto ustawić miesięczny limit wydatków w panelu rozliczeń.
+
+**Uruchomienie:**
+
+```bash
+python3 narzedzia/widocznosc_ai.py --proba          # plan i szacowany koszt, bez zapytań i bez opłat
+python3 narzedzia/widocznosc_ai.py                  # pełny pomiar u dostawców, którzy mają klucz
+python3 narzedzia/widocznosc_ai.py --dostawcy perplexity,gemini --powtorzenia 1
+python3 narzedzia/widocznosc_ai.py --raport ~/.rfs-widocznosc/2026-12-01_080000   # raport od nowa, bez zapytań
+python3 -m unittest discover -s narzedzia -p "test_*.py"                          # testy, bez sieci
+```
+
+**Koszt:** pełny przebieg to 14 pytań × 3 powtórzenia × 4 dostawców = 168 zapytań, szacunkowo około 13 USD
+(Anthropic około 4, OpenAI około 6, Gemini około 2, Perplexity poniżej 1 USD). To szacunek zawyżony celowo,
+bo wyszukiwanie dokłada do każdego zapytania treść znalezionych stron. Faktyczny koszt raport wylicza z liczby
+tokenów zwróconej przez dostawcę. Skrypt odmawia startu, gdy szacunek przekracza `--limit-usd` (domyślnie 20 USD)
+albo liczba zapytań przekracza `--limit-zapytan` (domyślnie 250), i przerywa w trakcie po przekroczeniu kwoty.
+Taniej: `--powtorzenia 1` (około 4,50 USD) albo tylko Perplexity i Gemini.
+
+**Co tydzień (Harmonogram zadań Windows):** bez GitHub Actions, bo klucze musiałyby trafić do sekretów
+repozytorium, a o tym decyduje Artur. W PowerShell (ścieżki dopasuj do swojego klonu i Pythona):
+
+```powershell
+$akcja = New-ScheduledTaskAction -Execute "python.exe" `
+  -Argument "D:\priv\arturbyrski.pl\narzedzia\widocznosc_ai.py" `
+  -WorkingDirectory "D:\priv\arturbyrski.pl"
+$kiedy = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At 8am
+Register-ScheduledTask -TaskName "RFS widocznosc AI" -Action $akcja -Trigger $kiedy `
+  -Settings (New-ScheduledTaskSettingsSet -StartWhenAvailable)
+```
+
+`-StartWhenAvailable` uruchamia zadanie po włączeniu komputera, jeśli w poniedziałek o 8:00 był wyłączony.
+Raport z ostatniego tygodnia leży w najnowszym katalogu w `~/.rfs-widocznosc/`.
+
 Strony gier mają też adres kanoniczny, podgląd linku (Open Graph) i dane strukturalne schema.org
 (gra, wydawca, wiek dzieci). Tytuł i opis w Google ustawia opcjonalne pole `seo` w danych gry:
 `tytul`, `opis`, `kategoria` (`EducationalApplication` dla gier do nauki, inaczej `GameApplication`)

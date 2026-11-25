@@ -1,0 +1,78 @@
+{
+  "_opis": "Pytania i ustawienia cotygodniowego pomiaru widoczności River Fly Shop w czatach AI (narzedzia/widocznosc_ai.py). Ten plik jest publiczny. Wyniki pomiarów nie trafiają do repozytorium.",
+  "gra": {
+    "nazwa": "River Fly Shop",
+    "warianty": [
+      "River Fly Shop",
+      "RiverFlyShop",
+      "River-Fly-Shop",
+      "River Fly-Shop",
+      "Riverfly Shop",
+      "River Flyshop"
+    ],
+    "warianty_rozmyte": [
+      "River Fly Store",
+      "River Fly Shoppe",
+      "Fly Shop River",
+      "Rivers Fly Shop"
+    ],
+    "domeny": ["arturbyrski.pl"],
+    "tworca": ["Artur Byrski", "Artur Byrski Link Technologies"]
+  },
+  "pytania": [
+    {"id": "pl-najlepsze", "jezyk": "pl", "tekst": "Jakie są najlepsze gry o wędkarstwie muchowym?"},
+    {"id": "pl-krecenie-much", "jezyk": "pl", "tekst": "Czy istnieje symulator kręcenia much wędkarskich?"},
+    {"id": "pl-polscy-tworcy", "jezyk": "pl", "tekst": "Jakie gry wędkarskie tworzą polscy programiści?"},
+    {"id": "pl-sklep-wedkarski", "jezyk": "pl", "tekst": "Czy jest gra, w której prowadzi się sklep wędkarski?"},
+    {"id": "pl-nadchodzace", "jezyk": "pl", "tekst": "Jakie nowe gry o wędkarstwie muchowym pojawią się na PC?"},
+    {"id": "en-best-pc", "jezyk": "en", "tekst": "Best fly fishing games for PC"},
+    {"id": "en-upcoming", "jezyk": "en", "tekst": "Upcoming fly fishing simulators"},
+    {"id": "en-shop-management", "jezyk": "en", "tekst": "Fly fishing shop management game"},
+    {"id": "en-cozy", "jezyk": "en", "tekst": "Cozy fishing games for PC"},
+    {"id": "en-realistic", "jezyk": "en", "tekst": "Games with realistic fly fishing mechanics"},
+    {"id": "en-euro-nymphing", "jezyk": "en", "tekst": "Euro nymphing game"},
+    {"id": "en-fly-tying", "jezyk": "en", "tekst": "Fly tying simulator"},
+    {"id": "en-bledna-nazwa", "jezyk": "en", "tekst": "River Fly Fishing game", "scenariusz": "bledna_nazwa"},
+    {"id": "pl-bledna-nazwa", "jezyk": "pl", "tekst": "Gra River Fly Fishing na PC", "scenariusz": "bledna_nazwa"}
+  ],
+  "dostawcy": {
+    "anthropic": {
+      "zmienna_klucza": "ANTHROPIC_API_KEY",
+      "model": "claude-opus-5-5",
+      "cena_usd_za_1m_wejscie": 4.0,
+      "cena_usd_za_1m_wyjscie": 20.0,
+      "cena_usd_za_wyszukiwanie": 0.01,
+      "szacunek_usd_na_zapytanie": 0.10,
+      "dokumentacja": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool"
+    },
+    "openai": {
+      "zmienna_klucza": "OPENAI_API_KEY",
+      "model": "gpt-6.2-astra",
+      "cena_usd_za_1m_wejscie": 8.0,
+      "cena_usd_za_1m_wyjscie": 40.0,
+      "cena_usd_za_wyszukiwanie": 0.01,
+      "szacunek_usd_na_zapytanie": 0.15,
+      "dokumentacja": "https://developers.openai.com/api/docs/guides/tools-web-search"
+    },
+    "gemini": {
+      "zmienna_klucza": "GEMINI_API_KEY",
+      "model": "gemini-4-hydrogen",
+      "api_revision": "2026-05-20",
+      "cena_usd_za_1m_wejscie": 1.5,
+      "cena_usd_za_1m_wyjscie": 7.5,
+      "cena_usd_za_wyszukiwanie": 0.014,
+      "szacunek_usd_na_zapytanie": 0.05,
+      "dokumentacja": "https://aistudio.google.com/docs/google-search"
+    },
+    "perplexity": {
+      "zmienna_klucza": "PERPLEXITY_API_KEY",
+      "model": "perplexity/sonar",
+      "cena_usd_za_1m_wejscie": 0.25,
+      "cena_usd_za_1m_wyjscie": 2.5,
+      "cena_usd_za_wyszukiwanie": 0.0025,
+      "szacunek_usd_na_zapytanie": 0.02,
+      "dokumentacja": "https://docs.perplexity.ai/docs/agent-api/quickstart"
+    }
+  },
+  "_ceny": "Ceny i modele sprawdzone 2026-11-25 w dokumentacji dostawców. Szacunek na zapytanie jest zawyżony celowo, bo wyszukiwanie dokłada do wejścia tysiące tokenów treści stron."
+}

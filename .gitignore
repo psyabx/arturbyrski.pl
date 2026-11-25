@@ -1,1 +1,11 @@
 __pycache__/
+
+# Pomiar widoczności w czatach AI (narzedzia/widocznosc_ai.py): wyniki i klucze NIGDY w repo,
+# bo całe repo jest publiczną stroną. Wyniki domyślnie w ~/.rfs-widocznosc/ (skrypt odrzuca katalog w repo).
+.rfs-widocznosc/
+widocznosc-odpowiedzi.jsonl
+widocznosc-raport.md
+widocznosc-podsumowanie.json
+widocznosc-ocena.csv
+.env
+*.env
