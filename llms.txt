@@ -1,0 +1,30 @@
+# arturbyrski.pl
+
+> Gry na telefon i tablet dla dzieci 5–12 lat: nauka ortografii w grze Ortopotwory (ó/u, rz/ż, ch/h) i wesołe wyścigi we dwoje w Szlafmycach. Bez reklam, bez zbierania danych, offline.
+
+## River Fly Shop (gra na PC)
+
+- [River Fly Shop: gra wędkarska o łowieniu na muchę na PC](https://arturbyrski.pl/gry/river-fly-shop/): Spokojna gra wędkarska na PC: łowienie na muchę pstrągów i lipieni na Skawie i Sanie, wiązanie much i sklep muszkarski. W produkcji, zapisy na testy.
+- [Prywatność: zgłoszenia do testów River Fly Shop](https://arturbyrski.pl/gry/river-fly-shop/prywatnosc/): Jak traktujemy adresy e-mail osób zgłaszających się do testów River Fly Shop i jak liczymy odwiedziny strony.
+- [River Fly Shop: fly fishing and fly tying game for PC](https://arturbyrski.pl/en/games/river-fly-shop/): A calm fly fishing game for PC: catch trout and grayling on Polish rivers, tie your own flies and run a fly shop. In development, playtest sign-ups open.
+- [Privacy: River Fly Shop playtest sign-ups](https://arturbyrski.pl/en/games/river-fly-shop/privacy/): How we handle email addresses of people who sign up for the River Fly Shop playtest, and how we count visits.
+
+## Gry dla dzieci
+
+- [Ortopotwory: gra do nauki ortografii dla dzieci (ó/u, rz/ż, ch/h, ą/ę)](https://arturbyrski.pl/gry/ortopotwory/): Ortografia dla dzieci 7–12 lat w formie gry: 5 krain, 425 wyrazów i 67 zdań do dyktanda. Kilka minut dziennie, bez reklam, offline. Pierwsza kraina za darmo.
+- [Szlafmyce: Wyścig we śnie · gra dla dzieci we dwoje, bez reklam](https://arturbyrski.pl/gry/szlafmyce/): Wesoła gra dla dzieci 5–9 lat: wyścigi w piżamach przez zwariowane sny, także we dwoje na jednym ekranie. Bez reklam, bez internetu, bez zbierania danych.
+- [Ortopotwory dla nauczycieli i terapeutów: bezpłatne testy gry do ortografii](https://arturbyrski.pl/gry/ortopotwory/dla-nauczycieli/): Gra do ćwiczenia polskiej ortografii dla dzieci 7–12 lat (ó/u, rz/ż, ch/h, ą/ę, zmiękczenia). Nauczycielom i terapeutom pedagogicznym bezpłatnie udostępniamy pełną wersję w zamian za szczerą opinię.
+
+## Ortografia
+
+- [Zasady ortografii dla dzieci: ó/u, rz/ż, ch/h z ćwiczeniami](https://arturbyrski.pl/ortografia/): Zasady pisowni ó i u, rz i ż, ch i h dla dzieci z klas 1–4: proste reguły, przykłady, wyjątki do zapamiętania i ćwiczenia z odpowiedziami.
+- [Ó czy u? Zasady pisowni ó i u z przykładami dla dzieci](https://arturbyrski.pl/ortografia/o-czy-u/): Kiedy piszemy ó, a kiedy u? Proste zasady pisowni ó i u dla dzieci: wymiana na o, e, a, końcówki -ów, -ówka, -uje, -unek, wyjątki i ćwiczenie z odpowiedziami.
+- [Rz czy ż? Zasady pisowni rz i ż z przykładami dla dzieci](https://arturbyrski.pl/ortografia/rz-czy-z/): Kiedy piszemy rz, a kiedy ż? Zasady pisowni rz i ż dla dzieci: wymiana na r, rz po spółgłoskach, -arz i -erz, ż wymienne na g, z, s, h, wyjątki i ćwiczenie.
+- [Ch czy h? Zasady pisowni ch i h z przykładami dla dzieci](https://arturbyrski.pl/ortografia/ch-czy-h/): Kiedy piszemy ch, a kiedy h? Zasady pisowni ch i h dla dzieci: ch na końcu wyrazu, ch po s, ch wymienne na sz, h wymienne na g, z, ż, wyrazy do zapamiętania i ćwiczenie.
+
+## Firma i prywatność
+
+- [Gry edukacyjne i spokojne gry dla dzieci bez reklam · Senne gry Artura](https://arturbyrski.pl/): Gry na telefon i tablet dla dzieci 5–12 lat: nauka ortografii w grze Ortopotwory (ó/u, rz/ż, ch/h) i wesołe wyścigi we dwoje w Szlafmycach. Bez reklam, bez zbierania danych, offline.
+- [Polityka prywatności Szlafmyce](https://arturbyrski.pl/polityka-prywatnosci.html)
+- [Polityka prywatności Ortopotwory](https://arturbyrski.pl/polityka-prywatnosci-ortopotwory.html)
+- [Wszystkie gry · Artur Byrski Link Technologies](https://arturbyrski.pl/gry/): Gry niezależnego twórcy Artura Byrskiego: spokojne gry na telefon dla dzieci (Ortopotwory, Szlafmyce) i River Fly Shop, gra na PC dla dorosłych w produkcji.

@@ -10,6 +10,7 @@ Wynik (commitowany, bo GitHub Pages serwuje gałąź main):
   - feed.xml              RSS 2.0 z wydaniami
   - ortografia/<slug>/index.html i ortografia/index.html  zasady pisowni z dane/ortografia/*.json
   - sitemap.xml, robots.txt  dla wyszukiwarek (lista stron i adres mapy)
+  - llms.txt                 opis serwisu i lista stron dla czatów AI (tytuły i opisy stron)
   - skrypt statystyk Cloudflare Web Analytics (bez ciasteczek) między <!-- statystyki:start -->
     i <!-- statystyki:koniec --> na każdej stronie, jeśli dane/statystyki.json ma token
 
@@ -214,8 +215,51 @@ def mapa_strony(gry: list[dict], porady: list[dict] | None = None,
             + "\n".join(linie) + "\n</urlset>\n")
 
 
+# Roboty wyszukiwarek i czatów AI wpuszczamy jawnie: część z nich czyta tylko własną grupę
+# (grupa z nazwą robota zastępuje dla niego grupę "*").
+ROBOTY_AI = ["Googlebot", "Bingbot", "OAI-SearchBot", "GPTBot", "ChatGPT-User", "Claude-SearchBot",
+             "ClaudeBot", "Claude-User", "PerplexityBot", "Perplexity-User", "Google-Extended", "Applebot"]
+
+
 def robots() -> str:
-    return f"User-agent: *\nAllow: /\n\nSitemap: {ADRES}/sitemap.xml\n"
+    grupy = "".join(f"User-agent: {r}\nAllow: /\n\n" for r in ROBOTY_AI)
+    return f"User-agent: *\nAllow: /\n\n{grupy}Sitemap: {ADRES}/sitemap.xml\n"
+
+
+def _tytul_i_opis(plik: Path) -> tuple[str, str]:
+    """Tytuł i meta description z gotowej strony (llms.txt powtarza teksty stron, niczego nie dopisuje)."""
+    tekst = plik.read_text(encoding="utf-8")
+    t = re.search(r"<title>(.*?)</title>", tekst, re.S)
+    o = re.search(r'<meta name="description" content="(.*?)"', tekst, re.S)
+    return (html.unescape(t.group(1)).strip() if t else plik.parent.name,
+            html.unescape(o.group(1)).strip() if o else "")
+
+
+def llms(adresy: list[str]) -> str:
+    """llms.txt (format llmstxt.org): opis serwisu i strony z sitemap.xml z ich tytułami i opisami."""
+    grupy: dict[str, list[str]] = {"River Fly Shop (gra na PC)": [], "Gry dla dzieci": [],
+                                   "Ortografia": [], "Firma i prywatność": []}
+    for url in adresy:
+        sciezka = url.removeprefix(ADRES + "/")
+        plik = KORZEN / (sciezka + "index.html" if sciezka == "" or sciezka.endswith("/") else sciezka)
+        if not plik.is_file():
+            continue
+        tytul, opis = _tytul_i_opis(plik)
+        linia = f"- [{tytul}]({url})" + (f": {opis}" if opis else "")
+        if "river-fly-shop" in sciezka:
+            grupy["River Fly Shop (gra na PC)"].append(linia)
+        elif sciezka.startswith("ortografia/"):
+            grupy["Ortografia"].append(linia)
+        elif sciezka.startswith("gry/") and sciezka != "gry/":
+            grupy["Gry dla dzieci"].append(linia)
+        else:
+            grupy["Firma i prywatność"].append(linia)
+    _, opis_glownej = _tytul_i_opis(KORZEN / "index.html")
+    czesci = ["# arturbyrski.pl", "", f"> {opis_glownej}", ""]
+    for naglowek, linie in grupy.items():
+        if linie:
+            czesci += [f"## {naglowek}", "", *linie, ""]
+    return "\n".join(czesci)
 
 
 # ---------- HTML ----------
@@ -1027,6 +1071,8 @@ def zbuduj() -> None:
     wpisy_nauczyciele = [(adres(nauczyciele["sciezka"]), None, "0.7")] if nauczyciele else []
     (KORZEN / "sitemap.xml").write_text(mapa_strony(gry, porady, wpisy_nauczyciele + wpisy_pc), encoding="utf-8")
     (KORZEN / "robots.txt").write_text(robots(), encoding="utf-8")
+    adresy = re.findall(r"<loc>(.*?)</loc>", (KORZEN / "sitemap.xml").read_text(encoding="utf-8"))
+    (KORZEN / "llms.txt").write_text(llms([html.unescape(a) for a in adresy]), encoding="utf-8")
     print(f"Zbudowano strony dla gier: {', '.join(g['slug'] for g in gry)}")
 
 
