@@ -253,14 +253,14 @@
     {
       "plik": "wedkarz-w-rzece",
       "ai": true,
-      "data": "2026-11-22",
+      "data": "2026-11-25",
       "opis": {
-        "pl": "Skawa: wędkarz brodzi przy kamieniu, w wodzie odbijają się drzewa",
-        "en": "The Skawa: the angler wades beside a boulder, trees mirrored in the water"
+        "pl": "Skawa: wędkarz brodzi w nurcie, sznur leży na wodzie obok kamienia",
+        "en": "The Skawa: the angler wades the current, the fly line lying on the water beside a boulder"
       },
       "alt": {
-        "pl": "Zrzut z gry: wędkarz w spodniobutach stoi z wędką muchową w Skawie obok dużego kamienia, w wodzie odbijają się drzewa",
-        "en": "Game screenshot: an angler in waders stands in the Skawa river with a fly rod beside a boulder, trees mirrored in the water"
+        "pl": "Zrzut z gry: wędkarz w spodniobutach stoi po uda w Skawie z uniesioną wędką muchową, sznur ciągnie się łukiem po wodzie obok kamienia, pod przejrzystą wodą widać otoczaki",
+        "en": "Game screenshot: an angler in waders stands thigh-deep in the Skawa river with a raised fly rod, the fly line curving across the water beside a boulder, cobbles visible through the clear water"
       }
     },
     {
@@ -305,27 +305,40 @@
     {
       "plik": "kamienie-w-nurcie",
       "ai": true,
-      "data": "2026-11-22",
+      "data": "2026-11-25",
       "opis": {
-        "pl": "Kamienie w nurcie: woda opływa je i odsłania dno z otoczaków",
-        "en": "Boulders in the current: water wraps around them over a cobbled riverbed"
+        "pl": "Kamienie w nurcie: woda opływa je smugami i odsłania dno z otoczaków",
+        "en": "Boulders in the current: water streams around them over a cobbled riverbed"
       },
       "alt": {
-        "pl": "Zrzut z gry: przejrzysta woda opływa kamienie w nurcie rzeki, pod powierzchnią widać dno z otoczaków",
-        "en": "Game screenshot: clear water flows around boulders in the river current, with a cobbled riverbed visible below the surface"
+        "pl": "Zrzut z gry: przejrzysta woda Skawy opływa smugami kilka kamieni w nurcie, pod powierzchnią widać dno z otoczaków, na brzegu kępy traw i drzewa",
+        "en": "Game screenshot: the clear water of the Skawa streams around several boulders in the current, a cobbled riverbed visible below the surface, grass clumps and trees on the bank"
       }
     },
     {
       "plik": "san-bachlawa",
       "ai": true,
-      "data": "2026-11-22",
+      "data": "2026-11-25",
       "opis": {
-        "pl": "San, Bachlawa od ławeczki: rzut na tle gór",
-        "en": "The San, Bachlawa stretch by the bench: a cast against the hills"
+        "pl": "San, Bachlawa od ławeczki: pętla sznura nad płycizną z kamieniami",
+        "en": "The San, Bachlawa stretch by the bench: the line loop over shallows with boulders"
       },
       "alt": {
-        "pl": "Zrzut z gry: wędkarz brodzi w Sanie i wykonuje rzut wędką muchową, w tle zalesione brzegi i góry",
-        "en": "Game screenshot: an angler wades the San river and casts a fly rod, with wooded banks and hills behind"
+        "pl": "Zrzut z gry: wędkarz brodzi w Sanie i wykonuje rzut, pętla sznura muchowego leci nad wodą, w płyciźnie leżą kamienie, po prawej brzeg z otoczaków, w tle zalesione wzgórza",
+        "en": "Game screenshot: an angler wades the San river and casts, the fly line loop travelling above the water, boulders in the shallows, a cobble bank on the right and wooded hills behind"
+      }
+    },
+    {
+      "plik": "san-otoczaki",
+      "ai": true,
+      "data": "2026-11-25",
+      "opis": {
+        "pl": "San: brodzenie wzdłuż brzegu z otoczaków",
+        "en": "The San: wading along a cobble bank"
+      },
+      "alt": {
+        "pl": "Zrzut z gry: wędkarz w spodniobutach brodzi w Sanie wzdłuż niskiego brzegu usypanego z kolorowych otoczaków, za nim drzewa i świerki",
+        "en": "Game screenshot: an angler in waders wades the San river along a low bank of colourful cobbles, with trees and spruces behind him"
       }
     },
     {
@@ -357,14 +370,14 @@
     {
       "plik": "rzut-petla",
       "ai": true,
-      "data": "2026-11-22",
+      "data": "2026-11-25",
       "opis": {
-        "pl": "Skawa: pętla sznura w locie",
-        "en": "The Skawa: the fly line loop in the air"
+        "pl": "Skawa: pętla sznura w locie pod drzewami",
+        "en": "The Skawa: the fly line loop in the air under the trees"
       },
       "alt": {
-        "pl": "Zrzut z gry: wędkarz stoi w Skawie przy brzegu, sznur muchowy leci w powietrzu nad wodą, w tle góry",
-        "en": "Game screenshot: an angler stands in the Skawa river near the bank, the fly line travelling through the air above the water, hills in the background"
+        "pl": "Zrzut z gry: wędkarz brodzi w Skawie pod koronami drzew, sznur muchowy rozwija się pętlą nad wodą obok kamienia",
+        "en": "Game screenshot: an angler wades the Skawa river under the tree canopy, the fly line unrolling in a loop above the water beside a boulder"
       }
     },
     {
