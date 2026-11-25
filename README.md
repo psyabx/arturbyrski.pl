@@ -17,7 +17,87 @@ generuje z nich:
 | `api/wydania.json` | [JSON Feed 1.1](https://jsonfeed.org/version/1.1) z wydaniami, od najnowszego |
 | `feed.xml` | to samo jako RSS |
 | `ortografia/<slug>/index.html`, `ortografia/index.html` | zasady pisowni (ó/u, rz/ż, ch/h) z `dane/ortografia/<slug>.json` |
-| `sitemap.xml`, `robots.txt` | wyszukiwarki: lista stron do zaindeksowania |
+| `sitemap.xml`, `robots.txt` | wyszukiwarki: lista stron do zaindeksowania; `robots.txt` jawnie wpuszcza roboty czatów AI (ChatGPT, Claude, Perplexity, Gemini) |
+| `llms.txt` | czaty AI: opis serwisu i lista stron z ich tytułami i opisami ([llmstxt.org](https://llmstxt.org/)) |
+
+## Wyszukiwarki i czaty AI
+
+- Strona jest zweryfikowana w Google Search Console (domena, rekord TXT w DNS OVH) i w Bing Webmaster Tools
+  (plik `BingSiteAuth.xml`). Bing zasila wyszukiwanie w ChatGPT i Copilocie. Plików weryfikacji nie usuwaj.
+- Plik `750996d55b19827dda883a485b7a8196.txt` to publiczny klucz IndexNow. Po scaleniu zmian do `main`
+  i odświeżeniu strony uruchom `python3 narzedzia/indexnow.py --od RRRR-MM-DD` (albo bez `--od` dla
+  wszystkich stron), żeby Bing i inne wyszukiwarki od razu zobaczyły zmienione strony.
+
+### Widoczność w czatach AI: cotygodniowy pomiar
+
+Po co: żeby co tydzień sprawdzić, czy czaty AI z wyszukiwaniem w sieci (Claude, ChatGPT, Gemini, Perplexity)
+wymieniają River Fly Shop i podają arturbyrski.pl jako źródło, oraz czy zmiany na stronie coś w tym poprawiają.
+
+Narzędzie `narzedzia/widocznosc_ai.py` (sam Python, bez bibliotek) zadaje każdemu czatowi pytania z pliku
+`dane/widocznosc-ai.json`, każde bez kontekstu i domyślnie 3 razy, bo odpowiedzi za każdym razem są trochę inne.
+W tym pliku są też pytania z błędną nazwą („River Fly Fishing”), zapisy nazwy gry do wykrywania, modele i ceny.
+Pytania można dopisywać; plik jest publiczny jak całe repozytorium.
+
+**Wyniki nigdy nie trafiają do repozytorium**, bo całe repozytorium jest publiczną stroną. Skrypt zapisuje je
+w katalogu domowym, w `~/.rfs-widocznosc/<data_godzina>/` (w Windows `C:\Users\<użytkownik>\.rfs-widocznosc\`),
+a inny katalog można podać w `--wyniki`. Katalog wewnątrz repozytorium skrypt odrzuca, a `.gitignore` dodatkowo
+pomija pliki wyników. Każdy przebieg zawiera:
+
+| Plik | Co zawiera |
+| --- | --- |
+| `widocznosc-odpowiedzi.jsonl` | surowe odpowiedzi: data, dostawca, model, pytanie, tekst, cytowane adresy, koszt |
+| `widocznosc-raport.md` | raport: wzmianki o grze, cytowania arturbyrski.pl, średnia pozycja na liście, błędna nazwa, porównanie z poprzednim tygodniem |
+| `widocznosc-ocena.csv` | odpowiedzi z nazwą gry i puste kolumny „rekomendacja” i „poprawność” do ręcznej oceny (otwiera się w Excelu) |
+| `widocznosc-podsumowanie.json` | liczby z raportu, z którymi porównuje się następny przebieg |
+
+Wskaźniki „czy czat poleca grę” i „czy pisze o niej prawdę” wymagają oceny człowieka, więc program ich nie liczy.
+Przykład: odpowiedź „River Fly Shop to gra w produkcji, ale nie ma jeszcze daty premiery” liczy się automatycznie
+jako wzmianka; to, czy jest to rekomendacja, wpisuje Artur w arkuszu.
+
+**Klucze API** są tylko w zmiennych środowiskowych komputera Artura, nigdy w plikach repozytorium ani w sekretach GitHuba.
+Dostawca bez klucza jest pomijany, więc można zacząć od jednego.
+
+| Dostawca | Zmienna | Skąd klucz | Model (listopad 2026) |
+| --- | --- | --- | --- |
+| Anthropic | `ANTHROPIC_API_KEY` | platform.claude.com → API keys | `claude-opus-5-5` z wyszukiwaniem w sieci |
+| OpenAI | `OPENAI_API_KEY` | platform.openai.com → API keys | `gpt-6.2-astra` z wyszukiwaniem w sieci |
+| Google Gemini | `GEMINI_API_KEY` | aistudio.google.com → Get API key (projekt z płatnościami) | `gemini-4-hydrogen` z wyszukiwarką Google |
+| Perplexity | `PERPLEXITY_API_KEY` | perplexity.ai → Settings → API | `perplexity/sonar` (Agent API) z wyszukiwaniem |
+
+Zmienną ustawia się raz, w PowerShell: `setx ANTHROPIC_API_KEY "sk-..."` (działa w nowych oknach i w Harmonogramie
+zadań). U każdego dostawcy warto ustawić miesięczny limit wydatków w panelu rozliczeń.
+
+**Uruchomienie:**
+
+```bash
+python3 narzedzia/widocznosc_ai.py --proba          # plan i szacowany koszt, bez zapytań i bez opłat
+python3 narzedzia/widocznosc_ai.py                  # pełny pomiar u dostawców, którzy mają klucz
+python3 narzedzia/widocznosc_ai.py --dostawcy perplexity,gemini --powtorzenia 1
+python3 narzedzia/widocznosc_ai.py --raport ~/.rfs-widocznosc/2026-12-01_080000   # raport od nowa, bez zapytań
+python3 -m unittest discover -s narzedzia -p "test_*.py"                          # testy, bez sieci
+```
+
+**Koszt:** pełny przebieg to 14 pytań × 3 powtórzenia × 4 dostawców = 168 zapytań, szacunkowo około 13 USD
+(Anthropic około 4, OpenAI około 6, Gemini około 2, Perplexity poniżej 1 USD). To szacunek zawyżony celowo,
+bo wyszukiwanie dokłada do każdego zapytania treść znalezionych stron. Faktyczny koszt raport wylicza z liczby
+tokenów zwróconej przez dostawcę. Skrypt odmawia startu, gdy szacunek przekracza `--limit-usd` (domyślnie 20 USD)
+albo liczba zapytań przekracza `--limit-zapytan` (domyślnie 250), i przerywa w trakcie po przekroczeniu kwoty.
+Taniej: `--powtorzenia 1` (około 4,50 USD) albo tylko Perplexity i Gemini.
+
+**Co tydzień (Harmonogram zadań Windows):** bez GitHub Actions, bo klucze musiałyby trafić do sekretów
+repozytorium, a o tym decyduje Artur. W PowerShell (ścieżki dopasuj do swojego klonu i Pythona):
+
+```powershell
+$akcja = New-ScheduledTaskAction -Execute "python.exe" `
+  -Argument "D:\priv\arturbyrski.pl\narzedzia\widocznosc_ai.py" `
+  -WorkingDirectory "D:\priv\arturbyrski.pl"
+$kiedy = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At 8am
+Register-ScheduledTask -TaskName "RFS widocznosc AI" -Action $akcja -Trigger $kiedy `
+  -Settings (New-ScheduledTaskSettingsSet -StartWhenAvailable)
+```
+
+`-StartWhenAvailable` uruchamia zadanie po włączeniu komputera, jeśli w poniedziałek o 8:00 był wyłączony.
+Raport z ostatniego tygodnia leży w najnowszym katalogu w `~/.rfs-widocznosc/`.
 
 Strony gier mają też adres kanoniczny, podgląd linku (Open Graph) i dane strukturalne schema.org
 (gra, wydawca, wiek dzieci). Tytuł i opis w Google ustawia opcjonalne pole `seo` w danych gry:
@@ -120,6 +200,43 @@ sekcję „Częste pytania”. Każdy zrzut w galerii ma krótki podpis `opis` i
 co naprawdę widać na obrazie; bez pola `alt` strona używa podpisu. Dane strukturalne (gra, zwiastun, ścieżka nawigacji
 i częste pytania) generator składa sam z tych samych pól. Zwiastun trafia do nich, gdy `trailer` ma pole `data`
 (dzień publikacji filmu); długość filmu generator odczytuje z pliku MP4. Przy podmianie zwiastuna popraw `data`.
+
+**Twórca, hasła i profile:** pole `tworca` (`imie` i `opis` PL/EN) trafia do danych strukturalnych jako autor gry
+(osoba obok firmy) i jako jedno zdanie w sekcji „O grze”. Opis zatwierdza Artur, nie dopisujemy faktów o nim samodzielnie.
+`slowa_kluczowe` (PL/EN) trafiają do pola `keywords` gry: tylko hasła, które gra naprawdę spełnia. `profile` to lista
+adresów oficjalnych stron gry w innych serwisach (Steam, itch.io, YouTube, IndieDB); trafiają do `sameAs`.
+Dopisuj je dopiero, gdy strona istnieje.
+
+**Artykuły:** jeden plik `dane/gry-pc/<slug>/artykuly/<nazwa>.json` to jeden artykuł w jednym języku. Strony:
+`/gry/<slug>/artykuly/<slug-artykułu>/` (PL) i `/en/games/<slug>/articles/<slug-artykułu>/` (EN), lista artykułów
+pod `/artykuly/` i `/articles/`, a pięć najnowszych na stronie gry w sekcji „Artykuły”. Dopóki nie ma żadnego
+opublikowanego artykułu, nic z tego nie powstaje. Artykuły trafiają do `sitemap.xml` i `llms.txt`, mają dane
+strukturalne `Article` z autorem z pola `tworca`. Treść pisze Artur: artykuł ma mieć prawdziwą wartość dla gracza
+lub wędkarza i opisywać tylko to, co działa w grze.
+
+```json
+{
+  "slug": "jak-dziala-wiazanie-much",
+  "jezyk": "pl",
+  "para": "how-fly-tying-works",
+  "opublikowano": "2026-12-01",
+  "zaktualizowano": "2026-12-05",
+  "szkic": false,
+  "tytul": "Jak działa wiązanie much w River Fly Shop",
+  "opis": "Jedno lub dwa zdania do wyników wyszukiwania i listy artykułów.",
+  "tresc": [
+    {"h2": "Śródtytuł"},
+    {"p": "Akapit."},
+    {"lista": ["punkt", "punkt"]},
+    {"obraz": "imadlo"}
+  ]
+}
+```
+
+`para` (opcjonalne) to slug tego samego artykułu w drugim języku: strony dostają wtedy wzajemne `hreflang`.
+`zaktualizowano` jest opcjonalne. `"szkic": true` sprawdza plik przy budowaniu, ale nie publikuje strony;
+pamiętaj, że repo jest publiczne, więc szkic i tak widać na GitHubie. `obraz` to nazwa zrzutu z galerii gry.
+Generator zatrzymuje budowanie przy brakujących polach, złej dacie, obrazie spoza galerii albo nieistniejącej parze.
 
 **Steam:** gdy gra będzie miała stronę w sklepie, wpisz numer aplikacji w `steam_app_id`. Przycisk pojawi
 się wtedy sam, z UTM `utm_campaign=rfs-strona-gry` (EN: `rfs-strona-gry-en`). Przy `null` nie ma żadnego przycisku.
