@@ -51,3 +51,14 @@ jest od razu produkcją (domena z `CNAME`). Szczegóły generatora i danych: `RE
   `trailer` w danych. Nie pokazuj nieaktywnych przycisków ani „wkrótce na Steamie”.
 - Zgłoszenia do testów tylko e-mailem (mailto) z informacją o prywatności. Bez formularzy
   wysyłających dane do zewnętrznych firm.
+
+## Wyszukiwarki i czaty AI
+
+- Google Search Console: właściwość domeny arturbyrski.pl (rekord TXT w DNS OVH), mapa `sitemap.xml` zgłoszona.
+- Bing Webmaster Tools: weryfikacja plikiem `BingSiteAuth.xml`, mapa zgłoszona. Bing zasila ChatGPT i Copilota;
+  cytowania widać w zakładce „AI Performance”.
+- Nie usuwaj plików `BingSiteAuth.xml` ani `750996d55b19827dda883a485b7a8196.txt` (klucz IndexNow).
+- `robots.txt` i `llms.txt` generuje `narzedzia/strona.py` (lista botów `ROBOTY_AI`). Nie edytuj ich ręcznie.
+  `llms.txt` powstaje z tytułów i opisów istniejących stron, więc nie dopisuj tam nowych treści.
+- Po scaleniu zmian w treści uruchom `python3 narzedzia/indexnow.py --od RRRR-MM-DD`
+  (najpierw `--proba`, żeby zobaczyć listę adresów).
