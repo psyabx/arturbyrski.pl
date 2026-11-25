@@ -122,6 +122,9 @@ section + section { border-top: 1px solid var(--linia); }
 .wpis img { border-radius: 6px; }
 .wpis time { color: var(--cichy); font-size: 1rem; }
 .wpis p { margin: .3rem 0 0; }
+.artykul figure { margin: 1.5rem 0; }
+.artykul img { width: 100%; height: auto; border-radius: 6px; }
+.artykuly li { margin-bottom: .8rem; }
 @media (max-width: 640px) {
   .wpis { grid-template-columns: 1fr; }
   h2 { font-size: 1.6rem; }

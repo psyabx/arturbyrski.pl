@@ -4,6 +4,18 @@
   "tytul_roboczy": true,
   "platforma": "PC (Windows)",
   "steam_app_id": null,
+  "tworca": {
+    "imie": "Artur Byrski",
+    "opis": {
+      "pl": "polski programista i muszkarz",
+      "en": "Polish software developer and fly angler"
+    }
+  },
+  "profile": [],
+  "slowa_kluczowe": {
+    "pl": ["symulator wędkarstwa muchowego", "gra o wędkarstwie muchowym", "wiązanie much", "symulator sklepu wędkarskiego", "krótka nimfa", "gra wędkarska na PC"],
+    "en": ["fly fishing simulator", "fly fishing game", "fly tying", "fly shop management", "euro nymphing", "fishing game for PC"]
+  },
   "kampanie": [
     "facebook",
     "reddit",
@@ -23,8 +35,8 @@
   "obraz_udostepniania": "img/gry/river-fly-shop/kapsula.jpg",
   "teksty": {
     "pl": {
-      "seo_tytul": "River Fly Shop: gra wędkarska o łowieniu na muchę na PC",
-      "seo_opis": "Spokojna gra wędkarska na PC: łowienie na muchę pstrągów i lipieni na Skawie i Sanie, wiązanie much i sklep muszkarski. W produkcji, zapisy na testy.",
+      "seo_tytul": "River Fly Shop: symulator wędkarstwa muchowego na PC",
+      "seo_opis": "Spokojny symulator wędkarstwa muchowego na PC: pstrągi i lipienie na Skawie i Sanie, wiązanie much i sklep muszkarski. W produkcji, zapisy na testy.",
       "podtytul": "Sklep muchowy nad rzeką. Gra na PC w produkcji.",
       "tytul_roboczy": "tytuł roboczy",
       "status": "W produkcji · PC (Windows) · bez daty premiery",
@@ -136,8 +148,8 @@
       "wideo_zgoda": "Po kliknięciu film wczyta się z YouTube (youtube-nocookie.com)."
     },
     "en": {
-      "seo_tytul": "River Fly Shop: fly fishing and fly tying game for PC",
-      "seo_opis": "A calm fly fishing game for PC: catch trout and grayling on Polish rivers, tie your own flies and run a fly shop. In development, playtest sign-ups open.",
+      "seo_tytul": "River Fly Shop: fly fishing simulator and fly shop game (PC)",
+      "seo_opis": "Calm fly fishing simulator for PC: dry fly, euro nymphing and streamer on Polish rivers, fly tying and a fly shop. In development, playtest sign-ups open.",
       "podtytul": "A fly shop by the river. A PC game in development.",
       "tytul_roboczy": "working title",
       "status": "In development · PC (Windows) · no release date yet",
@@ -160,7 +172,7 @@
         ],
         [
           "3D fishing",
-          "Five methods: dry fly with mending, short-line nymphing, dry-dropper, wet fly and streamer. With trees behind you, you make a roll cast. You wade the river and sneak, because fish can see the angler and their shadow."
+          "Five methods: dry fly with mending, short-line (euro) nymphing, dry-dropper, wet fly and streamer. With trees behind you, you make a roll cast. You wade the river and sneak, because fish can see the angler and their shadow."
         ],
         [
           "Playing and landing",
@@ -199,7 +211,7 @@
         ],
         [
           "Do you tie your own flies in the game?",
-          "Yes. At the vise you tie flies from recipes, step by step, using materials stored in drawers. There are five fishing methods: dry fly, short-line nymphing, dry-dropper, wet fly and streamer."
+          "Yes. At the vise you tie flies from recipes, step by step, using materials stored in drawers. There are five fishing methods: dry fly, short-line (euro) nymphing, dry-dropper, wet fly and streamer."
         ],
         [
           "When and on what can I play?",
