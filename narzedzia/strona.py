@@ -326,10 +326,10 @@ LOGO_SVG = ('<svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
 
 def pasek(g: str, en: bool = True) -> str:
     return (f'<header class="pasek"><div class="wrap">'
-            f'<a class="logo" href="{g}index.html">{LOGO_SVG}Senne gry Artura</a>'
-            f'<nav class="menu"><a href="{g}index.html#gry">Gry</a><a href="{g}ortografia/">Zasady ortografii</a>'
-            f'<a href="{g}index.html#rodzice">Dla rodziców</a>'
-            f'<a href="{g}index.html#dzieci">Dla dzieci</a><a href="{g}index.html#kontakt">Kontakt</a>'
+            f'<a class="logo" href="{g}">{LOGO_SVG}Senne gry Artura</a>'
+            f'<nav class="menu"><a href="{g}#gry">Gry</a><a href="{g}ortografia/">Zasady ortografii</a>'
+            f'<a href="{g}#rodzice">Dla rodziców</a>'
+            f'<a href="{g}#dzieci">Dla dzieci</a><a href="{g}#kontakt">Kontakt</a>'
             + ('<a href="#en">English</a>' if en else "") + '</nav></div></header>')
 
 
@@ -512,7 +512,7 @@ def strona_porady(p: dict, porady: list[dict], gra: dict | None) -> str:
     skrot = "".join(f"<li>{punkt}</li>" for punkt in p["w_skrocie"])  # punkty mają celowo <b>
     czesci.append(
         f'<section class="porada-gora"><div class="wrap waski">'
-        f'<p class="okruszki"><a href="{g}index.html">Senne gry Artura</a> › <a href="../">Zasady ortografii</a></p>'
+        f'<p class="okruszki"><a href="{g}">Senne gry Artura</a> › <a href="../">Zasady ortografii</a></p>'
         f'<h1>{e(p["tytul"])}</h1><p class="lead">{e(p["wstep"])}</p>'
         f'<div class="ramka"><h2>W skrócie</h2><ul class="lista">{skrot}</ul></div>'
         f'</div></section>')
@@ -607,7 +607,7 @@ def strona_ortografii(porady: list[dict]) -> str:
         for i, p in enumerate(porady))
     tresc = (
         f'<section class="porada-gora"><div class="wrap waski">'
-        f'<p class="okruszki"><a href="{g}index.html">Senne gry Artura</a></p>'
+        f'<p class="okruszki"><a href="{g}">Senne gry Artura</a></p>'
         f'<h1>Zasady ortografii dla dzieci</h1>'
         f'<p class="lead">Proste zasady pisowni ó i u, rz i ż oraz ch i h, z przykładami i ćwiczeniami z odpowiedziami. '
         f'Dla dzieci w klasach 1–4 i rodziców, którzy pomagają w lekcjach.</p></div></section>'
@@ -746,7 +746,7 @@ def strona_nauczycieli(n: dict, gra: dict) -> str:
         f'<section class="niebo"><div class="gwiazdy" aria-hidden="true">{GWIAZDY}</div>'
         f'<div class="ksiezyc" aria-hidden="true"></div>'
         f'<div class="wrap niebo-tresc"><div>'
-        f'<p class="okruszki"><a href="{g}index.html">Senne gry Artura</a> › <a href="../">{e(gra["nazwa"])}</a></p>'
+        f'<p class="okruszki"><a href="{g}">Senne gry Artura</a> › <a href="../">{e(gra["nazwa"])}</a></p>'
         f'<h1>{e(n["tytul"])}</h1>'
         f'<p class="lead">{e(n["podtytul"])}</p>'
         f'<p>{e(n["wstep"])}</p>'
